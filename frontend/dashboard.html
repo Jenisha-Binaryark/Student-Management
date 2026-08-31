@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smartech Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}"> -->
+<link rel="stylesheet" href="/frontend/styles/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+  <div class="sidebar">
+    <div class="logo">Smartech</div>
+    <div class="profile">
+      <img src="https://i.pravatar.cc/100?img=47" alt="Jenisha">
+      <div>
+        <div class="name">Jenisha Varde</div>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#" class="active"><span class="icon">▦</span> Dashboard</a></li>
+        <li><a href="#"><span class="icon">🏠</span> My classes</a></li>
+        <li><a href="#"><span class="icon">📊</span> My grades</a></li>
+        <li><a href="#"><span class="icon">📅</span> Schedule</a></li>
+        <li><a href="#"><span class="icon">✉</span> Messages</a></li>
+        <li><a href="#"><span class="icon">⚙</span> Setting</a></li>
+      </ul>
+    </nav>
+    <div class="logout"><span class="icon">⏻</span> Log out</div>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="greeting">HELLO, JENISHA!</div>
+      <div class="search">🔍 search</div>
+      <div class="top-icons">🔔 ⋮</div>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>Linked Teachers</h3>
+        <div class="person-row">
+          <img src="https://i.pravatar.cc/80?img=32" alt="">
+          <div><div class="p-name">Olivia Miller</div><div class="p-sub">mentor</div></div>
+        </div>
+        <div class="person-row">
+          <img src="https://i.pravatar.cc/80?img=12" alt="">
+          <div><div class="p-name">Liam Garcio</div><div class="p-sub">teacher</div></div>
+        </div>
+        <div class="person-row">
+          <img src="https://i.pravatar.cc/80?img=15" alt="">
+          <div><div class="p-name">Jackson Lopez</div><div class="p-sub">lecturer</div></div>
+        </div>
+        <a class="see-more" href="#">See more ›</a>
+      </div>
+
+      <div class="card">
+        <h3>Upcoming events</h3>
+        <div class="person-row">
+          <img src="https://picsum.photos/seed/robot/80/80" alt="">
+          <div><div class="p-name">The main event in your "Robot Fest"</div><div class="p-sub">22 May 2023 &nbsp; 13:00</div></div>
+        </div>
+        <div class="person-row">
+          <img src="https://picsum.photos/seed/webinar/80/80" alt="">
+          <div><div class="p-name">Webinar of new tools for Minecraft</div><div class="p-sub">25 May 2023 &nbsp; 11:00</div></div>
+        </div>
+        <a class="see-more" href="#">See more ›</a>
+      </div>
+
+      <div class="stats-col">
+        <div class="stat-card">
+          <h4>Attendance</h4>
+          <div class="ring-wrap">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="8"/>
+              <circle cx="40" cy="40" r="34" fill="none" stroke="#d1567f" stroke-width="8"
+                stroke-linecap="round"
+                stroke-dasharray="213.6" stroke-dashoffset="85.4"/>
+            </svg>
+            <div class="ring-pct">60%</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <h4>Homework</h4>
+          <div class="ring-wrap">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="8"/>
+              <circle cx="40" cy="40" r="34" fill="none" stroke="#5aada0" stroke-width="8"
+                stroke-linecap="round"
+                stroke-dasharray="213.6" stroke-dashoffset="21.4"/>
+            </svg>
+            <div class="ring-pct">90%</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <h4>Rating</h4>
+          <div class="ring-wrap">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="8"/>
+              <circle cx="40" cy="40" r="34" fill="none" stroke="#e0aa4e" stroke-width="8"
+                stroke-linecap="round"
+                stroke-dasharray="213.6" stroke-dashoffset="53.4"/>
+            </svg>
+            <div class="ring-pct">75%</div>
+          </div>
+          <a class="see-more" href="#" style="color:#fff;">See more ›</a>
+        </div>
+      </div>
+
+      <div class="schedule-row">
+        <div class="card calendar">
+          <h3>My schedule</h3>
+          <div class="cal-nav">
+            <span id="cal-prev" style="cursor:pointer;">‹</span>
+            <span id="cal-month-label"></span>
+            <span id="cal-next" style="cursor:pointer;">›</span>
+          </div>
+          <table id="cal-table">
+            <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+          </table>
+        </div>
+        <div class="card">
+          <div class="lesson-list">
+            <div class="lesson-item">
+              <div class="lesson-date">18</div>
+              <div><div class="lesson-title">Robotics lesson</div><div class="lesson-time">19:30</div></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-date">19</div>
+              <div><div class="lesson-title">Electronics lesson</div><div class="lesson-time">16:00</div></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-date">20</div>
+              <div><div class="lesson-title">C++ lesson</div><div class="lesson-time">–</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card projects">
+        <h3>My projects</h3>
+        <div class="project-imgs">
+          <div class="project-item">
+            <img src="https://picsum.photos/seed/homework15/300/200" alt="">
+            <div class="project-label">Homework 15</div>
+          </div>
+          <div class="project-item">
+            <img src="https://picsum.photos/seed/homework16/300/200" alt="">
+            <div class="project-label">Homework 16</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script src="/frontend/src/dashboard.js"></script>
+</body>
+</html>

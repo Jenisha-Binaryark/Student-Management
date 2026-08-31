@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/styles/signup.css">
+    <title>Smartech</title>
+</head>
+<body>
+    <div class="auth-card">
+
+  <div class="side-panel">
+    <div class="illustration">
+      <i class="fa-solid fa-mobile-screen-button phone-icon"></i>
+      <i class="fa-solid fa-person person-icon"></i>
+    </div>
+    <h2>Already Having An Account?</h2>
+    <p>We Are Happy To Have You Back</p>
+    <a href="/frontend/login.html" class="btn-outline">Login</a>
+  </div>
+
+  <div class="form-panel">
+    <h1>Create Account</h1>
+    <p class="subtitle">Get started by creating your new account</p>
+
+    <div class="role-switch">
+      <button type="button" id="studentBtn" class="role-btn active">Student</button>
+      <button type="button" id="mentorBtn" class="role-btn">Mentor / Teacher</button>
+    </div>
+
+  <p id="message"></p>
+  <form id="signupForm" action="/signup" method="POST">
+    <input type="hidden" name="role" id="role" value="student">
+      <input type="text" name="fullname" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input class="phone_num" type="number" name="phone" maxlength="10" placeholder="Phone Number" required>
+      <div class="password-field">
+    <input type="password"
+           id="password"
+           name="password"
+           placeholder="Password"
+           required>
+
+    <i class="fa-regular fa-eye-slash toggle-eye"
+       id="toggleEye"></i>
+</div>
+
+<div class="password-field">
+    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+    <i class="fa-regular fa-eye-slash toggle-eye" id="confirmToggleEye"></i>
+</div>
+
+      <label class="optional-label">(Optional)</label>
+      <input type="text" name="referral" placeholder="Referral Code">
+      <label class="checkbox-row">
+        <input type="checkbox" required>
+        <span>By clicking, you agree to the Smartech's Terms and Conditions</span>
+      </label>
+
+      <button type="submit" class="btn-primary">Register</button>
+    </form>
+
+    <div class="divider"><span>Or</span></div>
+
+    <div class="social-icons">
+      <button class="social-btn"><i class="fa-brands fa-google"></i></button>
+      <button class="social-btn"><i class="fa-brands fa-apple"></i></button>
+      <button class="social-btn"><i class="fa-brands fa-facebook-f" style="color:#1877F2;"></i></button>
+    </div>
+  </div>
+</div>
+<script src="/frontend/src/signup.js"></script>
+</body>
+</html>

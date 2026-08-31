@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartech</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/styles/login.css">
+</head>
+<body>
+<div class="auth-card">
+    <div class="form-panel">
+        <h1>Welcome Back!</h1>
+        <p class="subtitle">We Are Happy To Have You Back</p>
+
+        <div class="role-switch">
+            <button type="button" id="studentBtn" class="role-btn active">Student</button>
+            <button type="button" id="mentorBtn" class="role-btn">Mentor / Teacher</button>
+        </div>
+
+        <p id="message"></p>
+        <form id="loginForm" action="/login" method="POST">
+            <input type="hidden" name="role" id="role" value="student">
+            <input type="text" id="username" name="username" placeholder="Email or Phone Number" required>
+            <div class="password-field">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <i class="fa-regular fa-eye-slash toggle-eye" id="toggleEye"></i>
+            </div>
+
+        <a href="#" class="forgot-link">Forgot password?</a>
+
+        <button type="submit" class="btn-primary">Login</button>
+        </form>
+
+    <div class="divider"><span>Or</span></div>
+
+    <div class="social-icons">
+      <button class="social-btn"><i class="fa-brands fa-google"></i></button>
+      <button class="social-btn"><i class="fa-brands fa-apple"></i></button>
+      <button class="social-btn"><i class="fa-brands fa-facebook-f" style="color:#1877F2;"></i></button>
+    </div>
+  </div>
+
+  <div class="side-panel">
+    <div class="illustration">
+      <i class="fa-solid fa-mobile-screen-button phone-icon"></i>
+      <i class="fa-solid fa-user-astronaut person-icon"></i>
+    </div>
+    <h2>Don't Have An Account?</h2>
+    <p>Get Started By Creating Your New Account</p>
+    <a href="/frontend/signup.html" class="btn-outline">Register</a>
+  </div>
+</div>
+<script src="/frontend/src/login.js"></script>
+</body>
+</html>
