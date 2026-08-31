@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const password = document.getElementById("password");
   const toggleEye = document.getElementById("toggleEye");
 
-  // Role switch (visual only for now)
   studentBtn.addEventListener("click", () => {
     roleInput.value = "student";
     studentBtn.classList.add("active");

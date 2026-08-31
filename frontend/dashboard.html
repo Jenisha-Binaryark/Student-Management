@@ -17,7 +17,7 @@
     <div class="profile">
       <img src="https://i.pravatar.cc/100?img=47" alt="Jenisha">
       <div>
-        <div class="name">Jenisha Varde</div>
+        <div class="name" id="sidebar-username">Loading...</div>
       </div>
     </div>
     <nav>
@@ -30,12 +30,12 @@
         <li><a href="#"><span class="icon">⚙</span> Setting</a></li>
       </ul>
     </nav>
-    <div class="logout"><span class="icon">⏻</span> Log out</div>
+    <button class="logout" id="logout-Btn"><span class="icon">⏻</span> Log out</button>
   </div>
 
   <div class="main">
     <div class="topbar">
-      <div class="greeting">HELLO, JENISHA!</div>
+      <div class="greeting">HELLO, <span id="user-first-name">...</span>!</div>
       <div class="search">🔍 search</div>
       <div class="top-icons">🔔 ⋮</div>
     </div>
@@ -98,7 +98,7 @@
           </div>
         </div>
         <div class="stat-card">
-          <h4>Rating</h4>
+          <h4>Performance</h4>
           <div class="ring-wrap">
             <svg width="80" height="80" viewBox="0 0 80 80">
               <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="8"/>

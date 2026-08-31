@@ -1,4 +1,20 @@
-const monthNames = ["January","February","March","April","May","June",
+document.addEventListener("DOMContentLoaded", async () => {
+  // ---- username fetch ----
+  try {
+    const res = await fetch("/api/current_user");
+    if (res.status === 401) {
+      window.location.href = "/login.html";
+      return;
+    }
+    const data = await res.json();
+    document.getElementById("sidebar-username").textContent = data.fullname;
+    document.getElementById("user-first-name").textContent =
+      data.fullname.split(" ")[0].toUpperCase();
+  } catch (err) {
+    console.error("Failed to load user info:", err);
+  }
+
+  const monthNames = ["January","February","March","April","May","June",
     "July","August","September","October","November","December"];
 
   let today = new Date();
@@ -10,12 +26,10 @@ const monthNames = ["January","February","March","April","May","June",
     const label = document.getElementById('cal-month-label');
 
     table.querySelectorAll('tr:not(:first-child)').forEach(row => row.remove());
-
     label.textContent = `${monthNames[month]} ${year}`;
 
     const firstDay = new Date(year, month, 1);
     let startOffset = (firstDay.getDay() + 6) % 7;
-
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     let date = 1;
@@ -54,3 +68,16 @@ const monthNames = ["January","February","March","April","May","June",
   });
 
   renderCalendar(viewYear, viewMonth);
+
+  document.getElementById("logout-Btn").addEventListener('click', function(){
+    fetch("/logout", {method:"POST"})
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            if(data.status === "success"){
+                window.location.href = "/login.html";
+            }
+        })
+  });
+});

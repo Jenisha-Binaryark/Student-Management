@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, request, jsonify
+from flask import Flask, send_from_directory, request, jsonify, session
 from werkzeug.security import generate_password_hash, check_password_hash
 import psycopg2
 
@@ -6,7 +6,7 @@ app = Flask(
     __name__,
     static_folder="../frontend"
 )
-
+app.secret_key = "zeebra&appleAreInLove"
 def get_db_connection():
     return psycopg2.connect(
         dbname = "signup_user",
@@ -59,6 +59,9 @@ def signup():
         print("Error:", e)
         return jsonify({"status": "error", "message": "Server error"}), 500
 
+@app.route("/login.html")
+def login_page():
+    return send_from_directory("../frontend", "login.html")
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -71,7 +74,7 @@ def login():
         cur = conn.cursor()
 
         cur.execute(
-            "SELECT password FROM signup_user WHERE email = %s OR phone = %s",
+            "SELECT fullname, password FROM signup_user WHERE email = %s OR phone = %s",
             (username, username)
         )
         user = cur.fetchone()
@@ -82,17 +85,29 @@ def login():
         if not user:
             return jsonify({"status": "not_found"})
 
-        stored_hash = user[0]
+        fullname, stored_hash = user
 
         if not check_password_hash(stored_hash, password):
             return jsonify({"status": "wrong_password"})
 
+        session["fullname"] = fullname   # 👈 remember who's logged in
         return jsonify({"status": "success"})
 
     except Exception as e:
         print("Error:", e)
         return jsonify({"status": "error", "message": "Server error"}), 500
 
+@app.route("/api/current_user")
+def current_user():
+    fullname = session.get("fullname")
+    if not fullname:
+        return jsonify({"status": "not_logged_in"}), 401
+    return jsonify({"status": "success", "fullname": fullname})
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    session.clear()
+    return jsonify({"status": "success"})
 
 if __name__ == "__main__":
     app.run(debug=True)
