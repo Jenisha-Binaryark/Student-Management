@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='/styles/homework.css') }}"> -->
+     <link rel="stylesheet" href="/frontend/styles/homework.css">
+    <title>Smartech Homework</title>
+</head>
+<body>
+    <div class="homework">
+        <div class="sidebar">
+            <div class="logo">Smartech</div>
+            <div class="profile">
+                <img src="https://i.pravatar.cc/100?img=47" alt="profile-photo">
+                <div>
+                    <div class="name" id="sidebar-username">Loading...</div>
+                </div>
+            </div>
+            <nav>
+            <ul>
+                <li><a href="#" class="active" aria-current="page"><span class="icon" aria-hidden="true">▦</span> Dashboard</a></li>
+                <li><a href="#"><span class="icon" aria-hidden="true">🏠</span> My classes</a></li>
+                <li><a href="#"><span class="icon" aria-hidden="true">📊</span> My grades</a></li>
+                <li><a href="#"><span class="icon" aria-hidden="true">📅</span> Schedule</a></li>
+                <li><a href="#"><span class="icon" aria-hidden="true">✉</span> Messages</a></li>
+                <li><a href="#"><span class="icon" aria-hidden="true">⚙</span> Setting</a></li>
+            </ul>
+            </nav>
+            <button type="button" class="logout" id="logout-btn"><span class="icon" aria-hidden="true">⏻</span> Log out</button>
+        </div>
+
+        <div class="main">
+            <div class="topbar">
+                <div class="greeting">HELLO, <span id="user-first-name">...</span>!</div>
+                <div class="search">🔍 search</div>
+                <div class="top-icons">🔔 ⋮</div>
+            </div>
+
+            <div class="page-head">
+                <h1>Homework</h1>
+                <p>Everything your teachers have assigned, in one place.</p>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="assigned">Assigned <span class="badge" id="badge-assigned">0</span></button>
+                <button class="tab" data-tab="missing">Missing <span class="badge" id="badge-missing">0</span></button>
+                <button class="tab" data-tab="done">Done <span class="badge" id="badge-done">0</span></button>
+            </div>
+
+            <section class="panel active" id="panel-assigned"></section>
+            <section class="panel" id="panel-missing"></section>
+            <section class="panel" id="panel-done"></section>
+        </div>
+    </div>
+</body>
+</html>

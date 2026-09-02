@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (data.status === "success") {
         message.textContent = "Login successful! Redirecting...";
         message.style.color = "green";
-        setTimeout(() => (window.location.href = "dashboard.html"), 1500);
+        setTimeout(() => (window.location.href = "/dashboard.html"), 1500);
       } else {
         message.textContent = data.message || "Something went wrong.";
         message.style.color = "red";

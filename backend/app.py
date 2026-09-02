@@ -1,10 +1,11 @@
-from flask import Flask, send_from_directory, request, jsonify, session
+from flask import Flask, send_from_directory, request, jsonify, session, render_template
 from werkzeug.security import generate_password_hash, check_password_hash
 import psycopg2
 
 app = Flask(
     __name__,
-    static_folder="../frontend"
+    static_folder="../frontend",
+    template_folder="../frontend"
 )
 app.secret_key = "zeebra&appleAreInLove"
 def get_db_connection():
@@ -18,7 +19,7 @@ def get_db_connection():
 
 @app.route("/")
 def home():
-    return send_from_directory("../frontend", "signup.html")
+    return render_template("signup.html")
 
 @app.route("/signup", methods=["POST"])
 def signup():
@@ -61,7 +62,7 @@ def signup():
 
 @app.route("/login.html")
 def login_page():
-    return send_from_directory("../frontend", "login.html")
+    return render_template("login.html")
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -103,6 +104,10 @@ def current_user():
     if not fullname:
         return jsonify({"status": "not_logged_in"}), 401
     return jsonify({"status": "success", "fullname": fullname})
+
+@app.route("/dashboard.html")
+def dashboard_page():
+    return render_template("dashboard.html")
 
 @app.route("/logout", methods=["POST"])
 def logout():

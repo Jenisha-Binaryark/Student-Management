@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="/frontend/styles/signup.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles/signup.css') }}">
     <title>Smartech</title>
 </head>
 <body>
@@ -17,7 +17,7 @@
     </div>
     <h2>Already Having An Account?</h2>
     <p>We Are Happy To Have You Back</p>
-    <a href="/frontend/login.html" class="btn-outline">Login</a>
+    <a href="{{ url_for('login_page')}}" class="btn-outline">Login</a>
   </div>
 
   <div class="form-panel">
@@ -70,6 +70,6 @@
     </div>
   </div>
 </div>
-<script src="/frontend/src/signup.js"></script>
+<script src="{{ url_for('static', filename='/src/signup.js') }}"></script>
 </body>
 </html>
