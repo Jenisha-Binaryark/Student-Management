@@ -22,19 +22,17 @@ body{
   padding:0;
 }
 
-/* ===== OUTER WRAPPER (same pattern as .dashboard) ===== */
 .homework{
   width:100%;
   max-width:100%;
   height:100vh;
   border-radius:0;
   box-shadow:none;
-  display:grid;
+  display:block;
   grid-template-columns:220px 1fr;
   overflow:hidden;
 }
 
-/* ===== SIDEBAR — reused as-is from dashboard.css ===== */
 .sidebar{
   background:var(--card-cream);
   padding:28px 20px;
@@ -91,7 +89,6 @@ nav a:hover:not(.active){ background:rgba(0,0,0,0.04); }
   font-family:inherit;
 }
 
-/* ===== MAIN / TOPBAR — reused as-is from dashboard.css ===== */
 .main{
   padding:28px 32px;
   height:100vh;
@@ -113,7 +110,6 @@ nav a:hover:not(.active){ background:rgba(0,0,0,0.04); }
 }
 .top-icons{ display:flex; gap:14px; align-items:center; color:var(--text-dark); }
 
-/* ===== NEW: PAGE HEAD ===== */
 .page-head{ margin-bottom:20px; }
 .page-head h1{
   font-size:20px;
@@ -127,7 +123,6 @@ nav a:hover:not(.active){ background:rgba(0,0,0,0.04); }
   font-weight:500;
 }
 
-/* ===== NEW: TABS ===== */
 .tabs{
   display:flex;
   justify-content: space-between;
@@ -140,7 +135,6 @@ nav a:hover:not(.active){ background:rgba(0,0,0,0.04); }
   font-family:'Quicksand', sans-serif;
   background:var(--card-cream);
   border:none;
-  border-radius: 999px;
   color:var(--text-dark);
   font-size:13px;
   font-weight:600;
@@ -149,11 +143,8 @@ nav a:hover:not(.active){ background:rgba(0,0,0,0.04); }
   cursor:pointer;
   display:flex;
   align-items:center;
+  justify-content:center;
   gap:8px;
-  -webkit-border-radius: 999px;
-  -moz-border-radius: 999px;
-  -ms-border-radius: 999px;
-  -o-border-radius: 999px;
 }
 .tab .badge{
   font-size:11px;
@@ -168,8 +159,12 @@ nav a:hover:not(.active){ background:rgba(0,0,0,0.04); }
 .tab[data-tab="missing"].active{ background:var(--pink); }
 .tab[data-tab="done"].active{ background:var(--teal); }
 
-/* ===== NEW: PANELS ===== */
-.panel{ display:none; flex-direction:column; gap:14px; }
+.panel{
+  display:none;
+  flex-direction:column;
+  gap:14px;
+  width:100%;
+}
 .panel.active{ display:flex; }
 
 .empty-state{
@@ -182,17 +177,25 @@ nav a:hover:not(.active){ background:rgba(0,0,0,0.04); }
   box-shadow:0 6px 18px rgba(60,40,80,0.06);
 }
 
-/* ===== NEW: ASSIGNMENT CARD (matches .card conventions) ===== */
 .assignment-card{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  width:100%;
   background:#fff;
   border-radius:18px;
-  padding:16px 20px;
-  box-shadow:0 6px 18px rgba(60,40,80,0.06);
-  display:flex;
-  gap:14px;
+  padding: 50px;
+  position: relative;
+  box-shadow:0 6px 18px rgba(60,40,80,0.08);
+  transition:transform 0.15s ease, box-shadow 0.15s ease;
 }
-.assignment-card .icon-badge{
-  width:36px; height:36px;
+.assignment-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(60,40,80,0.12);
+}
+
+.icon-badge{
+  width:38px; height:38px;
   border-radius:12px;
   background:var(--sidebar-active);
   color:#fff;
@@ -200,12 +203,14 @@ nav a:hover:not(.active){ background:rgba(0,0,0,0.04); }
   align-items:center;
   justify-content:center;
   flex-shrink:0;
-  font-size:15px;
+  font-size:16px;
+  font-weight:700;
 }
 .assignment-card.overdue .icon-badge{ background:var(--pink); }
 .assignment-card.done .icon-badge{ background:var(--teal); }
 
 .assignment-body{ flex:1; min-width:0; }
+
 .assignment-top{
   display:flex;
   align-items:baseline;
@@ -213,55 +218,76 @@ nav a:hover:not(.active){ background:rgba(0,0,0,0.04); }
   gap:10px;
   flex-wrap:wrap;
 }
-.assignment-title{ font-size:14px; font-weight:700; color:var(--text-dark); }
-.assignment-title.done-title{ color:var(--text-muted); }
-.assignment-due{ font-size:11px; color:var(--text-muted); font-weight:600; white-space:nowrap; }
+.assignment-title{
+  font-size:15px;
+  font-weight:700;
+  color:var(--text-dark);
+}
+.assignment-title.done-title{
+  color:var(--text-muted);
+  text-decoration:line-through;
+}
+.assignment-due{
+  font-size:12px;
+  color:var(--text-muted);
+  font-weight:600;
+  white-space:nowrap;
+}
 .assignment-due.overdue-text{ color:var(--pink); }
 
 .assignment-meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:4px 14px;
-  margin-top:5px;
-  font-size:11px;
+  margin-top:6px;
+  font-size:12px;
   color:var(--text-muted);
   font-weight:600;
 }
 
-.assignment-desc{
-  margin-top:9px;
-  font-size:13px;
-  color:var(--text-dark);
-  line-height:1.5;
-}
-
 .assignment-footer{
   margin-top:12px;
-  display:flex;
-  align-items:center;
-  gap:8px;
 }
 .points-pill{
+  display:inline-block;
   font-size:11px;
   font-weight:700;
   color:#fff;
   background:var(--yellow);
-  padding:4px 12px;
+  padding:4px 14px;
   border-radius:999px;
+  text-transform:capitalize;
 }
-.attachment-pill{
-  font-size:11px;
-  font-weight:700;
+.assignment-card.overdue .points-pill{ background:var(--pink); }
+.assignment-card.done .points-pill{ background:var(--teal); }
+
+.due-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:6px;
+}
+.attach-btn{
+  position: absolute;
+  right: 50px;
+  bottom: 62px;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  border:none;
+  background:var(--sidebar-active);
   color:#fff;
-  background:var(--sidebar-purple);
-  padding:4px 12px;
-  border-radius:999px;
+  font-size:13px;
+  cursor:pointer;
   display:flex;
   align-items:center;
-  gap:4px;
+  justify-content:center;
+  margin-top:8px;
+  align-self:flex-end;
+  transition:transform 0.15s ease;
 }
+.attach-btn:hover{
+  transform:translateY(-1px);
+}
+.assignment-card.overdue .attach-btn{ background:var(--pink); }
 
-/* ===== RESPONSIVE — same breakpoints as dashboard.css ===== */
 @media (max-width:700px){
   .homework{ grid-template-columns:1fr; }
   .sidebar{

@@ -1,0 +1,26 @@
+<div class="sidebar">
+  <div class="logo">Smartech</div>
+  <div class="profile">
+    <img src="https://i.pravatar.cc/100?img=47" alt="Jenisha">
+    <div>
+      <div class="name" id="sidebar-username">Loading...</div>
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="{{ url_for('dashboard_page') }}" class="active"><span class="icon">▦</span> Dashboard</a></li>
+      <li><a href="{{ url_for('my_classes') }}"><span class="icon">🏠</span> My classes</a></li>
+      <li><a href="#"><span class="icon">📊</span> My grades</a></li>
+      <li><a href="#"><span class="icon">📅</span> Schedule</a></li>
+      <li><a href="#"><span class="icon">✉</span> Messages</a></li>
+      <li><a href="#"><span class="icon">⚙</span> Setting</a></li>
+    </ul>
+  </nav>
+  <button class="logout" id="logout-Btn"><span class="fa-solid fa-right-from-bracket"></span> Log out</button>
+</div>
+
+<div class="topbar">
+  <div class="greeting">HELLO, <span id="user-first-name">...</span>!</div>
+  <div class="search">🔍 search</div>
+  <div class="top-icons">🔔 ⋮</div>
+</div>

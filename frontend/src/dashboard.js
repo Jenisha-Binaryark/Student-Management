@@ -1,4 +1,39 @@
 document.addEventListener("DOMContentLoaded", async () => {
+
+fetch('/sidebar.html')
+  .then(res => {
+    if (res.status === 401) {
+      window.location.href = '/login.html';
+      return null;
+    }
+    return res.text();
+  })
+  .then(data => {
+    if (!data) return;
+    document.getElementById('sidebar-placeholder').innerHTML = data;
+    initSidebar();
+  })
+  .catch(err => console.error('Failed to load sidebar:', err));
+
+function initSidebar() {
+  const usernameEl = document.getElementById('sidebar-username');
+  if (usernameEl) {
+    fetch('/api/current_user')
+      .then(r => r.json())
+      .then(u => {
+        if (u.status === 'success') usernameEl.textContent = u.fullname;
+      });
+  }
+
+  const logoutBtn = document.getElementById('logout-Btn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      fetch('/logout', { method: 'POST' })
+        .then(() => window.location.href = '/login.html');
+    });
+  }
+}
+
   // ---- username fetch ----
   try {
     const res = await fetch("/api/current_user");

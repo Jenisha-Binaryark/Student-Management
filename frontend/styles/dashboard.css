@@ -21,21 +21,20 @@ body{
   display:flex;
   align-items:stretch;
   justify-content:stretch;
-  padding:0;               /* was 40px 20px */
+  padding:0;
 }
 .dashboard{
-  width:100%;               /* was 1100px */
+  width:100%;
   max-width:100%;
   height:100vh;
-  border-radius:0;          /* full screen = no rounded outer corners */
+  border-radius:0;
   box-shadow:none;
-  display:grid;
+  display:block;
   grid-template-columns:220px 1fr;
   overflow:hidden;
 }
 
-  /* ===== SIDEBAR ===== */
-  .sidebar{
+  /* .sidebar{
   background:var(--card-cream);
   padding:28px 20px;
   display:flex;
@@ -43,7 +42,7 @@ body{
   border-right:1px solid rgba(0,0,0,0.05);
   height:100vh;
   overflow-y:auto;
-}
+} */
 .main{
   padding:28px 32px;
   height:100vh;
@@ -206,6 +205,19 @@ body{
     display:flex; align-items:center; justify-content:center;
     font-size:15px; font-weight:700;
   }
+ .stat-card a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* cover all states explicitly, since :visited can override color */
+.stat-card a:link,
+.stat-card a:visited,
+.stat-card a:hover,
+.stat-card a:active {
+  color: inherit;
+  text-decoration: none;
+}
 
   /* Schedule row */
   .schedule-row{

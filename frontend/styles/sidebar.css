@@ -1,0 +1,39 @@
+#sidebar-placeholder{
+  display: contents;
+}
+
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100vh;
+  background:var(--card-cream);
+  padding:28px 20px;
+  display:flex;
+  flex-direction:column;
+  border-right:1px solid rgba(0,0,0,0.05);
+  overflow-y:auto;
+  z-index: 10;
+}
+
+.topbar{
+  position: fixed;
+  top: 0;
+  left: 240px;      /* starts right where sidebar ends */
+  right: 0;
+  z-index: 5;
+  background: var(--bg-outer);   /* match your page background so it blends in */
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 20px 32px;
+}
+
+.main{
+  margin-left: 240px;   /* clear the fixed sidebar */
+  padding-top: 100px;   /* clear the fixed topbar — adjust to match its actual height */
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 28px;
+  min-height:100vh;
+  overflow-y:auto;
+}
