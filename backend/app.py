@@ -1,6 +1,6 @@
 from flask import Flask, send_from_directory, request, jsonify, session, render_template, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
-import psycopg2
+from backend.db import get_db_connection
 
 app = Flask(
     __name__,
@@ -9,16 +9,6 @@ app = Flask(
 )
 
 app.secret_key = "zeebra&appleAreInLove"
-
-
-def get_db_connection():
-    return psycopg2.connect(
-        dbname="signup_user",
-        user="postgres",
-        password="root",
-        host="localhost",
-        port="5432"
-    )
 
 
 @app.route("/")
@@ -181,7 +171,7 @@ def login():
 
         elif role == "mentor":
             cur.execute(
-                """SELECT fullname, password, mentor_id
+                """SELECT id, fullname, password, mentor_id
                    FROM mentor_signup
                    WHERE email = %s OR phone = %s""",
                 (username, username)
@@ -194,7 +184,7 @@ def login():
                 conn.close()
                 return jsonify({"status": "not_found"})
 
-            fullname, stored_hash, mentor_id = user
+            pk_id, fullname, stored_hash, mentor_code = user
 
             if not check_password_hash(stored_hash, password):
                 cur.close()
@@ -203,7 +193,8 @@ def login():
 
             session["fullname"] = fullname
             session["role"] = "mentor"
-            session["mentor_id"] = mentor_id
+            session["mentor_id"] = pk_id          # integer PK, used by profile/classes routes
+            session["mentor_code"] = mentor_code  # the formality mentor ID string
 
             cur.close()
             conn.close()
@@ -307,6 +298,12 @@ def add_no_cache_headers(response):
     response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
     response.headers["Pragma"] = "no-cache"
     return response
+
+from mentor.backend.profile import profile_bp
+from mentor.backend.classes import classes_bp
+
+app.register_blueprint(profile_bp)
+app.register_blueprint(classes_bp)
 
 
 if __name__ == "__main__":
