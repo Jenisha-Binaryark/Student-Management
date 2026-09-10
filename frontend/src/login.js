@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
           if (data.role === "mentor") {
-            window.location.href = "/mentor/mentor_dashboard.html";
+            window.location.href = "/mentor/onboarding.html";
           } else {
             window.location.href = "/dashboard.html";
           }

@@ -193,8 +193,8 @@ def login():
 
             session["fullname"] = fullname
             session["role"] = "mentor"
-            session["mentor_id"] = pk_id          # integer PK, used by profile/classes routes
-            session["mentor_code"] = mentor_code  # the formality mentor ID string
+            session["mentor_id"] = pk_id
+            session["mentor_code"] = mentor_code
 
             cur.close()
             conn.close()
@@ -301,9 +301,11 @@ def add_no_cache_headers(response):
 
 from mentor.backend.profile import profile_bp
 from mentor.backend.classes import classes_bp
+from mentor.backend.pages import mentor_pages_bp
 
 app.register_blueprint(profile_bp)
 app.register_blueprint(classes_bp)
+app.register_blueprint(mentor_pages_bp)
 
 
 if __name__ == "__main__":

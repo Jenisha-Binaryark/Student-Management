@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smartech — Mentor Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('mentor_pages.static', filename='styles/dashboard.css') }}">
+</head>
+<body>
+<div class="dash-page">
+  <div class="dash-card">
+
+    <div class="dash-head">
+      <div class="dash-logo">Smartech</div>
+      <h1 id="greeting">Welcome back</h1>
+      <p class="dash-sub">Here's what's set up on your mentor account so far.</p>
+    </div>
+
+    <div id="loadingState" class="loading-state">Loading your classes…</div>
+
+    <div id="emptyState" class="empty-state" style="display:none;">
+      <h2>You haven't created a class yet</h2>
+      <p>Set up your first class to unlock your full dashboard — homework, attendance, and everything else.</p>
+      <a href="{{ url_for('mentor_pages.mentor_onboarding_page') }}" class="btn-primary">Create a class</a>
+    </div>
+
+    <div id="classList" class="class-list" style="display:none;"></div>
+
+  </div>
+</div>
+<script src="{{ url_for('mentor_pages.static', filename='src/dashboard.js') }}"></script>
+</body>
+</html>

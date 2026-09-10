@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smartech — Mentor Setup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('mentor_pages.static', filename='styles/onboarding.css') }}">
+</head>
+<body>
+<div class="onboard-page">
+  <div class="onboard-card">
+
+    <div class="onboard-head">
+      <div class="onboard-logo">Smartech</div>
+      <h1>Let's set up your mentor profile</h1>
+      <p class="onboard-sub">Two quick steps and you're ready to start teaching.</p>
+    </div>
+
+    <ol class="stepper" id="stepper">
+      <li class="step done" data-step="account">
+        <span class="step-dot">✓</span>
+        <span class="step-label">Account</span>
+      </li>
+      <li class="step current" data-step="profile">
+        <span class="step-dot">1</span>
+        <span class="step-label">Profile details</span>
+      </li>
+      <li class="step" data-step="class">
+        <span class="step-dot">2</span>
+        <span class="step-label">Create class</span>
+      </li>
+    </ol>
+
+    <p id="message" class="onboard-message"></p>
+
+    <section class="panel active" id="panel-profile">
+      <h2>Tell us about your role</h2>
+      <form id="profileForm">
+        <label for="department">Department</label>
+        <input type="text" id="department" name="department" placeholder="e.g. Computer Science" required>
+
+        <label for="designation">Designation</label>
+        <input type="text" id="designation" name="designation" placeholder="e.g. Assistant Professor" required>
+
+        <button type="submit" class="btn-primary">Continue</button>
+      </form>
+    </section>
+
+    <section class="panel" id="panel-class">
+      <h2>Create your first class</h2>
+      <form id="classForm">
+        <label for="class_name">Class name</label>
+        <input type="text" id="class_name" name="class_name" placeholder="e.g. Data Structures – Sem 3" required>
+
+        <div class="field-row">
+          <div>
+            <label for="university">University</label>
+            <input type="text" id="university" name="university" placeholder="University name" required>
+          </div>
+          <div>
+            <label for="course">Course</label>
+            <input type="text" id="course" name="course" placeholder="e.g. B.Tech CSE" required>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div>
+            <label for="year">Year</label>
+            <input type="text" id="year" name="year" placeholder="e.g. 2026" required>
+          </div>
+          <div>
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="e.g. Data Structures" required>
+          </div>
+        </div>
+
+        <label for="role">Your role in this class</label>
+        <select id="role" name="role" required>
+          <option value="" disabled selected>Select role</option>
+          <option value="mentor">Mentor</option>
+          <option value="teacher">Teacher</option>
+        </select>
+
+        <div class="panel-actions">
+          <button type="button" class="btn-outline" id="backBtn">Back</button>
+          <button type="submit" class="btn-primary">Finish setup</button>
+        </div>
+      </form>
+    </section>
+
+  </div>
+</div>
+<script src="{{ url_for('mentor_pages.static', filename='src/onboarding.js') }}"></script>
+</body>
+</html>
