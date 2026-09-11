@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smartech Mentor Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/mentor_sidebar.css') }}">
+</head>
+<body>
+
+<div class="dashboard">
+  <div id="sidebar-placeholder"></div>
+
+  <div class="main">
+    <div class="grid">
+
+      <div class="card">
+        <h3>My classes</h3>
+        <div id="dashboard-class-list">
+          <p class="empty-hint">Loading classes…</p>
+        </div>
+        <a class="see-more" href="{{ url_for('mentor_pages.mentor_timetable_page') }}">View timetable ›</a>
+      </div>
+
+      <div class="card">
+        <h3>Quick actions</h3>
+        <div class="person-row">
+          <div><div class="p-name">Mark attendance</div><div class="p-sub">Take today's attendance</div></div>
+        </div>
+        <div class="person-row">
+          <div><div class="p-name">Post an assignment</div><div class="p-sub">Assign new homework</div></div>
+        </div>
+        <div class="person-row">
+          <div><div class="p-name">Update marks</div><div class="p-sub">Enter recent test scores</div></div>
+        </div>
+      </div>
+
+      <div class="stats-col">
+        <div class="stat-card">
+          <h4>Attendance</h4>
+          <div class="ring-wrap">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="8"/>
+              <circle cx="40" cy="40" r="34" fill="none" stroke="#d1567f" stroke-width="8"
+                stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6"/>
+            </svg>
+            <div class="ring-pct">--</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <h4>Assignments</h4>
+          <div class="ring-wrap">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="8"/>
+              <circle cx="40" cy="40" r="34" fill="none" stroke="#5aada0" stroke-width="8"
+                stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6"/>
+            </svg>
+            <div class="ring-pct">--</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <h4>Marks</h4>
+          <div class="ring-wrap">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="8"/>
+              <circle cx="40" cy="40" r="34" fill="none" stroke="#e0aa4e" stroke-width="8"
+                stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6"/>
+            </svg>
+            <div class="ring-pct">--</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='src/mentor_common.js') }}"></script>
+<script src="{{ url_for('static', filename='src/mentor_dashboard.js') }}"></script>
+</body>
+</html>

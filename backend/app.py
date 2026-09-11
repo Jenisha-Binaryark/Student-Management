@@ -193,8 +193,8 @@ def login():
 
             session["fullname"] = fullname
             session["role"] = "mentor"
-            session["mentor_id"] = pk_id
-            session["mentor_code"] = mentor_code
+            session["mentor_id"] = pk_id          # integer PK, used by profile/classes routes
+            session["mentor_code"] = mentor_code  # the formality mentor ID string
 
             cur.close()
             conn.close()

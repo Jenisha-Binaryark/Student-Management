@@ -1,0 +1,28 @@
+<div class="sidebar">
+  <div class="logo">Smartech</div>
+  <div class="profile">
+    <img src="https://i.pravatar.cc/100?img=68" alt="mentor avatar">
+    <div>
+      <div class="name" id="sidebar-username">Loading...</div>
+      <div class="role">Mentor</div>
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="{{ url_for('mentor_pages.mentor_dashboard_page') }}" data-page="dashboard"><span class="icon">▦</span> Dashboard</a></li>
+      <li><a href="{{ url_for('mentor_pages.mentor_attendance_page') }}" data-page="attendance"><span class="icon">✅</span> Attendance</a></li>
+      <li><a href="{{ url_for('mentor_pages.mentor_timetable_page') }}" data-page="timetable"><span class="icon">📅</span> Timetable</a></li>
+      <li><a href="{{ url_for('mentor_pages.mentor_assignments_page') }}" data-page="assignments"><span class="icon">📝</span> Assignments</a></li>
+      <li><a href="{{ url_for('mentor_pages.mentor_marks_page') }}" data-page="marks"><span class="icon">📊</span> Marks</a></li>
+    </ul>
+  </nav>
+  <button class="logout" id="logout-Btn"><span class="fa-solid fa-right-from-bracket"></span> Log out</button>
+</div>
+
+<div class="topbar">
+  <div class="greeting">HELLO, <span id="user-first-name">...</span>!</div>
+  <div class="class-tabs" id="class-tabs">
+    <span class="no-classes-msg">Loading classes…</span>
+  </div>
+  <div class="top-icons">🔔 ⋮</div>
+</div>
