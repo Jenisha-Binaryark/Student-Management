@@ -62,3 +62,10 @@ def mentor_marks_page():
     if not _require_mentor():
         return redirect(url_for("login_page"))
     return render_template("marks.html")
+
+
+@mentor_pages_bp.route("/mentor/notes.html")
+def mentor_notes_page():
+    if not _require_mentor():
+        return redirect(url_for("login_page"))
+    return render_template("notes.html")

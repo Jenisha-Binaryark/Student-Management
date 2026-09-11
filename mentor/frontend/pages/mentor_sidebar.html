@@ -14,6 +14,7 @@
       <li><a href="{{ url_for('mentor_pages.mentor_timetable_page') }}" data-page="timetable"><span class="icon">📅</span> Timetable</a></li>
       <li><a href="{{ url_for('mentor_pages.mentor_assignments_page') }}" data-page="assignments"><span class="icon">📝</span> Assignments</a></li>
       <li><a href="{{ url_for('mentor_pages.mentor_marks_page') }}" data-page="marks"><span class="icon">📊</span> Marks</a></li>
+      <li><a href="{{ url_for('mentor_pages.mentor_notes_page') }}" data-page="notes"><span class="icon">🗒️</span> Post note</a></li>
     </ul>
   </nav>
   <button class="logout" id="logout-Btn"><span class="fa-solid fa-right-from-bracket"></span> Log out</button>
@@ -25,4 +26,48 @@
     <span class="no-classes-msg">Loading classes…</span>
   </div>
   <div class="top-icons">🔔 ⋮</div>
+</div>
+
+<div class="modal-overlay" id="add-class-overlay">
+  <div class="modal-card">
+    <h2>Add a new class</h2>
+    <p class="modal-message" id="addClassMessage"></p>
+    <form id="addClassForm">
+      <label for="addClassName">Class name</label>
+      <input type="text" id="addClassName" placeholder="e.g. Data Structures A">
+
+      <div class="field-row">
+        <div>
+          <label for="addClassUniversity">University</label>
+          <input type="text" id="addClassUniversity" placeholder="University">
+        </div>
+        <div>
+          <label for="addClassCourse">Course</label>
+          <input type="text" id="addClassCourse" placeholder="Course">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div>
+          <label for="addClassYear">Year</label>
+          <input type="text" id="addClassYear" placeholder="e.g. 2026">
+        </div>
+        <div>
+          <label for="addClassSubject">Subject</label>
+          <input type="text" id="addClassSubject" placeholder="Subject">
+        </div>
+      </div>
+
+      <label for="addClassRole">Your role in this class</label>
+      <select id="addClassRole">
+        <option value="mentor">Mentor</option>
+        <option value="teacher">Teacher</option>
+      </select>
+
+      <div class="panel-actions">
+        <button type="button" class="btn-outline" id="addClassCancel">Cancel</button>
+        <button type="submit" class="btn-primary">Create class</button>
+      </div>
+    </form>
+  </div>
 </div>

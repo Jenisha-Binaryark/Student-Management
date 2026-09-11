@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smartech — Assignments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}">
+<link rel="stylesheet" href="{{ url_for('mentor_pages.static', filename='styles/mentor_sidebar.css') }}">
+</head>
+<body>
+<div class="dashboard">
+  <div id="sidebar-placeholder"></div>
+  <div class="main">
+    <div class="placeholder-card">
+      <h2>Assignments</h2>
+      <p>Posting and tracking assignments is coming here next.</p>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('mentor_pages.static', filename='src/mentor_common.js') }}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => loadMentorSidebar('assignments'));
+</script>
+</body>
+</html>

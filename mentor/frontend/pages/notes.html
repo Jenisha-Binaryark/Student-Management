@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smartech — Post note</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}">
+<link rel="stylesheet" href="{{ url_for('mentor_pages.static', filename='styles/mentor_sidebar.css') }}">
+</head>
+<body>
+<div class="dashboard">
+  <div id="sidebar-placeholder"></div>
+
+  <div class="main">
+    <div class="notes-layout">
+
+      <div class="card">
+        <h3>Post a note</h3>
+        <p class="modal-message" id="noteMessage"></p>
+        <form id="noteForm">
+          <label for="noteClass">Class</label>
+          <select id="noteClass"></select>
+
+          <label for="noteTitle">Title</label>
+          <input type="text" id="noteTitle" placeholder="e.g. Reminder about tomorrow's quiz">
+
+          <label for="noteContent">Note</label>
+          <textarea id="noteContent" rows="6" placeholder="Write your note to the class…"></textarea>
+
+          <div class="panel-actions">
+            <button type="submit" class="btn-primary">Post note</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Recent notes</h3>
+        <div class="notes-list" id="notesList">
+          <p class="empty-hint">Loading notes…</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('mentor_pages.static', filename='src/mentor_common.js') }}"></script>
+<script src="{{ url_for('mentor_pages.static', filename='src/notes.js') }}"></script>
+</body>
+</html>

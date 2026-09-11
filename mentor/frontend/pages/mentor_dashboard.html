@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/mentor_sidebar.css') }}">
+<link rel="stylesheet" href="{{ url_for('mentor_pages.static', filename='styles/mentor_sidebar.css') }}">
 </head>
 <body>
 
@@ -23,18 +23,21 @@
         <div id="dashboard-class-list">
           <p class="empty-hint">Loading classes…</p>
         </div>
-        <a class="see-more" href="{{ url_for('mentor_pages.mentor_timetable_page') }}">View timetable ›</a>
+        <a class="see-more" href="{{ url_for('my_classes') }}">See more ›</a>
       </div>
 
       <div class="card">
         <h3>Quick actions</h3>
-        <div class="person-row">
+        <a class="person-row quick-action" href="{{ url_for('mentor_pages.mentor_notes_page') }}">
+          <div><div class="p-name">Post a note</div><div class="p-sub">Send a note to a class</div></div>
+        </a>
+        <div class="person-row disabled" title="Coming soon">
           <div><div class="p-name">Mark attendance</div><div class="p-sub">Take today's attendance</div></div>
         </div>
-        <div class="person-row">
+        <div class="person-row disabled" title="Coming soon">
           <div><div class="p-name">Post an assignment</div><div class="p-sub">Assign new homework</div></div>
         </div>
-        <div class="person-row">
+        <div class="person-row disabled" title="Coming soon">
           <div><div class="p-name">Update marks</div><div class="p-sub">Enter recent test scores</div></div>
         </div>
       </div>
@@ -79,7 +82,7 @@
   </div>
 </div>
 
-<script src="{{ url_for('static', filename='src/mentor_common.js') }}"></script>
-<script src="{{ url_for('static', filename='src/mentor_dashboard.js') }}"></script>
+<script src="{{ url_for('mentor_pages.static', filename='src/mentor_common.js') }}"></script>
+<script src="{{ url_for('mentor_pages.static', filename='src/mentor_dashboard.js') }}"></script>
 </body>
 </html>
