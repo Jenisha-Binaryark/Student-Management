@@ -13,16 +13,50 @@
 <body>
 <div class="dashboard">
   <div id="sidebar-placeholder"></div>
+
   <div class="main">
-    <div class="placeholder-card">
-      <h2>Attendance</h2>
-      <p>Marking and viewing attendance for your classes is coming here next.</p>
+    <div class="page-head">
+      <h1>Attendance</h1>
+      <p id="attendanceActiveClass">Select a class above to take attendance.</p>
+    </div>
+
+    <div class="notes-layout">
+
+      <div class="card">
+        <h3>Class roster</h3>
+        <p class="modal-message" id="rosterMessage"></p>
+        <form id="addStudentForm">
+          <label for="studentEmail">Student email</label>
+          <input type="email" id="studentEmail" placeholder="student@email.com">
+          <div class="panel-actions">
+            <button type="submit" class="btn-primary">Add student</button>
+          </div>
+        </form>
+        <div class="roster-list" id="rosterList">
+          <p class="empty-hint">Select a class above to see its roster.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Mark attendance</h3>
+        <div class="attendance-toolbar">
+          <label for="attendanceDate">Date</label>
+          <input type="date" id="attendanceDate">
+        </div>
+        <p class="modal-message" id="attendanceMessage"></p>
+        <div class="attendance-list" id="attendanceList">
+          <p class="empty-hint">Select a class above to take attendance.</p>
+        </div>
+        <div class="panel-actions">
+          <button type="button" class="btn-primary" id="saveAttendanceBtn">Save attendance</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+
 <script src="{{ url_for('mentor_pages.static', filename='src/mentor_common.js') }}"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => loadMentorSidebar('attendance'));
-</script>
+<script src="{{ url_for('mentor_pages.static', filename='src/attendance.js') }}"></script>
 </body>
 </html>

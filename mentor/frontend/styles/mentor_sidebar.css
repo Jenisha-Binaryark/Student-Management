@@ -223,3 +223,201 @@ select{
   color:var(--text-muted);
   margin-top:8px;
 }
+
+/* ===== Shared page header (Timetable / Attendance / Assignments / Marks) ===== */
+.page-head{ margin-bottom:20px; }
+.page-head h1{
+  font-size:20px;
+  font-weight:700;
+  color:var(--text-dark);
+  margin-bottom:4px;
+}
+.page-head p{
+  font-size:13px;
+  color:var(--text-muted);
+  font-weight:500;
+}
+
+/* ===== Timetable page ===== */
+.timetable-week{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  max-height:70vh;
+  overflow-y:auto;
+}
+.timetable-day-group{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.timetable-day-heading{
+  font-size:11px;
+  font-weight:700;
+  color:var(--pink);
+  text-transform:uppercase;
+  letter-spacing:0.03em;
+}
+.timetable-slot{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:#fff;
+  border-radius:12px;
+  padding:10px 14px;
+  box-shadow:0 6px 18px rgba(60,40,80,0.06);
+}
+.timetable-slot-time{
+  font-size:12px;
+  font-weight:700;
+  color:var(--text-dark);
+  width:110px;
+  flex-shrink:0;
+}
+.timetable-slot-body{ flex:1; min-width:0; }
+.timetable-slot-subject{
+  font-size:13px;
+  font-weight:600;
+  color:var(--text-dark);
+}
+.timetable-slot-room{
+  font-size:11px;
+  color:var(--text-muted);
+  margin-top:2px;
+}
+.timetable-slot-delete{
+  border:none;
+  background:transparent;
+  color:var(--text-muted);
+  font-size:13px;
+  cursor:pointer;
+  flex-shrink:0;
+  padding:4px;
+}
+.timetable-slot-delete:hover{ color:var(--pink); }
+
+/* ===== Attendance page ===== */
+.roster-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  max-height:38vh;
+  overflow-y:auto;
+  margin-top:6px;
+}
+.roster-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  background:#fff;
+  border-radius:12px;
+  padding:8px 12px;
+  box-shadow:0 6px 18px rgba(60,40,80,0.06);
+}
+.roster-row .roster-name{ font-size:13px; font-weight:600; color:var(--text-dark); }
+.roster-row .roster-email{ font-size:11px; color:var(--text-muted); }
+.roster-remove{
+  border:none;
+  background:transparent;
+  color:var(--text-muted);
+  font-size:13px;
+  cursor:pointer;
+  padding:4px;
+  flex-shrink:0;
+}
+.roster-remove:hover{ color:var(--pink); }
+
+.attendance-toolbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:6px;
+}
+.attendance-toolbar label{ margin-bottom:0; }
+.attendance-toolbar input[type="date"]{ margin-bottom:0; max-width:180px; }
+
+.attendance-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  max-height:48vh;
+  overflow-y:auto;
+  margin-bottom:14px;
+}
+.attendance-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  background:#fff;
+  border-radius:12px;
+  padding:8px 12px;
+  box-shadow:0 6px 18px rgba(60,40,80,0.06);
+}
+.attendance-row .attendance-name{ font-size:13px; font-weight:600; color:var(--text-dark); }
+.attendance-toggle{ display:flex; gap:6px; }
+.attendance-btn{
+  border:none;
+  border-radius:999px;
+  padding:6px 14px;
+  font-family:'Quicksand', sans-serif;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  background:rgba(0,0,0,0.05);
+  color:var(--text-muted);
+}
+.attendance-btn.present.active{ background:var(--teal); color:#fff; }
+.attendance-btn.absent.active{ background:var(--pink); color:#fff; }
+
+/* ===== Assignments page ===== */
+.assignments-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-height:70vh;
+  overflow-y:auto;
+}
+.assignment-card{
+  background:#fff;
+  border-radius:14px;
+  padding:14px 16px;
+  box-shadow:0 6px 18px rgba(60,40,80,0.06);
+}
+.assignment-card.overdue{ box-shadow:0 6px 18px rgba(209,86,127,0.15); }
+.assignment-card-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+.assignment-card-title{
+  font-size:14px;
+  font-weight:700;
+  color:var(--text-dark);
+}
+.assignment-delete{
+  border:none;
+  background:transparent;
+  color:var(--text-muted);
+  font-size:13px;
+  cursor:pointer;
+  flex-shrink:0;
+  padding:2px;
+}
+.assignment-delete:hover{ color:var(--pink); }
+.assignment-card-desc{
+  font-size:13px;
+  color:var(--text-muted);
+  line-height:1.5;
+  margin-top:6px;
+  white-space:pre-wrap;
+}
+.assignment-card-due{
+  font-size:11px;
+  font-weight:700;
+  color:var(--text-muted);
+  margin-top:10px;
+}
+.assignment-card-due.overdue-text{ color:var(--pink); }

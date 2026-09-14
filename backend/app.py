@@ -302,11 +302,19 @@ def add_no_cache_headers(response):
 from mentor.backend.profile import profile_bp
 from mentor.backend.classes import classes_bp
 from mentor.backend.notes import notes_bp
+from mentor.backend.timetable import timetable_bp
+from mentor.backend.roster import roster_bp
+from mentor.backend.attendance import attendance_bp
+from mentor.backend.assignments import assignments_bp
 from mentor.backend.pages import mentor_pages_bp
 
 app.register_blueprint(profile_bp)
 app.register_blueprint(classes_bp)
 app.register_blueprint(notes_bp)
+app.register_blueprint(timetable_bp)
+app.register_blueprint(roster_bp)
+app.register_blueprint(attendance_bp)
+app.register_blueprint(assignments_bp)
 app.register_blueprint(mentor_pages_bp)
 
 

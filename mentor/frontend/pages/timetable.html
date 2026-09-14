@@ -13,16 +13,65 @@
 <body>
 <div class="dashboard">
   <div id="sidebar-placeholder"></div>
+
   <div class="main">
-    <div class="placeholder-card">
-      <h2>Timetable</h2>
-      <p>Building and sharing class timetables is coming here next.</p>
+    <div class="page-head">
+      <h1>Timetable</h1>
+      <p id="timetableActiveClass">Select a class above to see its schedule.</p>
+    </div>
+
+    <div class="notes-layout">
+
+      <div class="card">
+        <h3>Add a class slot</h3>
+        <p class="modal-message" id="slotMessage"></p>
+        <form id="slotForm">
+          <label for="slotDay">Day</label>
+          <select id="slotDay">
+            <option value="Mon">Monday</option>
+            <option value="Tue">Tuesday</option>
+            <option value="Wed">Wednesday</option>
+            <option value="Thu">Thursday</option>
+            <option value="Fri">Friday</option>
+            <option value="Sat">Saturday</option>
+            <option value="Sun">Sunday</option>
+          </select>
+
+          <label for="slotSubject">Subject</label>
+          <input type="text" id="slotSubject" placeholder="e.g. Data Structures">
+
+          <div class="field-row">
+            <div>
+              <label for="slotStart">Start time</label>
+              <input type="time" id="slotStart">
+            </div>
+            <div>
+              <label for="slotEnd">End time</label>
+              <input type="time" id="slotEnd">
+            </div>
+          </div>
+
+          <label for="slotRoom">Room (optional)</label>
+          <input type="text" id="slotRoom" placeholder="e.g. Lab 2">
+
+          <div class="panel-actions">
+            <button type="submit" class="btn-primary">Add slot</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Weekly schedule</h3>
+        <div class="timetable-week" id="timetableWeek">
+          <p class="empty-hint">Select a class above to see its schedule.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+
 <script src="{{ url_for('mentor_pages.static', filename='src/mentor_common.js') }}"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => loadMentorSidebar('timetable'));
-</script>
+<script src="{{ url_for('mentor_pages.static', filename='src/timetable.js') }}"></script>
 </body>
 </html>

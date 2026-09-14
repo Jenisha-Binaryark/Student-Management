@@ -13,16 +13,46 @@
 <body>
 <div class="dashboard">
   <div id="sidebar-placeholder"></div>
+
   <div class="main">
-    <div class="placeholder-card">
-      <h2>Assignments</h2>
-      <p>Posting and tracking assignments is coming here next.</p>
+    <div class="page-head">
+      <h1>Assignments</h1>
+      <p id="assignmentsActiveClass">Select a class above to post an assignment.</p>
+    </div>
+
+    <div class="notes-layout">
+
+      <div class="card">
+        <h3>Post an assignment</h3>
+        <p class="modal-message" id="assignmentMessage"></p>
+        <form id="assignmentForm">
+          <label for="assignmentTitle">Title</label>
+          <input type="text" id="assignmentTitle" placeholder="e.g. Problem Set 4">
+
+          <label for="assignmentDescription">Description (optional)</label>
+          <textarea id="assignmentDescription" rows="4" placeholder="Instructions for the class…"></textarea>
+
+          <label for="assignmentDue">Due date</label>
+          <input type="date" id="assignmentDue">
+
+          <div class="panel-actions">
+            <button type="submit" class="btn-primary">Post assignment</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Posted assignments</h3>
+        <div class="assignments-list" id="assignmentsList">
+          <p class="empty-hint">Select a class above to see its assignments.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+
 <script src="{{ url_for('mentor_pages.static', filename='src/mentor_common.js') }}"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => loadMentorSidebar('assignments'));
-</script>
+<script src="{{ url_for('mentor_pages.static', filename='src/assignments.js') }}"></script>
 </body>
 </html>
