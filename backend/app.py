@@ -12,6 +12,7 @@ from mentor.backend.roster import roster_bp
 from mentor.backend.attendance import attendance_bp
 from mentor.backend.assignments import assignments_bp
 from mentor.backend.marks import marks_bp
+from mentor.backend.dashboard import dashboard_bp
 from mentor.backend.pages import mentor_pages_bp
 
 
@@ -425,6 +426,7 @@ app.register_blueprint(roster_bp)
 app.register_blueprint(attendance_bp)
 app.register_blueprint(assignments_bp)
 app.register_blueprint(marks_bp)
+app.register_blueprint(dashboard_bp)
 app.register_blueprint(mentor_pages_bp)
 
 
