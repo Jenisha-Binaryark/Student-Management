@@ -82,7 +82,6 @@ function loadClassTabs(selectClassId) {
         if (isActive) activeClass = c;
       });
 
-      // "+" tab to create a new class without leaving the current page
       const addBtn = document.createElement('button');
       addBtn.type = 'button';
       addBtn.className = 'class-tab add-class-tab';

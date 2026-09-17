@@ -1,6 +1,19 @@
-from flask import Flask, send_from_directory, request, jsonify, session, render_template, redirect, url_for
+from flask import Flask, request, jsonify, session, render_template, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
+
+from backend.config import SECRET_KEY
 from backend.db import get_db_connection
+
+from mentor.backend.profile import profile_bp
+from mentor.backend.classes import classes_bp
+from mentor.backend.notes import notes_bp
+from mentor.backend.timetable import timetable_bp
+from mentor.backend.roster import roster_bp
+from mentor.backend.attendance import attendance_bp
+from mentor.backend.assignments import assignments_bp
+from mentor.backend.marks import marks_bp
+from mentor.backend.pages import mentor_pages_bp
+
 
 app = Flask(
     __name__,
@@ -8,7 +21,7 @@ app = Flask(
     template_folder="../frontend"
 )
 
-app.secret_key = "zeebra&appleAreInLove"
+app.secret_key = SECRET_KEY
 
 
 @app.route("/")
@@ -20,6 +33,12 @@ def home():
 def signup():
     data = request.get_json()
 
+    if not data:
+        return jsonify({
+            "status": "error",
+            "message": "Invalid request data."
+        }), 400
+
     fullname = data.get("fullname")
     email = data.get("email")
     phone = data.get("phone")
@@ -28,11 +47,20 @@ def signup():
     referral = data.get("referral")
     mentor_id = data.get("mentorId")
 
+    if not fullname or not email or not phone or not password or not role:
+        return jsonify({
+            "status": "error",
+            "message": "Required fields are missing."
+        }), 400
+
     if role == "mentor" and not mentor_id:
         return jsonify({
             "status": "error",
             "message": "Mentor ID is required."
         }), 400
+
+    conn = None
+    cur = None
 
     try:
         conn = get_db_connection()
@@ -40,23 +68,29 @@ def signup():
 
         if role == "student":
             cur.execute(
-                "SELECT id FROM student_signup WHERE email = %s OR phone = %s",
+                """
+                SELECT id
+                FROM student_signup
+                WHERE email = %s OR phone = %s
+                """,
                 (email, phone)
             )
 
             existing_user = cur.fetchone()
 
             if existing_user:
-                cur.close()
-                conn.close()
-                return jsonify({"status": "exists"})
+                return jsonify({
+                    "status": "exists"
+                })
 
             hashed_password = generate_password_hash(password)
 
             cur.execute(
-                """INSERT INTO student_signup
-                   (fullname, email, phone, password, referral)
-                   VALUES (%s, %s, %s, %s, %s)""",
+                """
+                INSERT INTO student_signup
+                (fullname, email, phone, password, referral)
+                VALUES (%s, %s, %s, %s, %s)
+                """,
                 (
                     fullname,
                     email,
@@ -68,24 +102,31 @@ def signup():
 
         elif role == "mentor":
             cur.execute(
-                """SELECT id FROM mentor_signup
-                   WHERE email = %s OR phone = %s OR mentor_id = %s""",
+                """
+                SELECT id
+                FROM mentor_signup
+                WHERE email = %s
+                   OR phone = %s
+                   OR mentor_id = %s
+                """,
                 (email, phone, mentor_id)
             )
 
             existing_user = cur.fetchone()
 
             if existing_user:
-                cur.close()
-                conn.close()
-                return jsonify({"status": "exists"})
+                return jsonify({
+                    "status": "exists"
+                })
 
             hashed_password = generate_password_hash(password)
 
             cur.execute(
-                """INSERT INTO mentor_signup
-                   (fullname, email, phone, password, mentor_id, referral)
-                   VALUES (%s, %s, %s, %s, %s, %s)""",
+                """
+                INSERT INTO mentor_signup
+                (fullname, email, phone, password, mentor_id, referral)
+                VALUES (%s, %s, %s, %s, %s, %s)
+                """,
                 (
                     fullname,
                     email,
@@ -97,8 +138,6 @@ def signup():
             )
 
         else:
-            cur.close()
-            conn.close()
             return jsonify({
                 "status": "error",
                 "message": "Invalid role."
@@ -106,17 +145,27 @@ def signup():
 
         conn.commit()
 
-        cur.close()
-        conn.close()
-
-        return jsonify({"status": "created"})
+        return jsonify({
+            "status": "created"
+        })
 
     except Exception as e:
-        print("Error:", e)
+        if conn:
+            conn.rollback()
+
+        print("SIGNUP ERROR:", repr(e))
+
         return jsonify({
             "status": "error",
             "message": "Server error"
         }), 500
+
+    finally:
+        if cur:
+            cur.close()
+
+        if conn:
+            conn.close()
 
 
 @app.route("/login.html")
@@ -128,9 +177,24 @@ def login_page():
 def login():
     data = request.get_json()
 
+    if not data:
+        return jsonify({
+            "status": "error",
+            "message": "Invalid request data."
+        }), 400
+
     username = data.get("username")
     password = data.get("password")
     role = data.get("role")
+
+    if not username or not password or not role:
+        return jsonify({
+            "status": "error",
+            "message": "Username, password and role are required."
+        }), 400
+
+    conn = None
+    cur = None
 
     try:
         conn = get_db_connection()
@@ -138,31 +202,32 @@ def login():
 
         if role == "student":
             cur.execute(
-                """SELECT fullname, password
-                   FROM student_signup
-                   WHERE email = %s OR phone = %s""",
+                """
+                SELECT fullname, password
+                FROM student_signup
+                WHERE email = %s OR phone = %s
+                """,
                 (username, username)
             )
 
             user = cur.fetchone()
 
             if not user:
-                cur.close()
-                conn.close()
-                return jsonify({"status": "not_found"})
+                return jsonify({
+                    "status": "not_found"
+                })
 
             fullname, stored_hash = user
 
             if not check_password_hash(stored_hash, password):
-                cur.close()
-                conn.close()
-                return jsonify({"status": "wrong_password"})
+                return jsonify({
+                    "status": "wrong_password"
+                })
+
+            session.clear()
 
             session["fullname"] = fullname
             session["role"] = "student"
-
-            cur.close()
-            conn.close()
 
             return jsonify({
                 "status": "success",
@@ -171,33 +236,36 @@ def login():
 
         elif role == "mentor":
             cur.execute(
-                """SELECT id, fullname, password, mentor_id
-                   FROM mentor_signup
-                   WHERE email = %s OR phone = %s""",
-                (username, username)
+                """
+                SELECT id, fullname, password, mentor_id
+                FROM mentor_signup
+                WHERE email = %s
+                   OR phone = %s
+                   OR mentor_id = %s
+                """,
+                (username, username, username)
             )
 
             user = cur.fetchone()
 
             if not user:
-                cur.close()
-                conn.close()
-                return jsonify({"status": "not_found"})
+                return jsonify({
+                    "status": "not_found"
+                })
 
             pk_id, fullname, stored_hash, mentor_code = user
 
             if not check_password_hash(stored_hash, password):
-                cur.close()
-                conn.close()
-                return jsonify({"status": "wrong_password"})
+                return jsonify({
+                    "status": "wrong_password"
+                })
+
+            session.clear()
 
             session["fullname"] = fullname
             session["role"] = "mentor"
-            session["mentor_id"] = pk_id          # integer PK, used by profile/classes routes
-            session["mentor_code"] = mentor_code  # the formality mentor ID string
-
-            cur.close()
-            conn.close()
+            session["mentor_id"] = pk_id
+            session["mentor_code"] = mentor_code
 
             return jsonify({
                 "status": "success",
@@ -205,20 +273,25 @@ def login():
             })
 
         else:
-            cur.close()
-            conn.close()
-
             return jsonify({
                 "status": "error",
                 "message": "Invalid role."
             }), 400
 
     except Exception as e:
-        print("Error:", e)
+        print("LOGIN ERROR:", repr(e))
+
         return jsonify({
             "status": "error",
             "message": "Server error"
         }), 500
+
+    finally:
+        if cur:
+            cur.close()
+
+        if conn:
+            conn.close()
 
 
 @app.route("/api/current_user")
@@ -226,7 +299,9 @@ def current_user():
     fullname = session.get("fullname")
 
     if not fullname:
-        return jsonify({"status": "not_logged_in"}), 401
+        return jsonify({
+            "status": "not_logged_in"
+        }), 401
 
     return jsonify({
         "status": "success",
@@ -234,17 +309,21 @@ def current_user():
     })
 
 
-@app.route('/sidebar.html')
+@app.route("/sidebar.html")
 def sidebar():
     if "fullname" not in session:
-        return jsonify({"status": "not_logged_in"}), 401
-    return render_template('sidebar.html')
+        return jsonify({
+            "status": "not_logged_in"
+        }), 401
+
+    return render_template("sidebar.html")
 
 
 @app.route("/dashboard.html")
 def dashboard_page():
     if "fullname" not in session:
         return redirect(url_for("login_page"))
+
     return render_template("dashboard.html")
 
 
@@ -252,61 +331,91 @@ def dashboard_page():
 def homework_page():
     if "fullname" not in session:
         return redirect(url_for("login_page"))
+
     return render_template("homework.html")
 
 
 @app.route("/api/homework")
 def get_homework():
     if "fullname" not in session:
-        return jsonify({"status": "not_logged_in"}), 401
+        return jsonify({
+            "status": "not_logged_in"
+        }), 401
+
+    conn = None
+    cur = None
 
     try:
         conn = get_db_connection()
         cur = conn.cursor()
+
         cur.execute(
-            "SELECT id, title, subject, due_date, status FROM homework WHERE fullname = %s",
+            """
+            SELECT id, title, subject, due_date, status
+            FROM homework
+            WHERE fullname = %s
+            """,
             (session["fullname"],)
         )
+
         rows = cur.fetchall()
-        cur.close()
-        conn.close()
 
         homework_list = [
-            {"id": r[0], "title": r[1], "subject": r[2], "due_date": str(r[3]), "status": r[4]}
-            for r in rows
+            {
+                "id": row[0],
+                "title": row[1],
+                "subject": row[2],
+                "due_date": str(row[3]),
+                "status": row[4]
+            }
+            for row in rows
         ]
-        return jsonify({"status": "success", "homework": homework_list})
+
+        return jsonify({
+            "status": "success",
+            "homework": homework_list
+        })
 
     except Exception as e:
-        print("Error:", e)
-        return jsonify({"status": "error", "message": "Server error"}), 500
+        print("HOMEWORK ERROR:", repr(e))
+
+        return jsonify({
+            "status": "error",
+            "message": "Server error"
+        }), 500
+
+    finally:
+        if cur:
+            cur.close()
+
+        if conn:
+            conn.close()
 
 
 @app.route("/my_classes.html")
 def my_classes():
+    if "fullname" not in session:
+        return redirect(url_for("login_page"))
+
     return render_template("my_classes.html")
 
 
 @app.route("/logout", methods=["POST"])
 def logout():
     session.clear()
-    return jsonify({"status": "success"}), 200
+
+    return jsonify({
+        "status": "success"
+    }), 200
 
 
 @app.after_request
 def add_no_cache_headers(response):
     response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
     response.headers["Pragma"] = "no-cache"
+
     return response
 
-from mentor.backend.profile import profile_bp
-from mentor.backend.classes import classes_bp
-from mentor.backend.notes import notes_bp
-from mentor.backend.timetable import timetable_bp
-from mentor.backend.roster import roster_bp
-from mentor.backend.attendance import attendance_bp
-from mentor.backend.assignments import assignments_bp
-from mentor.backend.pages import mentor_pages_bp
 
 app.register_blueprint(profile_bp)
 app.register_blueprint(classes_bp)
@@ -315,6 +424,7 @@ app.register_blueprint(timetable_bp)
 app.register_blueprint(roster_bp)
 app.register_blueprint(attendance_bp)
 app.register_blueprint(assignments_bp)
+app.register_blueprint(marks_bp)
 app.register_blueprint(mentor_pages_bp)
 
 

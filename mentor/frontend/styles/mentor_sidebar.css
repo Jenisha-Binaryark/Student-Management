@@ -421,3 +421,88 @@ select{
   margin-top:10px;
 }
 .assignment-card-due.overdue-text{ color:var(--pink); }
+
+/* ===== Marks page ===== */
+.exams-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  max-height:48vh;
+  overflow-y:auto;
+  margin-top:6px;
+}
+.exam-item{
+  background:#fff;
+  border-radius:14px;
+  padding:12px 14px;
+  box-shadow:0 6px 18px rgba(60,40,80,0.06);
+  cursor:pointer;
+  border:2px solid transparent;
+  transition:border-color 0.15s ease;
+}
+.exam-item:hover{ border-color:rgba(168,147,191,0.4); }
+.exam-item.active{ border-color:var(--sidebar-active); }
+.exam-item-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+.exam-item-title{
+  font-size:14px;
+  font-weight:700;
+  color:var(--text-dark);
+}
+.exam-delete{
+  border:none;
+  background:transparent;
+  color:var(--text-muted);
+  font-size:13px;
+  cursor:pointer;
+  flex-shrink:0;
+  padding:2px;
+}
+.exam-delete:hover{ color:var(--pink); }
+.exam-item-meta{
+  font-size:11px;
+  color:var(--text-muted);
+  margin-top:6px;
+}
+
+.marks-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  max-height:48vh;
+  overflow-y:auto;
+  margin-bottom:14px;
+}
+.marks-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  background:#fff;
+  border-radius:12px;
+  padding:8px 12px;
+  box-shadow:0 6px 18px rgba(60,40,80,0.06);
+}
+.marks-row .marks-name{ font-size:13px; font-weight:600; color:var(--text-dark); }
+.marks-score-wrap{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-shrink:0;
+}
+.marks-score-input{
+  width:64px;
+  margin-bottom:0 !important;
+  padding:6px 10px !important;
+  text-align:center;
+}
+.marks-out-of{
+  font-size:12px;
+  font-weight:600;
+  color:var(--text-muted);
+  white-space:nowrap;
+}

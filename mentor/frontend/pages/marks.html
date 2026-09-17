@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Smartech — Assignments</title>
+<title>Smartech — Marks</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,16 +13,58 @@
 <body>
 <div class="dashboard">
   <div id="sidebar-placeholder"></div>
+
   <div class="main">
-    <div class="placeholder-card">
-      <h2>Assignments</h2>
-      <p>Posting and tracking assignments is coming here next.</p>
+    <div class="page-head">
+      <h1>Marks</h1>
+      <p id="marksActiveClass">Select a class above to manage exams and marks.</p>
+    </div>
+
+    <div class="notes-layout">
+
+      <div class="card">
+        <h3>Exams</h3>
+        <p class="modal-message" id="examMessage"></p>
+        <form id="examForm">
+          <label for="examTitle">Title</label>
+          <input type="text" id="examTitle" placeholder="e.g. Mid-term test">
+
+          <div class="field-row">
+            <div>
+              <label for="examMaxMarks">Max marks</label>
+              <input type="number" id="examMaxMarks" min="1" step="0.5" placeholder="100">
+            </div>
+            <div>
+              <label for="examDate">Date</label>
+              <input type="date" id="examDate">
+            </div>
+          </div>
+
+          <div class="panel-actions">
+            <button type="submit" class="btn-primary">Add exam</button>
+          </div>
+        </form>
+        <div class="exams-list" id="examsList">
+          <p class="empty-hint">Select a class above to see its exams.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 id="marksExamHeading">Enter marks</h3>
+        <p class="modal-message" id="marksMessage"></p>
+        <div class="marks-list" id="marksList">
+          <p class="empty-hint">Select an exam on the left to enter marks.</p>
+        </div>
+        <div class="panel-actions">
+          <button type="button" class="btn-primary" id="saveMarksBtn">Save marks</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+
 <script src="{{ url_for('mentor_pages.static', filename='src/mentor_common.js') }}"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => loadMentorSidebar('assignments'));
-</script>
+<script src="{{ url_for('mentor_pages.static', filename='src/marks.js') }}"></script>
 </body>
 </html>
