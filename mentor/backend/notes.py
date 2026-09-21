@@ -4,7 +4,7 @@ from mentor.backend.decorators import require_onboarding_complete
 
 notes_bp = Blueprint('notes', __name__, url_prefix='/api/notes')
 
-SESSION_KEY = 'mentor_id'  # must match the key used in profile.py / classes.py
+SESSION_KEY = 'mentor_id'
 
 
 def _class_belongs_to_mentor(class_id, mentor_id, conn):
