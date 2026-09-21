@@ -103,6 +103,7 @@ function renderRoster(students) {
 
 function removeStudent(studentId) {
   if (!activeClass) return;
+  if (!window.confirm('Remove this student from the selected class?')) return;
   fetch(`/api/classes/${activeClass.id}/students/${studentId}`, { method: 'DELETE' })
     .then(res => {
       if (res.status === 401) {
