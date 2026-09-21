@@ -32,6 +32,7 @@ def student_content():
         _ensure_submission_table(conn)
         with conn.cursor() as cur:
             cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS timetable_type VARCHAR(20) NOT NULL DEFAULT 'regular'")
+            cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS exam_date DATE")
             conn.commit()
             cur.execute(
                 """
