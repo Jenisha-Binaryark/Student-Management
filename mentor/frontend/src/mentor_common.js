@@ -1,8 +1,8 @@
 function loadMentorSidebar(activePage) {
-  // NOTE: this must be an absolute path. A relative 'mentor/sidebar.html' resolves
-  // against the current page's URL, so on /mentor/dashboard.html it was requesting
-  // /mentor/mentor/sidebar.html and silently failing (this was why the sidebar
-  // never rendered).
+
+
+
+
   fetch('/mentor/sidebar.html')
     .then(res => {
       if (res.status === 401 || res.status === 403) {
@@ -38,7 +38,6 @@ function initMentorSidebar(activePage) {
   loadClassTabs();
   setupAddClassModal();
 
-  // logout
   const logoutBtn = document.getElementById('logout-Btn');
   if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
