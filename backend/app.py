@@ -1,7 +1,8 @@
+import os
 from flask import Flask, request, jsonify, session, render_template, redirect, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from backend.config import SECRET_KEY
+from backend.config import SECRET_KEY, APP_ENV, SESSION_COOKIE_SECURE, SESSION_COOKIE_HTTPONLY, SESSION_COOKIE_SAMESITE, SESSION_LIFETIME
 from backend.db import get_db_connection
 
 from mentor.backend.profile import profile_bp
@@ -24,6 +25,12 @@ app = Flask(
 )
 
 app.secret_key = SECRET_KEY
+app.config.update(
+    SESSION_COOKIE_SECURE=SESSION_COOKIE_SECURE,
+    SESSION_COOKIE_HTTPONLY=SESSION_COOKIE_HTTPONLY,
+    SESSION_COOKIE_SAMESITE=SESSION_COOKIE_SAMESITE,
+    PERMANENT_SESSION_LIFETIME=SESSION_LIFETIME,
+)
 
 
 @app.route("/")
@@ -416,7 +423,12 @@ def logout():
 def add_no_cache_headers(response):
     response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
     response.headers["Pragma"] = "no-cache"
-
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "SAMEORIGIN"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    if APP_ENV == "production":
+        response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
     return response
 
 
@@ -434,4 +446,4 @@ app.register_blueprint(student_dashboard_bp)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=APP_ENV != "production")
