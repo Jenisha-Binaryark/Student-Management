@@ -107,7 +107,7 @@ def student_content():
             cur.execute(
                 """
                 SELECT t.id, t.class_id, c.class_name, t.day_of_week,
-                       t.subject, t.start_time, t.end_time, t.room, t.timetable_type
+                       t.subject, t.start_time, t.end_time, t.room, t.timetable_type, t.exam_date
                 FROM class_timetable t
                 JOIN classes c ON c.id = t.class_id
                 JOIN student_classes sc ON sc.class_id = t.class_id
@@ -122,7 +122,7 @@ def student_content():
                     'day_of_week': r[3], 'subject': r[4],
                     'start_time': r[5].strftime('%H:%M'),
                     'end_time': r[6].strftime('%H:%M'),
-                    'room': r[7], 'timetable_type': r[8]
+                    'room': r[7], 'timetable_type': r[8], 'exam_date': r[9].isoformat() if r[9] else None
                 }
                 for r in cur.fetchall()
             ]
