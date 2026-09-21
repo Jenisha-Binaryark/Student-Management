@@ -47,6 +47,21 @@ class MentorSecurityTests(unittest.TestCase):
             )
         )
 
+    def test_production_security_configuration_is_present(self):
+        app_source = (ROOT / "backend" / "app.py").read_text()
+        config_source = (ROOT / "backend" / "config.py").read_text()
+        self.assertIn("SESSION_COOKIE_HTTPONLY", app_source)
+        self.assertIn("SESSION_COOKIE_SAMESITE", app_source)
+        self.assertIn("X-Content-Type-Options", app_source)
+        self.assertIn("Strict-Transport-Security", app_source)
+        self.assertIn("debug=APP_ENV != \"production\"", app_source)
+        self.assertIn("SECRET_KEY must be configured", config_source)
+
+    def test_auth_endpoints_are_rate_limited(self):
+        source = (ROOT / "backend" / "app.py").read_text()
+        self.assertIn("from backend.security import auth_rate_limit", source)
+        self.assertIn("@auth_rate_limit", source)
+
     def test_database_module_does_not_hard_code_credentials(self):
         source = (ROOT / "backend" / "db.py").read_text()
         self.assertNotIn('password="root"', source)
