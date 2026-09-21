@@ -135,6 +135,7 @@ function loadDashboardSummary() {
       if (!data) return;
       renderTeacherList(data.teachers || []);
       renderRecentNotes(data.recent_notes || []);
+      renderAttendanceHistory(data.recent_attendance || []);
       renderRing('attendanceRing', 'attendancePct', data.attendance ? data.attendance.percent : null, '#d1567f');
       renderRing('homeworkRing', 'homeworkPct', data.homework ? data.homework.percent : null, '#5aada0');
       renderRing('performanceRing', 'performancePct', data.performance ? data.performance.percent : null, '#e0aa4e');
@@ -207,6 +208,22 @@ function renderTodaySchedule(slots) {
       </div>`;
     el.appendChild(item);
   });
+}
+
+
+function renderAttendanceHistory(records) {
+  const el = document.getElementById('dashboard-attendance-history');
+  if (!el) return;
+  if (!records.length) {
+    el.innerHTML = '<p class="empty-hint">No attendance records yet.</p>';
+    return;
+  }
+  el.innerHTML = records.map(item => `
+    <div class="lesson-item">
+      <div class="lesson-title">${escapeHtml(item.class_name)}</div>
+      <div class="lesson-time">${escapeHtml(item.date)} · ${escapeHtml(item.status)}</div>
+    </div>
+  `).join('');
 }
 
 function renderRecentNotes(notes) {
