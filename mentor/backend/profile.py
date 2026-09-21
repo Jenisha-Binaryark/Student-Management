@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, session
-from backend.db import get_db_connection  # <-- adjust import path if yours differs
+
+from backend.db import get_db_connection
 
 profile_bp = Blueprint('profile', __name__, url_prefix='/api/profile')
 
@@ -7,7 +8,6 @@ SESSION_KEY = 'mentor_id'
 
 
 def get_onboarding_status(mentor_id, conn):
-
     with conn.cursor() as cur:
         cur.execute(
             "SELECT department, designation FROM mentor_signup WHERE id = %s",
@@ -15,24 +15,22 @@ def get_onboarding_status(mentor_id, conn):
         )
         row = cur.fetchone()
 
-    department, designation = (row[0], row[1]) if row else (None, None)
-    step2_done = bool(department and designation)
+        department, designation = (row[0], row[1]) if row else (None, None)
+        step2_done = bool(department and designation)
 
-    with conn.cursor() as cur:
         cur.execute(
             "SELECT COUNT(*) FROM classes WHERE created_by = %s",
             (mentor_id,)
         )
         class_count = cur.fetchone()[0]
-    step3_done = class_count > 0
 
     return {
         "steps": [
-            {"label": "Account", "done": True},  # signup already happened to be logged in
+            {"label": "Account", "done": True},
             {"label": "Profile details", "done": step2_done},
-            {"label": "Create class", "done": step3_done},
+            {"label": "Create class", "done": class_count > 0},
         ],
-        "all_complete": step2_done and step3_done
+        "all_complete": step2_done and class_count > 0,
     }
 
 
@@ -43,7 +41,11 @@ def profile_status():
         return jsonify({"error": "Unauthorized"}), 401
 
     conn = get_db_connection()
-    status = get_onboarding_status(mentor_id, conn)
+    try:
+        status = get_onboarding_status(mentor_id, conn)
+    finally:
+        conn.close()
+
     return jsonify(status), 200
 
 
@@ -61,11 +63,17 @@ def complete_profile():
         return jsonify({"error": "Department and designation are required"}), 400
 
     conn = get_db_connection()
-    with conn.cursor() as cur:
-        cur.execute(
-            "UPDATE mentor_signup SET department = %s, designation = %s WHERE id = %s",
-            (department, designation, mentor_id)
-        )
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                "UPDATE mentor_signup SET department = %s, designation = %s WHERE id = %s",
+                (department, designation, mentor_id)
+            )
         conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
 
     return jsonify({"message": "Profile updated"}), 200
