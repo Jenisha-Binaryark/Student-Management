@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, session
 from backend.db import get_db_connection
+from mentor.backend.decorators import require_onboarding_complete
 
 classes_bp = Blueprint('classes', __name__, url_prefix='/api/classes')
 
@@ -50,6 +51,7 @@ def create_class():
 
 
 @classes_bp.route('', methods=['GET'])
+@require_onboarding_complete
 def list_classes():
     mentor_id = session.get(SESSION_KEY)
     if not mentor_id:
