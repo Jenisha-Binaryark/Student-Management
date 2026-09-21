@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, session
 from backend.db import get_db_connection
+from mentor.backend.decorators import require_onboarding_complete
 
 timetable_bp = Blueprint('timetable', __name__, url_prefix='/api/timetable')
 
@@ -22,6 +23,7 @@ def _format_time(value):
 
 
 @timetable_bp.route('', methods=['POST'])
+@require_onboarding_complete
 def create_slot():
     """POST /api/timetable -> add a weekly slot to one of the mentor's classes."""
     mentor_id = session.get(SESSION_KEY)
@@ -77,6 +79,7 @@ def create_slot():
 
 
 @timetable_bp.route('', methods=['GET'])
+@require_onboarding_complete
 def list_slots():
     """GET /api/timetable?class_id=.. -> the weekly slots for one of the mentor's classes."""
     mentor_id = session.get(SESSION_KEY)
@@ -120,6 +123,7 @@ def list_slots():
 
 
 @timetable_bp.route('/<int:slot_id>', methods=['DELETE'])
+@require_onboarding_complete
 def delete_slot(slot_id):
     """DELETE /api/timetable/<id> -> remove a slot the mentor owns."""
     mentor_id = session.get(SESSION_KEY)
