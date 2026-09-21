@@ -39,15 +39,27 @@ function render(root, data) {
       </div>
     </section>
     <section class="classes-section">
-      <h2>Weekly Timetable</h2>
+      <h2>Regular timetable</h2>
       <div class="schedule-list">
-        ${timetable.length ? timetable.map(slot => `
+        \${timetable.filter(slot => slot.timetable_type === 'regular').length ? timetable.filter(slot => slot.timetable_type === 'regular').map(slot => \`
           <div class="schedule-item">
-            <strong>${escapeHtml(slot.day_of_week)} · ${escapeHtml(slot.subject)}</strong>
-            <span>${escapeHtml(slot.start_time)} – ${escapeHtml(slot.end_time)} · ${escapeHtml(slot.class_name)}</span>
-            ${slot.room ? `<small>${escapeHtml(slot.room)}</small>` : ''}
+            <strong>\${escapeHtml(slot.day_of_week)} · \${escapeHtml(slot.subject)}</strong>
+            <span>\${escapeHtml(slot.start_time)} – \${escapeHtml(slot.end_time)} · \${escapeHtml(slot.class_name)}</span>
+            \${slot.room ? \`<small>\${escapeHtml(slot.room)}</small>\` : ''}
           </div>
-        `).join('') : '<p>No timetable entries yet.</p>'}
+        \`).join('') : '<p>No regular timetable entries yet.</p>'}
+      </div>
+    </section>
+    <section class="classes-section">
+      <h2>Exam timetable</h2>
+      <div class="schedule-list">
+        \${timetable.filter(slot => slot.timetable_type === 'exam').length ? timetable.filter(slot => slot.timetable_type === 'exam').map(slot => \`
+          <div class="schedule-item">
+            <strong>\${escapeHtml(slot.day_of_week)} · \${escapeHtml(slot.subject)}</strong>
+            <span>\${escapeHtml(slot.start_time)} – \${escapeHtml(slot.end_time)} · \${escapeHtml(slot.class_name)}</span>
+            \${slot.room ? \`<small>\${escapeHtml(slot.room)}</small>\` : ''}
+          </div>
+        \`).join('') : '<p>No exam timetable entries yet.</p>'}
       </div>
     </section>
     <section class="classes-section">
