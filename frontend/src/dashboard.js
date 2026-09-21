@@ -1,91 +1,94 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener('DOMContentLoaded', () => {
+  initSidebar();
+  loadDashboardSummary();
+  initCalendar();
+});
 
-fetch('/sidebar.html')
-  .then(res => {
+async function initSidebar() {
+  try {
+    const sidebarRes = await fetch('/sidebar.html');
+    if (sidebarRes.status === 401) {
+      window.location.href = '/login.html';
+      return;
+    }
+    if (!sidebarRes.ok) throw new Error('Sidebar unavailable');
+    document.getElementById('sidebar-placeholder').innerHTML = await sidebarRes.text();
+
+    const userRes = await fetch('/api/current_user');
+    if (userRes.status === 401) {
+      window.location.href = '/login.html';
+      return;
+    }
+    const user = await userRes.json();
+    const name = user.fullname || 'Student';
+    const sidebarName = document.getElementById('sidebar-username');
+    const firstName = document.getElementById('user-first-name');
+    if (sidebarName) sidebarName.textContent = name;
+    if (firstName) firstName.textContent = name.split(' ')[0];
+
+    const logoutBtn = document.getElementById('logout-Btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async () => {
+        await fetch('/logout', { method: 'POST' });
+        window.location.href = '/login.html';
+      });
+    }
+  } catch (error) {
+    const sidebar = document.getElementById('sidebar-placeholder');
+    if (sidebar) sidebar.innerHTML = '<div class="sidebar-error">Unable to load navigation.</div>';
+  }
+}
+
+async function loadDashboardSummary() {
+  try {
+    const res = await fetch('/api/student/dashboard/summary');
     if (res.status === 401) {
       window.location.href = '/login.html';
-      return null;
+      return;
     }
-    return res.text();
-  })
-  .then(data => {
-    if (!data) return;
-    document.getElementById('sidebar-placeholder').innerHTML = data;
-    initSidebar();
-  })
-  .catch(err => console.error('Failed to load sidebar:', err));
-
-function initSidebar() {
-  const usernameEl = document.getElementById('sidebar-username');
-  if (usernameEl) {
-    fetch('/api/current_user')
-      .then(r => r.json())
-      .then(u => {
-        if (u.status === 'success') usernameEl.textContent = u.fullname;
-      });
-  }
-
-  const logoutBtn = document.getElementById('logout-Btn');
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', () => {
-      fetch('/logout', { method: 'POST' })
-        .then(() => window.location.href = '/login.html');
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Unable to load dashboard');
+    renderTeacherList(data.teachers || []);
+    renderRecentNotes(data.recent_notes || []);
+    renderAttendanceHistory(data.recent_attendance || []);
+    renderRing('attendanceRing', 'attendancePct', data.attendance?.percent);
+    renderRing('homeworkRing', 'homeworkPct', data.homework?.percent);
+    renderRing('performanceRing', 'performancePct', data.performance?.percent);
+    renderTodaySchedule(data.today_schedule || []);
+  } catch (error) {
+    document.querySelectorAll('.empty-hint').forEach(el => {
+      if (el.textContent.includes('Loading')) el.textContent = 'Unable to load data right now.';
     });
   }
 }
 
-  // ---- username fetch ----
-  try {
-    const res = await fetch("/api/current_user");
-    if (res.status === 401) {
-      window.location.href = "/login.html";
-      return;
-    }
-    const data = await res.json();
-    document.getElementById("sidebar-username").textContent = data.fullname;
-    document.getElementById("user-first-name").textContent =
-      data.fullname.split(" ")[0].toUpperCase();
-  } catch (err) {
-    console.error("Failed to load user info:", err);
-  }
+function initCalendar() {
+  const table = document.getElementById('cal-table');
+  const label = document.getElementById('cal-month-label');
+  const prev = document.getElementById('cal-prev');
+  const next = document.getElementById('cal-next');
+  if (!table || !label || !prev || !next) return;
 
-  // ---- dashboard summary ----
-  loadDashboardSummary();
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const today = new Date();
+  let year = today.getFullYear();
+  let month = today.getMonth();
 
-  const monthNames = ["January","February","March","April","May","June",
-    "July","August","September","October","November","December"];
-
-  let today = new Date();
-  let viewYear = today.getFullYear();
-  let viewMonth = today.getMonth();
-
-  function renderCalendar(year, month) {
-    const table = document.getElementById('cal-table');
-    const label = document.getElementById('cal-month-label');
-
+  function render() {
     table.querySelectorAll('tr:not(:first-child)').forEach(row => row.remove());
-    label.textContent = `${monthNames[month]} ${year}`;
-
-    const firstDay = new Date(year, month, 1);
-    let startOffset = (firstDay.getDay() + 6) % 7;
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    let date = 1;
-    for (let row = 0; row < 6 && date <= daysInMonth; row++) {
+    label.textContent = months[month] + ' ' + year;
+    const first = new Date(year, month, 1);
+    const offset = (first.getDay() + 6) % 7;
+    const days = new Date(year, month + 1, 0).getDate();
+    let day = 1;
+    for (let row = 0; row < 6 && day <= days; row++) {
       const tr = document.createElement('tr');
       for (let col = 0; col < 7; col++) {
         const td = document.createElement('td');
-        if (row === 0 && col < startOffset) {
-          td.textContent = '';
-        } else if (date > daysInMonth) {
-          td.textContent = '';
-        } else {
-          td.textContent = date;
-          const isToday = date === today.getDate() &&
-                           month === today.getMonth() &&
-                           year === today.getFullYear();
-          if (isToday) td.classList.add('active');
-          date++;
+        if (!((row === 0 && col < offset) || day > days)) {
+          td.textContent = day;
+          if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) td.className = 'active';
+          day++;
         }
         tr.appendChild(td);
       }
@@ -93,158 +96,50 @@ function initSidebar() {
     }
   }
 
-  document.getElementById('cal-prev').addEventListener('click', () => {
-    viewMonth--;
-    if (viewMonth < 0) { viewMonth = 11; viewYear--; }
-    renderCalendar(viewYear, viewMonth);
-  });
+  prev.addEventListener('click', () => { month--; if (month < 0) { month = 11; year--; } render(); });
+  next.addEventListener('click', () => { month++; if (month > 11) { month = 0; year++; } render(); });
+  render();
+}
 
-  document.getElementById('cal-next').addEventListener('click', () => {
-    viewMonth++;
-    if (viewMonth > 11) { viewMonth = 0; viewYear++; }
-    renderCalendar(viewYear, viewMonth);
-  });
-
-  renderCalendar(viewYear, viewMonth);
-
-  document.getElementById("logout-Btn").addEventListener('click', function(){
-    fetch("/logout", {method:"POST"})
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){
-            if(data.status === "success"){
-                window.location.href = "/login.html";
-            }
-        })
-  });
-});
-
-const RING_CIRCUMFERENCE = 213.6;
-
-function loadDashboardSummary() {
-  fetch('/api/student/dashboard/summary')
-    .then(res => {
-      if (res.status === 401) {
-        window.location.href = '/login.html';
-        return null;
-      }
-      return res.json();
-    })
-    .then(data => {
-      if (!data) return;
-      renderTeacherList(data.teachers || []);
-      renderRecentNotes(data.recent_notes || []);
-      renderAttendanceHistory(data.recent_attendance || []);
-      renderRing('attendanceRing', 'attendancePct', data.attendance ? data.attendance.percent : null, '#d1567f');
-      renderRing('homeworkRing', 'homeworkPct', data.homework ? data.homework.percent : null, '#5aada0');
-      renderRing('performanceRing', 'performancePct', data.performance ? data.performance.percent : null, '#e0aa4e');
-      renderTodaySchedule(data.today_schedule || []);
-    })
-    .catch(err => {
-      console.error('Failed to load dashboard summary:', err);
-      const teacherList = document.getElementById('dashboard-teacher-list');
-      if (teacherList) teacherList.innerHTML = '<p class="empty-hint">Could not load dashboard data.</p>';
-    });
+function renderRing(ringId, pctId, percent) {
+  const ring = document.getElementById(ringId);
+  const label = document.getElementById(pctId);
+  if (!ring || !label) return;
+  const value = Number(percent);
+  if (!Number.isFinite(value)) {
+    ring.style.strokeDashoffset = '213.6';
+    label.textContent = '—';
+    return;
+  }
+  const clamped = Math.max(0, Math.min(100, value));
+  ring.style.strokeDashoffset = String(213.6 * (1 - clamped / 100));
+  label.textContent = Math.round(clamped) + '%';
 }
 
 function renderTeacherList(teachers) {
   const el = document.getElementById('dashboard-teacher-list');
   if (!el) return;
-
-  if (teachers.length === 0) {
-    el.innerHTML = '<p class="empty-hint">You\'re not enrolled in any classes yet.</p>';
-    return;
-  }
-
-  el.innerHTML = '';
-  teachers.forEach(t => {
-    const row = document.createElement('div');
-    row.className = 'person-row';
-    row.innerHTML = `
-      <div>
-        <div class="p-name">${t.mentor_name}</div>
-        <div class="p-sub">${t.class_name} · ${t.subject}</div>
-      </div>`;
-    el.appendChild(row);
-  });
+  el.innerHTML = teachers.length ? teachers.map(t => '<div class="person-row"><div><div class="p-name">' + escapeHtml(t.mentor_name) + '</div><div class="p-sub">' + escapeHtml(t.class_name) + ' · ' + escapeHtml(t.subject) + '</div></div></div>').join('') : '<p class="empty-hint">No classes assigned yet.</p>';
 }
-
-function renderRing(ringId, pctId, percent, color) {
-  const ring = document.getElementById(ringId);
-  const pctEl = document.getElementById(pctId);
-  if (!ring || !pctEl) return;
-
-  if (percent === null || percent === undefined) {
-    ring.setAttribute('stroke-dashoffset', RING_CIRCUMFERENCE);
-    pctEl.textContent = '–';
-    return;
-  }
-
-  const clamped = Math.max(0, Math.min(100, percent));
-  const offset = RING_CIRCUMFERENCE * (1 - clamped / 100);
-  ring.setAttribute('stroke-dashoffset', offset.toFixed(1));
-  ring.setAttribute('stroke', color);
-  pctEl.textContent = `${Math.round(clamped)}%`;
-}
-
-function renderTodaySchedule(slots) {
-  const el = document.getElementById('dashboard-today-schedule');
-  if (!el) return;
-
-  if (slots.length === 0) {
-    el.innerHTML = '<p class="empty-hint">No classes scheduled for today.</p>';
-    return;
-  }
-
-  el.innerHTML = '';
-  slots.forEach(s => {
-    const item = document.createElement('div');
-    item.className = 'lesson-item';
-    item.innerHTML = `
-      <div>
-        <div class="lesson-title">${s.subject} · ${s.class_name}</div>
-        <div class="lesson-time">${s.start_time} – ${s.end_time}${s.room ? ' · ' + s.room : ''}</div>
-      </div>`;
-    el.appendChild(item);
-  });
-}
-
 
 function renderAttendanceHistory(records) {
   const el = document.getElementById('dashboard-attendance-history');
   if (!el) return;
-  if (!records.length) {
-    el.innerHTML = '<p class="empty-hint">No attendance records yet.</p>';
-    return;
-  }
-  el.innerHTML = records.map(item => `
-    <div class="lesson-item">
-      <div class="lesson-title">${escapeHtml(item.class_name)}</div>
-      <div class="lesson-time">${escapeHtml(item.date)} · ${escapeHtml(item.status)}</div>
-    </div>
-  `).join('');
+  el.innerHTML = records.length ? records.map(item => '<div class="lesson-item"><div><div class="lesson-title">' + escapeHtml(item.class_name) + '</div><div class="lesson-time">' + escapeHtml(item.date) + ' · ' + escapeHtml(String(item.status || '').toUpperCase()) + '</div></div></div>').join('') : '<p class="empty-hint">No attendance records yet.</p>';
 }
 
 function renderRecentNotes(notes) {
   const el = document.getElementById('dashboard-recent-notes');
   if (!el) return;
+  el.innerHTML = notes.length ? notes.map(n => '<div class="note-card"><div class="note-class">' + escapeHtml(n.class_name) + ' · ' + escapeHtml(n.mentor_name) + '</div><div class="note-title">' + escapeHtml(n.title) + '</div><div class="note-content">' + escapeHtml(n.content) + '</div><div class="note-date">' + escapeHtml(new Date(n.created_at).toLocaleDateString()) + '</div></div>').join('') : '<p class="empty-hint">No notes posted yet.</p>';
+}
 
-  if (notes.length === 0) {
-    el.innerHTML = '<p class="empty-hint">No notes posted yet.</p>';
-    return;
-  }
+function renderTodaySchedule(slots) {
+  const el = document.getElementById('dashboard-today-schedule');
+  if (!el) return;
+  el.innerHTML = slots.length ? slots.map(s => '<div class="lesson-item"><div><div class="lesson-title">' + escapeHtml(s.subject) + ' · ' + escapeHtml(s.class_name) + '</div><div class="lesson-time">' + escapeHtml(s.start_time) + ' – ' + escapeHtml(s.end_time) + (s.room ? ' · ' + escapeHtml(s.room) : '') + '</div></div></div>').join('') : '<p class="empty-hint">No classes scheduled for today.</p>';
+}
 
-  el.innerHTML = '';
-  notes.forEach(n => {
-    const card = document.createElement('div');
-    card.className = 'note-card';
-    const date = new Date(n.created_at).toLocaleDateString();
-    card.innerHTML = `
-      <div class="note-class">${n.class_name} · ${n.mentor_name}</div>
-      <div class="note-title">${n.title}</div>
-      <div class="note-content">${n.content}</div>
-      <div class="note-date">${date}</div>`;
-    el.appendChild(card);
-  });
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 }
