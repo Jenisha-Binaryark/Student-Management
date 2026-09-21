@@ -17,6 +17,7 @@ from mentor.backend.marks import marks_bp
 from mentor.backend.dashboard import dashboard_bp
 from mentor.backend.pages import mentor_pages_bp
 from backend.student_dashboard import student_dashboard_bp
+from backend.student_content import student_content_bp
 
 
 app = Flask(
@@ -446,6 +447,7 @@ app.register_blueprint(marks_bp)
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(mentor_pages_bp)
 app.register_blueprint(student_dashboard_bp)
+app.register_blueprint(student_content_bp)
 
 
 if __name__ == "__main__":
