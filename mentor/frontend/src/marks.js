@@ -125,6 +125,7 @@ function selectExam(exam) {
 }
 
 function deleteExam(examId) {
+  if (!window.confirm('Delete this exam and its marks?')) return;
   fetch(`/api/exams/${examId}`, { method: 'DELETE' })
     .then(res => {
       if (res.status === 401) {
