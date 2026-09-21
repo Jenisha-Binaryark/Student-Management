@@ -16,9 +16,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   setupSlotForm();
+  document.querySelectorAll('[data-timetable-type]').forEach(btn => btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-timetable-type]').forEach(item => item.classList.remove('active'));
+    btn.classList.add('active');
+    activeTimetableType = btn.dataset.timetableType;
+    loadTimetable();
+  }));
 });
 
 let activeClass = null;
+let activeTimetableType = 'regular';
 
 const DAY_LABELS = {
   Mon: 'Monday', Tue: 'Tuesday', Wed: 'Wednesday', Thu: 'Thursday',
@@ -45,7 +52,7 @@ function loadTimetable() {
 
   container.innerHTML = '<p class="empty-hint">Loading…</p>';
 
-  fetch(`/api/timetable?class_id=${activeClass.id}`)
+  fetch(`/api/timetable?class_id=${activeClass.id}&timetable_type=${activeTimetableType}`)
     .then(res => {
       if (res.status === 401 || res.status === 403) {
         window.location.href = res.status === 403 ? '/mentor/onboarding.html' : '/login.html?role=mentor';
@@ -151,6 +158,7 @@ function setupSlotForm() {
       start_time: document.getElementById('slotStart').value,
       end_time: document.getElementById('slotEnd').value,
       room: document.getElementById('slotRoom').value.trim(),
+      timetable_type: activeTimetableType,
     };
 
     if (!payload.subject || !payload.start_time || !payload.end_time) {
