@@ -27,7 +27,6 @@ def student_dashboard_summary():
 
     try:
         with conn.cursor() as cur:
-            # ----- linked teachers, one row per class the student is enrolled in -----
             cur.execute(
                 """SELECT c.id, c.class_name, c.subject, m.fullname
                    FROM student_classes sc
@@ -42,7 +41,6 @@ def student_dashboard_summary():
                 for r in cur.fetchall()
             ]
 
-            # ----- attendance: % present in the last 30 days -----
             cur.execute(
                 """SELECT
                        COUNT(*) FILTER (WHERE status = 'present') AS present_count,
@@ -58,7 +56,6 @@ def student_dashboard_summary():
                 if total_count else None
             )
 
-            # ----- performance: average % across all recorded marks -----
             cur.execute(
                 """SELECT AVG(m.score / e.max_marks) * 100
                    FROM marks m
@@ -69,14 +66,15 @@ def student_dashboard_summary():
             avg_marks = cur.fetchone()[0]
             performance = {"percent": round(float(avg_marks))} if avg_marks is not None else None
 
-            # ----- homework: % done across assigned/missing/done rows -----
             cur.execute(
                 """SELECT
-                       COUNT(*) FILTER (WHERE status = 'done') AS done_count,
+                       COUNT(*) FILTER (WHERE sub.id IS NOT NULL) AS done_count,
                        COUNT(*) AS total_count
-                   FROM homework
-                   WHERE student_id = %s""",
-                (student_id,)
+                   FROM assignments a
+                   JOIN student_classes sc ON sc.class_id = a.class_id AND sc.student_id = %s
+                   LEFT JOIN assignment_submissions sub
+                     ON sub.assignment_id = a.id AND sub.student_id = %s""",
+                (student_id, student_id)
             )
             done_count, hw_total = cur.fetchone()
             homework = (
@@ -84,7 +82,6 @@ def student_dashboard_summary():
                 if hw_total else None
             )
 
-            # ----- today's schedule, across all enrolled classes -----
             today_abbr = DAY_ABBR[datetime.now().weekday()]
             cur.execute(
                 """SELECT t.subject, t.start_time, t.end_time, t.room, c.class_name
@@ -103,7 +100,6 @@ def student_dashboard_summary():
                 for r in cur.fetchall()
             ]
 
-            # ----- recent notes posted by mentors, across all enrolled classes -----
             cur.execute(
                 """SELECT n.title, n.content, n.created_at, c.class_name, m.fullname
                    FROM mentor_notes n
