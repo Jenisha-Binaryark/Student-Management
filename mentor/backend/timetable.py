@@ -39,6 +39,7 @@ def create_slot():
     end_time = (data.get('end_time') or '').strip()
     room = (data.get('room') or '').strip()
     timetable_type = (data.get('timetable_type') or 'regular').strip().lower()
+    exam_date = (data.get('exam_date') or '').strip()
 
     if not class_id:
         return jsonify({"error": "class_id is required"}), 400
@@ -46,6 +47,8 @@ def create_slot():
         return jsonify({"error": "timetable_type must be regular or exam"}), 400
     if timetable_type not in TIMETABLE_TYPES:
         return jsonify({"error": "timetable_type must be regular or exam"}), 400
+    if timetable_type == 'exam' and not exam_date:
+        return jsonify({"error": "exam_date is required for exam timetable"}), 400
     if day_of_week not in DAY_ORDER:
         return jsonify({"error": "day_of_week must be one of Mon, Tue, Wed, Thu, Fri, Sat, Sun"}), 400
     if not subject or not start_time or not end_time:
@@ -64,10 +67,12 @@ def create_slot():
         return jsonify({"error": "Class not found"}), 404
 
     with conn.cursor() as cur:
+        cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS exam_date DATE")
+        conn.commit()
         cur.execute(
             """INSERT INTO class_timetable
-               (class_id, mentor_id, day_of_week, subject, start_time, end_time, room, timetable_type)
-               VALUES (%s, %s, %s, %s, %s, %s, %s, %s) RETURNING id""",
+               (class_id, mentor_id, day_of_week, subject, start_time, end_time, room, timetable_type, exam_date)
+               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING id""",
             (class_id, mentor_id, day_of_week, subject, start_time, end_time, room or None, timetable_type)
         )
         new_id = cur.fetchone()[0]
@@ -108,7 +113,7 @@ def list_slots():
 
     with conn.cursor() as cur:
         cur.execute(
-            """SELECT id, day_of_week, subject, start_time, end_time, room, timetable_type
+            """SELECT id, day_of_week, subject, start_time, end_time, room, timetable_type, exam_date
                FROM class_timetable
                WHERE class_id = %s AND timetable_type = %s""",
             (class_id, request.args.get('timetable_type', 'regular'))
