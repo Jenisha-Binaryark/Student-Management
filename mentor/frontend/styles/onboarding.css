@@ -206,3 +206,30 @@ select{
   .step-label{ display:none; }
   .field-row{ grid-template-columns:1fr; }
 }
+/* Modern onboarding polish */
+body{background:radial-gradient(circle at 15% 10%,rgba(255,255,255,.24),transparent 28%),var(--bg-outer)}
+.onboard-card{
+  border:1px solid rgba(74,63,87,.07);
+  box-shadow:0 24px 70px rgba(60,40,80,.18);
+  animation:onboardIn .45s ease both;
+}
+.onboard-head h1{font-size:25px}
+.step.current .step-dot{box-shadow:0 0 0 5px rgba(168,147,191,.16)}
+input[type="text"],select{
+  border:1px solid rgba(74,63,87,.06);
+  box-shadow:0 4px 12px rgba(60,40,80,.05);
+  transition:box-shadow .18s ease,transform .18s ease;
+}
+input[type="text"]:focus,select:focus{
+  box-shadow:0 0 0 3px rgba(168,147,191,.2),0 8px 20px rgba(60,40,80,.06);
+  transform:translateY(-1px);
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--sidebar-purple),var(--sidebar-active));
+  box-shadow:0 8px 18px rgba(124,106,144,.2);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(124,106,144,.25)}
+.btn-outline{transition:transform .18s ease,box-shadow .18s ease}
+.btn-outline:hover{transform:translateY(-1px);box-shadow:0 7px 16px rgba(60,40,80,.08)}
+@keyframes onboardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
