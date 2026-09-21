@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 let activeClass = null;
-let activeExam = null;   // {id, title, max_marks, exam_date}
+let activeExam = null;
 let currentMarks = [];   // [{student_id, fullname, email, score}]
 
 function todayISO() {
