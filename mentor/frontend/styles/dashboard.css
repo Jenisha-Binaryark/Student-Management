@@ -373,7 +373,6 @@ a.p-name{text-decoration:none;}
   }
 }
 
-/* ===== Shared mentor-page UX ===== */
 .page-head{
   margin-bottom:22px;
 }
@@ -444,7 +443,6 @@ a.p-name{text-decoration:none;}
   .card,.roster-row,.attendance-row,.assignment-card,.exam-item,.marks-row,.lesson-item,.note-card{transition:none}
 }
 
-/* Subtle mentor dashboard motion */
 .dashboard-page-head{animation:mentorFadeUp .45s ease both}
 .dashboard-scope{animation:mentorScaleIn .35s .08s ease both}
 .grid>.card,.grid>.stats-col,.grid>.schedule-row{animation:mentorFadeUp .5s ease both}
