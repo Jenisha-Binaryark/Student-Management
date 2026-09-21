@@ -89,6 +89,17 @@ def save_attendance():
         return jsonify({"error": "Class not found"}), 404
 
     with conn.cursor() as cur:
+        student_ids = [r["student_id"] for r in records]
+        cur.execute(
+            """SELECT student_id FROM student_classes
+               WHERE class_id = %s AND student_id = ANY(%s)""",
+            (class_id, student_ids)
+        )
+        enrolled_ids = {row[0] for row in cur.fetchall()}
+        if len(enrolled_ids) != len(set(student_ids)):
+            conn.close()
+            return jsonify({"error": "One or more students are not enrolled in this class"}), 400
+
         for r in records:
             cur.execute(
                 """INSERT INTO attendance (class_id, student_id, mentor_id, date, status)
