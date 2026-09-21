@@ -30,7 +30,7 @@ function loadDashboardSummary(classId = null) {
     .then(data => {
       if (!data) return;
 
-      renderClassList(data.classes || [], data.selected_class_id);
+      renderKpis(data);\n      renderClassList(data.classes || [], data.selected_class_id);
       const selected = (data.classes || []).find(c => c.id === data.selected_class_id);
       updateDashboardScope(selected);
       renderRing('attendanceRing', 'attendancePct', data.attendance ? data.attendance.percent : null, '#d1567f');
@@ -49,6 +49,17 @@ function loadDashboardSummary(classId = null) {
         if (el) el.classList.remove('dashboard-loading');
       });
     });
+}
+
+function renderKpis(data) {
+  const students = document.getElementById('totalStudents');
+  const attendance = document.getElementById('attendanceKpi');
+  const marks = document.getElementById('marksKpi');
+  const assignments = document.getElementById('assignmentKpi');
+  if (students) students.textContent = Number(data.total_students || 0);
+  if (attendance) attendance.textContent = data.attendance ? `${data.attendance.percent}%` : '–';
+  if (marks) marks.textContent = data.marks ? `${data.marks.percent}%` : '–';
+  if (assignments) assignments.textContent = Number(data.assignments?.upcoming || 0);
 }
 
 function updateDashboardScope(selectedClass) {
