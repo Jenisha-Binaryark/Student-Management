@@ -165,3 +165,27 @@ body{
   .dash-card{ padding:30px 24px; }
   .class-card{ flex-wrap:wrap; }
 }
+/* ===== Mentor dashboard additions ===== */
+.stat-card .stat-sub{
+  font-size:11px;
+  color:rgba(255,255,255,0.75);
+  margin-top:-6px;
+  margin-bottom:10px;
+}
+.assign-counts{
+  display:flex;
+  justify-content:center;
+  gap:28px;
+  margin:10px 0 6px;
+}
+.assign-count-item{ text-align:center; }
+.assign-count-num{
+  font-size:26px;
+  font-weight:700;
+  line-height:1;
+}
+.assign-count-label{
+  font-size:11px;
+  color:rgba(255,255,255,0.8);
+  margin-top:4px;
+}

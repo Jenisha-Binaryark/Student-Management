@@ -20,74 +20,57 @@
 
       <div class="card">
         <h3>Linked Teachers</h3>
-        <div class="person-row">
-          <img src="https://i.pravatar.cc/80?img=32" alt="">
-          <div><div class="p-name">Olivia Miller</div><div class="p-sub">mentor</div></div>
+        <div id="dashboard-teacher-list">
+          <p class="empty-hint">Loading…</p>
         </div>
-        <div class="person-row">
-          <img src="https://i.pravatar.cc/80?img=12" alt="">
-          <div><div class="p-name">Liam Garcio</div><div class="p-sub">teacher</div></div>
-        </div>
-        <div class="person-row">
-          <img src="https://i.pravatar.cc/80?img=15" alt="">
-          <div><div class="p-name">Jackson Lopez</div><div class="p-sub">lecturer</div></div>
-        </div>
-        <a class="see-more" href="#">See more ›</a>
       </div>
 
       <div class="card">
-        <h3>Upcoming events</h3>
-        <div class="person-row">
-          <img src="https://picsum.photos/seed/robot/80/80" alt="">
-          <div><div class="p-name">The main event in your "Robot Fest"</div><div class="p-sub">22 May 2023 &nbsp; 13:00</div></div>
+        <h3>Recent notes</h3>
+        <div id="dashboard-recent-notes">
+          <p class="empty-hint">Loading…</p>
         </div>
-        <div class="person-row">
-          <img src="https://picsum.photos/seed/webinar/80/80" alt="">
-          <div><div class="p-name">Webinar of new tools for Minecraft</div><div class="p-sub">25 May 2023 &nbsp; 11:00</div></div>
-        </div>
-        <a class="see-more" href="#">See more ›</a>
       </div>
 
       <div class="stats-col">
         <div class="stat-card">
           <h4>Attendance</h4>
+          <p class="stat-sub">Last 30 days</p>
           <div class="ring-wrap">
             <svg width="80" height="80" viewBox="0 0 80 80">
               <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="8"/>
-              <circle cx="40" cy="40" r="34" fill="none" stroke="#d1567f" stroke-width="8"
-                stroke-linecap="round"
-                stroke-dasharray="213.6" stroke-dashoffset="85.4"/>
+              <circle id="attendanceRing" cx="40" cy="40" r="34" fill="none" stroke="#d1567f" stroke-width="8"
+                stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6"/>
             </svg>
-            <div class="ring-pct">60%</div>
+            <div class="ring-pct" id="attendancePct">–</div>
           </div>
         </div>
 
         <div class="stat-card">
           <a href="{{ url_for('homework_page') }}" class="text-decoration-none">
-          <h4>Homework</h4>
-          <div class="ring-wrap">
-            <svg width="80" height="80" viewBox="0 0 80 80">
-              <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="8"/>
-              <circle cx="40" cy="40" r="34" fill="none" stroke="#5aada0" stroke-width="8"
-                stroke-linecap="round"
-                stroke-dasharray="213.6" stroke-dashoffset="21.4"/>
-            </svg>
-            <div class="ring-pct">90%</div>
-          </div>
+            <h4>Homework</h4>
+            <div class="ring-wrap">
+              <svg width="80" height="80" viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="8"/>
+                <circle id="homeworkRing" cx="40" cy="40" r="34" fill="none" stroke="#5aada0" stroke-width="8"
+                  stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6"/>
+              </svg>
+              <div class="ring-pct" id="homeworkPct">–</div>
+            </div>
           </a>
         </div>
+
         <div class="stat-card">
           <h4>Performance</h4>
+          <p class="stat-sub">Across recorded marks</p>
           <div class="ring-wrap">
             <svg width="80" height="80" viewBox="0 0 80 80">
               <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="8"/>
-              <circle cx="40" cy="40" r="34" fill="none" stroke="#e0aa4e" stroke-width="8"
-                stroke-linecap="round"
-                stroke-dasharray="213.6" stroke-dashoffset="53.4"/>
+              <circle id="performanceRing" cx="40" cy="40" r="34" fill="none" stroke="#e0aa4e" stroke-width="8"
+                stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6"/>
             </svg>
-            <div class="ring-pct">75%</div>
+            <div class="ring-pct" id="performancePct">–</div>
           </div>
-          <a class="see-more" href="#" style="color:#fff;">See more ›</a>
         </div>
       </div>
 
@@ -104,33 +87,9 @@
           </table>
         </div>
         <div class="card">
-          <div class="lesson-list">
-            <div class="lesson-item">
-              <div class="lesson-date">18</div>
-              <div><div class="lesson-title">Robotics lesson</div><div class="lesson-time">19:30</div></div>
-            </div>
-            <div class="lesson-item">
-              <div class="lesson-date">19</div>
-              <div><div class="lesson-title">Electronics lesson</div><div class="lesson-time">16:00</div></div>
-            </div>
-            <div class="lesson-item">
-              <div class="lesson-date">20</div>
-              <div><div class="lesson-title">C++ lesson</div><div class="lesson-time">–</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card projects">
-        <h3>My projects</h3>
-        <div class="project-imgs">
-          <div class="project-item">
-            <img src="https://picsum.photos/seed/homework15/300/200" alt="">
-            <div class="project-label">Homework 15</div>
-          </div>
-          <div class="project-item">
-            <img src="https://picsum.photos/seed/homework16/300/200" alt="">
-            <div class="project-label">Homework 16</div>
+          <h3>Today's lessons</h3>
+          <div class="lesson-list" id="dashboard-today-schedule">
+            <p class="empty-hint">Loading…</p>
           </div>
         </div>
       </div>

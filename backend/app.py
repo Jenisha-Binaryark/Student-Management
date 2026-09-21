@@ -14,6 +14,7 @@ from mentor.backend.assignments import assignments_bp
 from mentor.backend.marks import marks_bp
 from mentor.backend.dashboard import dashboard_bp
 from mentor.backend.pages import mentor_pages_bp
+from backend.student_dashboard import student_dashboard_bp
 
 
 app = Flask(
@@ -204,7 +205,7 @@ def login():
         if role == "student":
             cur.execute(
                 """
-                SELECT fullname, password
+                SELECT id, fullname, password
                 FROM student_signup
                 WHERE email = %s OR phone = %s
                 """,
@@ -218,7 +219,7 @@ def login():
                     "status": "not_found"
                 })
 
-            fullname, stored_hash = user
+            pk_id, fullname, stored_hash = user
 
             if not check_password_hash(stored_hash, password):
                 return jsonify({
@@ -229,6 +230,7 @@ def login():
 
             session["fullname"] = fullname
             session["role"] = "student"
+            session["student_id"] = pk_id
 
             return jsonify({
                 "status": "success",
@@ -338,7 +340,7 @@ def homework_page():
 
 @app.route("/api/homework")
 def get_homework():
-    if "fullname" not in session:
+    if "student_id" not in session:
         return jsonify({
             "status": "not_logged_in"
         }), 401
@@ -354,9 +356,9 @@ def get_homework():
             """
             SELECT id, title, subject, due_date, status
             FROM homework
-            WHERE fullname = %s
+            WHERE student_id = %s
             """,
-            (session["fullname"],)
+            (session["student_id"],)
         )
 
         rows = cur.fetchall()
@@ -428,6 +430,7 @@ app.register_blueprint(assignments_bp)
 app.register_blueprint(marks_bp)
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(mentor_pages_bp)
+app.register_blueprint(student_dashboard_bp)
 
 
 if __name__ == "__main__":
