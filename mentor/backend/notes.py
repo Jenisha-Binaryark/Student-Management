@@ -36,17 +36,24 @@ def create_note():
 
     conn = get_db_connection()
 
-    if not _class_belongs_to_mentor(class_id, mentor_id, conn):
-        return jsonify({"error": "Class not found"}), 404
+    try:
+        if not _class_belongs_to_mentor(class_id, mentor_id, conn):
+            return jsonify({"error": "Class not found"}), 404
 
-    with conn.cursor() as cur:
+        with conn.cursor() as cur:
         cur.execute(
             """INSERT INTO mentor_notes (class_id, mentor_id, title, content)
                VALUES (%s, %s, %s, %s) RETURNING id, created_at""",
             (class_id, mentor_id, title, content)
         )
-        new_id, created_at = cur.fetchone()
-        conn.commit()
+            new_id, created_at = cur.fetchone()
+            conn.commit()
+
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
 
     return jsonify({
         "message": "Note posted",
