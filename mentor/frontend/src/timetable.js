@@ -100,8 +100,8 @@ function renderWeek(slots) {
       row.innerHTML = `
         <div class="timetable-slot-time">${s.start_time} – ${s.end_time}</div>
         <div class="timetable-slot-body">
-          <div class="timetable-slot-subject">${s.subject}</div>
-          ${s.room ? `<div class="timetable-slot-room">${s.room}</div>` : ''}
+          <div class="timetable-slot-subject">${escapeHtml(s.subject)}</div>
+          ${s.room ? `<div class="timetable-slot-room">${escapeHtml(s.room)}</div>` : ''}
         </div>
         <button type="button" class="timetable-slot-delete" title="Remove slot" data-id="${s.id}">✕</button>
       `;
