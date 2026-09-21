@@ -118,6 +118,21 @@ def student_dashboard_summary():
             ]
 
             cur.execute(
+                """SELECT a.class_id, c.class_name, a.date, a.status
+                   FROM attendance a
+                   JOIN classes c ON c.id = a.class_id
+                   JOIN student_classes sc ON sc.class_id = a.class_id AND sc.student_id = %s
+                   WHERE a.student_id = %s
+                   ORDER BY a.date DESC
+                   LIMIT 10""",
+                (student_id, student_id)
+            )
+            recent_attendance = [
+                {"class_id": r[0], "class_name": r[1], "date": r[2].isoformat(), "status": r[3]}
+                for r in cur.fetchall()
+            ]
+
+            cur.execute(
                 """SELECT n.title, n.content, n.created_at, c.class_name, m.fullname
                    FROM mentor_notes n
                    JOIN classes c ON c.id = n.class_id
