@@ -145,4 +145,5 @@ def student_dashboard_summary():
         "homework": homework,
         "today_schedule": today_schedule,
         "recent_notes": recent_notes,
+        "recent_attendance": recent_attendance,
     }), 200
