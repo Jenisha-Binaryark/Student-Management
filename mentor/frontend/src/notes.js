@@ -24,8 +24,15 @@ function loadNotes() {
   if (!list) return;
 
   fetch('/api/notes')
-    .then(r => r.json())
+    .then(r => {
+      if (r.status === 401 || r.status === 403) {
+        window.location.href = r.status === 403 ? '/mentor/onboarding.html' : '/login.html?role=mentor';
+        return null;
+      }
+      return r.json();
+    })
     .then(data => {
+      if (!data) return;
       const notes = data.notes || [];
       if (notes.length === 0) {
         list.innerHTML = '<p class="empty-hint">No notes posted yet.</p>';
