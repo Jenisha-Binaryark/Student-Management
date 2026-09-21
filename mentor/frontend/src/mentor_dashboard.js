@@ -30,7 +30,8 @@ function loadDashboardSummary(classId = null) {
     .then(data => {
       if (!data) return;
 
-      renderKpis(data);\n      renderClassList(data.classes || [], data.selected_class_id);
+      renderKpis(data);
+      renderClassList(data.classes || [], data.selected_class_id);
       const selected = (data.classes || []).find(c => c.id === data.selected_class_id);
       updateDashboardScope(selected);
       renderRing('attendanceRing', 'attendancePct', data.attendance ? data.attendance.percent : null, '#d1567f');
