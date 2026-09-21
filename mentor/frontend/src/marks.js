@@ -88,7 +88,6 @@ function renderExams(exams) {
     return;
   }
 
-  // keep the current selection highlighted / valid if it still exists
   if (activeExam && !exams.some(x => x.id === activeExam.id)) {
     activeExam = null;
     renderMarks(null, []);
