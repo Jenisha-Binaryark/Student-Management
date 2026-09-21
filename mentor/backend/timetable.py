@@ -8,6 +8,7 @@ SESSION_KEY = 'mentor_id'  # must match the key used in profile.py / classes.py 
 
 DAY_ORDER = {'Mon': 0, 'Tue': 1, 'Wed': 2, 'Thu': 3, 'Fri': 4, 'Sat': 5, 'Sun': 6}
 TIMETABLE_TYPES = {'regular', 'exam'}
+TIMETABLE_TYPES = {'regular', 'exam'}
 
 
 def _class_belongs_to_mentor(class_id, mentor_id, conn):
@@ -39,9 +40,12 @@ def create_slot():
     end_time = (data.get('end_time') or '').strip()
     room = (data.get('room') or '').strip()
     timetable_type = (data.get('timetable_type') or 'regular').strip().lower()
+    timetable_type = (data.get('timetable_type') or 'regular').strip().lower()
 
     if not class_id:
         return jsonify({"error": "class_id is required"}), 400
+    if timetable_type not in TIMETABLE_TYPES:
+        return jsonify({"error": "timetable_type must be regular or exam"}), 400
     if timetable_type not in TIMETABLE_TYPES:
         return jsonify({"error": "timetable_type must be regular or exam"}), 400
     if day_of_week not in DAY_ORDER:
@@ -102,7 +106,7 @@ def list_slots():
 
     with conn.cursor() as cur:
         cur.execute(
-            """SELECT id, day_of_week, subject, start_time, end_time, room, timetable_type
+            """SELECT id, day_of_week, subject, start_time, end_time, room, timetable_type, timetable_type
                FROM class_timetable
                WHERE class_id = %s AND timetable_type = %s""",
             (class_id, request.args.get('timetable_type', 'regular'))
