@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-timetable-type]').forEach(item => item.classList.remove('active'));
     btn.classList.add('active');
     activeTimetableType = btn.dataset.timetableType;
+    const examWrap = document.getElementById('examDateWrap');
+    if (examWrap) examWrap.style.display = activeTimetableType === 'exam' ? 'block' : 'none';
     loadTimetable();
   }));
 });
@@ -159,6 +161,7 @@ function setupSlotForm() {
       end_time: document.getElementById('slotEnd').value,
       room: document.getElementById('slotRoom').value.trim(),
       timetable_type: activeTimetableType,
+      exam_date: document.getElementById('examDate')?.value || '',
     };
 
     if (!payload.subject || !payload.start_time || !payload.end_time) {
