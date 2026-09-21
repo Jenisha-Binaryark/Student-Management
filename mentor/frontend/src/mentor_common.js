@@ -5,8 +5,8 @@ function loadMentorSidebar(activePage) {
   // never rendered).
   fetch('/mentor/sidebar.html')
     .then(res => {
-      if (res.status === 401) {
-        window.location.href = '/login.html?role=mentor';
+      if (res.status === 401 || res.status === 403) {
+        window.location.href = res.status === 403 ? '/mentor/onboarding.html' : '/login.html?role=mentor';
         return null;
       }
       return res.text();
