@@ -3,6 +3,7 @@ from datetime import datetime
 from flask import Blueprint, jsonify, session
 
 from backend.db import get_db_connection
+from mentor.backend.decorators import require_onboarding_complete
 
 dashboard_bp = Blueprint('dashboard', __name__, url_prefix='/api/dashboard')
 
@@ -17,6 +18,7 @@ def _format_time(value):
 
 
 @dashboard_bp.route('/summary', methods=['GET'])
+@require_onboarding_complete
 def dashboard_summary():
     """GET /api/dashboard/summary -> aggregate stats across all of the mentor's classes."""
     mentor_id = session.get(SESSION_KEY)
