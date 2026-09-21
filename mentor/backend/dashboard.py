@@ -59,8 +59,6 @@ def dashboard_summary():
                     return jsonify({"error": "Class not found"}), 404
 
             class_filter = " AND c.id = %s" if class_id is not None else ""
-            scope_params = (mentor_id, class_id) if class_id is not None else (mentor_id,)
-
             # ----- attendance: % present in the last 30 days -----
             cur.execute(
                 f"""SELECT
@@ -82,7 +80,7 @@ def dashboard_summary():
 
             # ----- marks: average % across all recorded scores -----
             cur.execute(
-                """SELECT AVG(m.score / e.max_marks) * 100
+                f"""SELECT AVG(m.score / e.max_marks) * 100
                    FROM marks m
                    JOIN exams e ON e.id = m.exam_id
                    JOIN classes c ON c.id = e.class_id
@@ -95,7 +93,7 @@ def dashboard_summary():
 
             # ----- assignments: upcoming vs overdue -----
             cur.execute(
-                """SELECT
+                f"""SELECT
                        COUNT(*) FILTER (WHERE a.due_date >= CURRENT_DATE) AS upcoming,
                        COUNT(*) FILTER (WHERE a.due_date < CURRENT_DATE) AS overdue
                    FROM assignments a
@@ -110,7 +108,7 @@ def dashboard_summary():
             # ----- today's schedule, across all classes -----
             today_abbr = DAY_ABBR[datetime.now().weekday()]
             cur.execute(
-                """SELECT t.subject, t.start_time, t.end_time, t.room, c.class_name
+                f"""SELECT t.subject, t.start_time, t.end_time, t.room, c.class_name
                    FROM class_timetable t
                    JOIN classes c ON c.id = t.class_id
                    WHERE c.created_by = %s AND t.day_of_week = %s
@@ -129,7 +127,7 @@ def dashboard_summary():
 
             # ----- recent notes -----
             cur.execute(
-                """SELECT n.title, n.content, n.created_at, c.class_name
+                f"""SELECT n.title, n.content, n.created_at, c.class_name
                    FROM mentor_notes n
                    JOIN classes c ON c.id = n.class_id
                    WHERE n.mentor_id = %s
