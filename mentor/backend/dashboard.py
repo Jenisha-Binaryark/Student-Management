@@ -52,15 +52,7 @@ def dashboard_summary():
                 for r in cur.fetchall()
             ]
 
-            cur.execute(
-                f"""SELECT COUNT(DISTINCT sc.student_id)
-                   FROM student_classes sc
-                   JOIN classes c ON c.id = sc.class_id
-                   WHERE c.created_by = %s
-                     {class_filter}""",
-                (mentor_id, class_id) if class_id is not None else (mentor_id,)
-            )
-            total_students = cur.fetchone()[0]
+            class_filter = " AND c.id = %s" if class_id is not None else ""
 
             if class_id is not None:
                 cur.execute(
@@ -70,7 +62,15 @@ def dashboard_summary():
                 if not cur.fetchone():
                     return jsonify({"error": "Class not found"}), 404
 
-            class_filter = " AND c.id = %s" if class_id is not None else ""
+            cur.execute(
+                f"""SELECT COUNT(DISTINCT sc.student_id)
+                   FROM student_classes sc
+                   JOIN classes c ON c.id = sc.class_id
+                   WHERE c.created_by = %s
+                     {class_filter}""",
+                (mentor_id, class_id) if class_id is not None else (mentor_id,)
+            )
+            total_students = cur.fetchone()[0]
 
             cur.execute(
                 f"""SELECT
