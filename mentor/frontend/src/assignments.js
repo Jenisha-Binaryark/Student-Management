@@ -89,10 +89,43 @@ function renderAssignments(assignments) {
       </div>
       ${a.description ? `<div class="assignment-card-desc">${escapeHtml(a.description)}</div>` : ''}
       <div class="assignment-card-due${isOverdue ? ' overdue-text' : ''}">Due ${formatDate(a.due_date)}</div>
+      <button type="button" class="assignment-submissions" data-id="${a.id}">View student submissions</button>
+      <div class="assignment-submission-list" id="submission-list-${a.id}"></div>
     `;
     card.querySelector('.assignment-delete').addEventListener('click', () => deleteAssignment(a.id));
+    card.querySelector('.assignment-submissions').addEventListener('click', () => loadSubmissions(a.id));
     list.appendChild(card);
   });
+}
+
+async function loadSubmissions(assignmentId) {
+  const container = document.getElementById(`submission-list-${assignmentId}`);
+  if (!container) return;
+  container.innerHTML = '<div class="empty-hint">Loading submissions…</div>';
+  try {
+    const res = await fetch(`/api/assignments/${assignmentId}/submissions`);
+    if (res.status === 401 || res.status === 403) {
+      window.location.href = res.status === 403 ? '/mentor/onboarding.html' : '/login.html?role=mentor';
+      return;
+    }
+    const data = await res.json();
+    const submissions = data.submissions || [];
+    if (!submissions.length) {
+      container.innerHTML = '<div class="empty-hint">No students have submitted this assignment yet.</div>';
+      return;
+    }
+    container.innerHTML = submissions.map(item => `
+      <div class="assignment-submission">
+        <strong>${escapeHtml(item.fullname)}</strong>
+        <span>${escapeHtml(item.email)}</span>
+        ${item.text ? `<p>${escapeHtml(item.text)}</p>` : ''}
+        ${item.url ? `<a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">Open submitted link</a>` : ''}
+        <small>${item.submitted_at ? new Date(item.submitted_at).toLocaleString() : ''}</small>
+      </div>
+    `).join('');
+  } catch {
+    container.innerHTML = '<div class="empty-hint">Could not load submissions.</div>';
+  }
 }
 
 function formatDate(iso) {
