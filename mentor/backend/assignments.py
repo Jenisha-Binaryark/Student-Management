@@ -4,7 +4,7 @@ from mentor.backend.decorators import require_onboarding_complete
 
 assignments_bp = Blueprint('assignments', __name__, url_prefix='/api/assignments')
 
-SESSION_KEY = 'mentor_id'  # must match the key used in profile.py / classes.py / notes.py
+SESSION_KEY = 'mentor_id'
 
 
 def _class_belongs_to_mentor(class_id, mentor_id, conn):
@@ -107,6 +107,49 @@ def list_assignments():
     ]
     return jsonify({"assignments": assignments}), 200
 
+
+
+@assignments_bp.route('/<int:assignment_id>/submissions', methods=['GET'])
+@require_onboarding_complete
+def list_submissions(assignment_id):
+    mentor_id = session.get(SESSION_KEY)
+    if not mentor_id:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                SELECT s.id, s.fullname, s.email, sub.submission_text,
+                       sub.submission_url, sub.submitted_at
+                FROM assignments a
+                JOIN student_classes sc ON sc.class_id = a.class_id
+                JOIN student_signup s ON s.id = sc.student_id
+                LEFT JOIN assignment_submissions sub
+                  ON sub.assignment_id = a.id AND sub.student_id = s.id
+                WHERE a.id = %s AND a.mentor_id = %s
+                ORDER BY s.fullname
+                """,
+                (assignment_id, mentor_id)
+            )
+            rows = cur.fetchall()
+    finally:
+        conn.close()
+
+    submissions = [
+        {
+            "student_id": r[0],
+            "fullname": r[1],
+            "email": r[2],
+            "text": r[3],
+            "url": r[4],
+            "submitted_at": r[5].isoformat() if r[5] else None
+        }
+        for r in rows
+        if r[3] or r[4]
+    ]
+    return jsonify({"submissions": submissions}), 200
 
 @assignments_bp.route('/<int:assignment_id>', methods=['DELETE'])
 @require_onboarding_complete
