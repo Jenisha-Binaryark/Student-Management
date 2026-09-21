@@ -91,8 +91,8 @@ function renderRoster(students) {
     row.className = 'roster-row';
     row.innerHTML = `
       <div>
-        <div class="roster-name">${s.fullname}</div>
-        <div class="roster-email">${s.email}</div>
+        <div class="roster-name">${escapeHtml(s.fullname)}</div>
+        <div class="roster-email">${escapeHtml(s.email)}</div>
       </div>
       <button type="button" class="roster-remove" title="Remove student" data-id="${s.id}">✕</button>
     `;
