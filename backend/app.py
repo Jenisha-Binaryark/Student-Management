@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from backend.config import SECRET_KEY, APP_ENV, SESSION_COOKIE_SECURE, SESSION_COOKIE_HTTPONLY, SESSION_COOKIE_SAMESITE, SESSION_LIFETIME
 from backend.db import get_db_connection
+from backend.security import auth_rate_limit
 
 from mentor.backend.profile import profile_bp
 from mentor.backend.classes import classes_bp
@@ -39,6 +40,7 @@ def home():
 
 
 @app.route("/signup", methods=["POST"])
+@auth_rate_limit
 def signup():
     data = request.get_json()
 
@@ -183,6 +185,7 @@ def login_page():
 
 
 @app.route("/login", methods=["POST"])
+@auth_rate_limit
 def login():
     data = request.get_json()
 
