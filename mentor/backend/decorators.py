@@ -12,13 +12,20 @@ def require_onboarding_complete(f):
             return jsonify({"error": "Unauthorized"}), 401
 
         conn = get_db_connection()
-        status = get_onboarding_status(mentor_id, conn)
+        try:
+            status = get_onboarding_status(mentor_id, conn)
+        finally:
+            try:
+                conn.close()
+            except Exception:
+                pass
 
-        if not status['all_complete']:
+        if not status["all_complete"]:
             return jsonify({
                 "error": "Onboarding incomplete",
                 "onboarding": status
             }), 403
 
         return f(*args, **kwargs)
+
     return wrapper
