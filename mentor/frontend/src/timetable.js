@@ -127,7 +127,7 @@ function deleteSlot(id) {
   fetch(`/api/timetable/${id}`, { method: 'DELETE' })
     .then(res => {
       if (res.status === 401) {
-        window.location.href = r.status === 403 ? '/mentor/onboarding.html' : '/login.html?role=mentor';
+        window.location.href = res.status === 403 ? '/mentor/onboarding.html' : '/login.html?role=mentor';
         return null;
       }
       return res.json();
