@@ -30,7 +30,7 @@ def dashboard_summary():
 
     try:
         with conn.cursor() as cur:
-            # ----- classes + roster size -----
+
             cur.execute(
                 """SELECT c.id, c.class_name, c.course, c.subject,
                           COUNT(sc.student_id) AS student_count
@@ -49,7 +49,6 @@ def dashboard_summary():
                 for r in cur.fetchall()
             ]
 
-            # ----- selected class scope -----
             if class_id is not None:
                 cur.execute(
                     "SELECT id FROM classes WHERE id = %s AND created_by = %s",
@@ -59,7 +58,7 @@ def dashboard_summary():
                     return jsonify({"error": "Class not found"}), 404
 
             class_filter = " AND c.id = %s" if class_id is not None else ""
-            # ----- attendance: % present in the last 30 days -----
+
             cur.execute(
                 f"""SELECT
                        COUNT(*) FILTER (WHERE a.status = 'present') AS present_count,
@@ -78,7 +77,6 @@ def dashboard_summary():
                 if total_count else None
             )
 
-            # ----- marks: average % across all recorded scores -----
             cur.execute(
                 f"""SELECT AVG(m.score / e.max_marks) * 100
                    FROM marks m
@@ -91,7 +89,6 @@ def dashboard_summary():
             avg_marks = cur.fetchone()[0]
             marks = {"percent": round(float(avg_marks))} if avg_marks is not None else None
 
-            # ----- assignments: upcoming vs overdue -----
             cur.execute(
                 f"""SELECT
                        COUNT(*) FILTER (WHERE a.due_date >= CURRENT_DATE) AS upcoming,
@@ -105,7 +102,6 @@ def dashboard_summary():
             upcoming, overdue = cur.fetchone()
             assignments = {"upcoming": upcoming, "overdue": overdue}
 
-            # ----- today's schedule, across all classes -----
             today_abbr = DAY_ABBR[datetime.now().weekday()]
             cur.execute(
                 f"""SELECT t.subject, t.start_time, t.end_time, t.room, c.class_name
@@ -125,7 +121,6 @@ def dashboard_summary():
                 for r in cur.fetchall()
             ]
 
-            # ----- recent notes -----
             cur.execute(
                 f"""SELECT n.title, n.content, n.created_at, c.class_name
                    FROM mentor_notes n
