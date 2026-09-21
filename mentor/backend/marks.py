@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, session
 from backend.db import get_db_connection
+from mentor.backend.decorators import require_onboarding_complete
 
 marks_bp = Blueprint('marks', __name__, url_prefix='/api')
 
@@ -29,6 +30,7 @@ def _get_owned_exam(exam_id, mentor_id, conn):
 # ===== Exams =====
 
 @marks_bp.route('/exams', methods=['POST'])
+@require_onboarding_complete
 def create_exam():
     """POST /api/exams -> create an exam/assessment for one of the mentor's classes."""
     mentor_id = session.get(SESSION_KEY)
@@ -84,6 +86,7 @@ def create_exam():
 
 
 @marks_bp.route('/exams', methods=['GET'])
+@require_onboarding_complete
 def list_exams():
     """GET /api/exams?class_id=.. -> exams belonging to one of the mentor's classes."""
     mentor_id = session.get(SESSION_KEY)
@@ -125,6 +128,7 @@ def list_exams():
 
 
 @marks_bp.route('/exams/<int:exam_id>', methods=['DELETE'])
+@require_onboarding_complete
 def delete_exam(exam_id):
     """DELETE /api/exams/<id> -> remove an exam the mentor owns (cascades its marks)."""
     mentor_id = session.get(SESSION_KEY)
@@ -150,6 +154,7 @@ def delete_exam(exam_id):
 # ===== Marks =====
 
 @marks_bp.route('/marks', methods=['GET'])
+@require_onboarding_complete
 def get_marks():
     """GET /api/marks?exam_id=.. -> roster merged with each student's score for that exam."""
     mentor_id = session.get(SESSION_KEY)
@@ -195,6 +200,7 @@ def get_marks():
 
 
 @marks_bp.route('/marks', methods=['POST'])
+@require_onboarding_complete
 def save_marks():
     """POST /api/marks {exam_id, records:[{student_id, score}]} -> upsert scores."""
     mentor_id = session.get(SESSION_KEY)
