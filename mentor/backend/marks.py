@@ -241,6 +241,16 @@ def save_marks():
         parsed.append((r['student_id'], score))
 
     with conn.cursor() as cur:
+        cur.execute(
+            """SELECT student_id FROM student_classes
+               WHERE class_id = %s AND student_id = ANY(%s)""",
+            (exam[0], [student_id for student_id, _ in parsed])
+        )
+        enrolled_ids = {row[0] for row in cur.fetchall()}
+        if len(enrolled_ids) != len({student_id for student_id, _ in parsed}):
+            conn.close()
+            return jsonify({"error": "One or more students are not enrolled in this class"}), 400
+
         for student_id, score in parsed:
             cur.execute(
                 """INSERT INTO marks (exam_id, student_id, mentor_id, score, updated_at)
