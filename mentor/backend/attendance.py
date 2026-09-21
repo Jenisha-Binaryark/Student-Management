@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, session
 from backend.db import get_db_connection
+from mentor.backend.decorators import require_onboarding_complete
 
 attendance_bp = Blueprint('attendance', __name__, url_prefix='/api/attendance')
 
@@ -17,6 +18,7 @@ def _class_belongs_to_mentor(class_id, mentor_id, conn):
 
 
 @attendance_bp.route('', methods=['GET'])
+@require_onboarding_complete
 def get_attendance():
     """GET /api/attendance?class_id=..&date=YYYY-MM-DD -> roster merged with that date's status."""
     mentor_id = session.get(SESSION_KEY)
@@ -57,6 +59,7 @@ def get_attendance():
 
 
 @attendance_bp.route('', methods=['POST'])
+@require_onboarding_complete
 def save_attendance():
     """POST /api/attendance {class_id, date, records:[{student_id, status}]} -> upsert marks."""
     mentor_id = session.get(SESSION_KEY)
