@@ -61,8 +61,8 @@ function loadExams() {
 
   fetch(`/api/exams?class_id=${activeClass.id}`)
     .then(res => {
-      if (res.status === 401) {
-        window.location.href = '/login.html?role=mentor';
+      if (res.status === 401 || res.status === 403) {
+        window.location.href = res.status === 403 ? '/mentor/onboarding.html' : '/login.html?role=mentor';
         return null;
       }
       return res.json();
@@ -128,7 +128,7 @@ function deleteExam(examId) {
   fetch(`/api/exams/${examId}`, { method: 'DELETE' })
     .then(res => {
       if (res.status === 401) {
-        window.location.href = '/login.html?role=mentor';
+        window.location.href = r.status === 403 ? '/mentor/onboarding.html' : '/login.html?role=mentor';
         return null;
       }
       return res.json();
