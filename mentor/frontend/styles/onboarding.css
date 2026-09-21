@@ -61,7 +61,6 @@ body{
   margin-bottom:28px;
 }
 
-/* ===== Stepper ===== */
 .stepper{
   list-style:none;
   display:flex;
@@ -111,7 +110,6 @@ body{
 }
 .step.current .step-label{ color:var(--text-dark); }
 
-/* ===== Message ===== */
 .onboard-message{
   font-size:13px;
   font-weight:600;
@@ -119,7 +117,6 @@ body{
   min-height:16px;
 }
 
-/* ===== Panels ===== */
 .panel{ display:none; }
 .panel.active{ display:block; }
 
@@ -206,7 +203,7 @@ select{
   .step-label{ display:none; }
   .field-row{ grid-template-columns:1fr; }
 }
-/* Modern onboarding polish */
+
 body{background:radial-gradient(circle at 15% 10%,rgba(255,255,255,.24),transparent 28%),var(--bg-outer)}
 .onboard-card{
   border:1px solid rgba(74,63,87,.07);
