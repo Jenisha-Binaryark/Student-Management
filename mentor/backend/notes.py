@@ -41,11 +41,11 @@ def create_note():
             return jsonify({"error": "Class not found"}), 404
 
         with conn.cursor() as cur:
-        cur.execute(
+            cur.execute(
             """INSERT INTO mentor_notes (class_id, mentor_id, title, content)
                VALUES (%s, %s, %s, %s) RETURNING id, created_at""",
             (class_id, mentor_id, title, content)
-        )
+            )
             new_id, created_at = cur.fetchone()
             conn.commit()
 
@@ -91,9 +91,12 @@ def list_notes():
 
     query += " ORDER BY n.created_at DESC LIMIT 100"
 
-    with conn.cursor() as cur:
-        cur.execute(query, tuple(params))
-        rows = cur.fetchall()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(query, tuple(params))
+            rows = cur.fetchall()
+    finally:
+        conn.close()
 
     notes = [
         {
