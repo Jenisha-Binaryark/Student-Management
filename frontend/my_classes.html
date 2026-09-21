@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Smartech</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Classes</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}">
+<style>
+body{margin:0;font-family:Arial,sans-serif}.student-layout{display:flex;min-height:100vh}.main{flex:1;padding:32px}.classes-section{margin-bottom:32px}.class-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.class-card,.schedule-item{padding:18px;border:1px solid #ddd;border-radius:14px;background:#fff}.schedule-list{display:grid;gap:12px}.schedule-item{display:flex;flex-direction:column;gap:6px}
+</style>
 </head>
 <body>
-    <iframe src="https://calendar.google.com/calendar/embed?src=jenisha.binaryark%40gmail.com&ctz=Asia%2FKolkata"
-    style="border: 0"
-    width="100%"
-    height="600"
-    style="border: none;"></iframe>
+<div class="student-layout">
+  <div id="sidebar-placeholder"></div>
+  <main class="main" id="student-content"><p>Loading…</p></main>
+</div>
+<script src="{{ url_for('static', filename='src/my_classes.js') }}"></script>
 </body>
 </html>
