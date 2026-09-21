@@ -45,7 +45,6 @@
   padding:6px 0;
 }
 
-/* Quick action links / disabled rows on the dashboard */
 a.person-row.quick-action{
   text-decoration:none;
   color:inherit;
@@ -60,7 +59,6 @@ a.person-row.quick-action:hover{
   cursor:not-allowed;
 }
 
-/* static placeholder pages (Attendance / Timetable / Assignments / Marks) */
 .placeholder-card{
   background:#fff;
   border-radius:18px;
@@ -75,7 +73,6 @@ a.person-row.quick-action:hover{
   font-size:18px;
 }
 
-/* ===== Add-class modal ===== */
 .modal-overlay{
   display:none;
   position:fixed;
@@ -175,7 +172,6 @@ select{
   justify-content:flex-end;
 }
 
-/* ===== Post note page ===== */
 .notes-layout{
   display:grid;
   grid-template-columns:1fr 1.3fr;
@@ -224,7 +220,6 @@ select{
   margin-top:8px;
 }
 
-/* ===== Shared page header (Timetable / Attendance / Assignments / Marks) ===== */
 .page-head{ margin-bottom:20px; }
 .page-head h1{
   font-size:20px;
@@ -238,7 +233,6 @@ select{
   font-weight:500;
 }
 
-/* ===== Timetable page ===== */
 .timetable-week{
   display:flex;
   flex-direction:column;
@@ -296,7 +290,6 @@ select{
 }
 .timetable-slot-delete:hover{ color:var(--pink); }
 
-/* ===== Attendance page ===== */
 .roster-list{
   display:flex;
   flex-direction:column;
@@ -371,7 +364,6 @@ select{
 .attendance-btn.present.active{ background:var(--teal); color:#fff; }
 .attendance-btn.absent.active{ background:var(--pink); color:#fff; }
 
-/* ===== Assignments page ===== */
 .assignments-list{
   display:flex;
   flex-direction:column;
@@ -422,7 +414,6 @@ select{
 }
 .assignment-card-due.overdue-text{ color:var(--pink); }
 
-/* ===== Dashboard: assignments stat (no ring — no % data exists for it) ===== */
 .stat-simple-row{
   display:flex;
   justify-content:center;
@@ -445,7 +436,6 @@ select{
   opacity:0.85;
 }
 
-/* ===== Dashboard: class rows with roster count ===== */
 .class-row-count{
   flex-shrink:0;
   font-size:11px;
@@ -456,7 +446,6 @@ select{
   border-radius:999px;
 }
 
-/* ===== Marks page ===== */
 .exams-list{
   display:flex;
   flex-direction:column;
@@ -540,7 +529,7 @@ select{
   color:var(--text-muted);
   white-space:nowrap;
 }
-/* Modern mentor shell */
+
 .class-tabs{scrollbar-width:none}
 .class-tabs::-webkit-scrollbar{display:none}
 .class-tab{
