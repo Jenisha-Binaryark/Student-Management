@@ -102,7 +102,7 @@ function renderExams(exams) {
     item.dataset.examId = x.id;
     item.innerHTML = `
       <div class="exam-item-top">
-        <div class="exam-item-title">${x.title}</div>
+        <div class="exam-item-title">${escapeHtml(x.title)}</div>
         <button type="button" class="exam-delete" title="Delete exam" data-id="${x.id}">✕</button>
       </div>
       <div class="exam-item-meta">Out of ${x.max_marks} &nbsp;•&nbsp; ${formatDate(x.exam_date)}</div>
@@ -257,7 +257,7 @@ function renderMarks(exam, records) {
     const row = document.createElement('div');
     row.className = 'marks-row';
     row.innerHTML = `
-      <div class="marks-name">${r.fullname}</div>
+      <div class="marks-name">${escapeHtml(r.fullname)}</div>
       <div class="marks-score-wrap">
         <input type="number" class="marks-score-input" min="0" max="${exam.max_marks}" step="0.5"
                value="${r.score === null || r.score === undefined ? '' : r.score}"
