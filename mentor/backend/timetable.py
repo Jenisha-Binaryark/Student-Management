@@ -45,8 +45,6 @@ def create_slot():
         return jsonify({"error": "class_id is required"}), 400
     if timetable_type not in TIMETABLE_TYPES:
         return jsonify({"error": "timetable_type must be regular or exam"}), 400
-    if timetable_type not in TIMETABLE_TYPES:
-        return jsonify({"error": "timetable_type must be regular or exam"}), 400
     if timetable_type == 'exam' and not exam_date:
         return jsonify({"error": "exam_date is required for exam timetable"}), 400
     if day_of_week not in DAY_ORDER:
@@ -73,7 +71,7 @@ def create_slot():
             """INSERT INTO class_timetable
                (class_id, mentor_id, day_of_week, subject, start_time, end_time, room, timetable_type, exam_date)
                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING id""",
-            (class_id, mentor_id, day_of_week, subject, start_time, end_time, room or None, timetable_type)
+            (class_id, mentor_id, day_of_week, subject, start_time, end_time, room or None, timetable_type, exam_date or None)
         )
         new_id = cur.fetchone()[0]
         conn.commit()
@@ -107,6 +105,11 @@ def list_slots():
 
     conn = get_db_connection()
 
+    with conn.cursor() as cur:
+        cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS timetable_type VARCHAR(20) NOT NULL DEFAULT 'regular'")
+        cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS exam_date DATE")
+        conn.commit()
+
     if not _class_belongs_to_mentor(class_id, mentor_id, conn):
         conn.close()
         return jsonify({"error": "Class not found"}), 404
@@ -129,6 +132,8 @@ def list_slots():
             "start_time": _format_time(r[3]),
             "end_time": _format_time(r[4]),
             "room": r[5],
+            "timetable_type": r[6],
+            "exam_date": r[7].isoformat() if r[7] else None,
         }
         for r in rows
     ]
