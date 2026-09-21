@@ -45,8 +45,6 @@ function updateHeading() {
     : 'Add or select a class above to manage exams and marks.';
 }
 
-/* ===== Exams ===== */
-
 function loadExams() {
   const list = document.getElementById('examsList');
   if (!list) return;
@@ -204,8 +202,6 @@ function setupExamForm() {
     }
   });
 }
-
-/* ===== Marks ===== */
 
 function loadMarks() {
   const heading = document.getElementById('marksExamHeading');
