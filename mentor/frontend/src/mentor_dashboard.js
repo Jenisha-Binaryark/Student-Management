@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   loadMentorSidebar('dashboard');
-  loadDashboardSummary();
+  window.addEventListener('classChanged', (e) => loadDashboardSummary(e.detail?.id || null));
+  loadDashboardSummary(null);
 });
 
 const RING_CIRCUMFERENCE = 213.6;
 
-function loadDashboardSummary() {
+function loadDashboardSummary(classId = null) {
   const containers = [
     document.getElementById('dashboard-class-list'),
     document.getElementById('dashboard-today-schedule'),
@@ -16,7 +17,8 @@ function loadDashboardSummary() {
     if (el) el.classList.add('dashboard-loading');
   });
 
-  fetch('/api/dashboard/summary')
+  const query = classId ? `?class_id=${encodeURIComponent(classId)}` : '';
+  fetch(`/api/dashboard/summary${query}`)
     .then(res => {
       if (res.status === 401) {
         window.location.href = '/login.html?role=mentor';
@@ -28,7 +30,9 @@ function loadDashboardSummary() {
     .then(data => {
       if (!data) return;
 
-      renderClassList(data.classes || []);
+      renderClassList(data.classes || [], data.selected_class_id);
+      const selected = (data.classes || []).find(c => c.id === data.selected_class_id);
+      updateDashboardScope(selected);
       renderRing('attendanceRing', 'attendancePct', data.attendance ? data.attendance.percent : null, '#d1567f');
       renderRing('marksRing', 'marksPct', data.marks ? data.marks.percent : null, '#e0aa4e');
       renderAssignmentCounts(data.assignments || { upcoming: 0, overdue: 0 });
@@ -47,7 +51,12 @@ function loadDashboardSummary() {
     });
 }
 
-function renderClassList(classes) {
+function updateDashboardScope(selectedClass) {
+  const el = document.getElementById('dashboardScope');
+  if (el) el.textContent = selectedClass ? `Showing ${selectedClass.class_name}` : 'All classes';
+}
+
+function renderClassList(classes, selectedClassId = null) {
   const el = document.getElementById('dashboard-class-list');
   if (!el) return;
 
@@ -59,7 +68,7 @@ function renderClassList(classes) {
   el.innerHTML = '';
   classes.forEach(c => {
     const row = document.createElement('div');
-    row.className = 'person-row dashboard-item-enter';
+    row.className = 'person-row dashboard-item-enter' + (selectedClassId === c.id ? ' selected-class' : '');
     row.innerHTML = `
       <div>
         <div class="p-name">${escapeHtml(c.class_name)}</div>
