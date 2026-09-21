@@ -101,6 +101,7 @@ function formatDate(iso) {
 }
 
 function deleteAssignment(id) {
+  if (!window.confirm('Delete this assignment?')) return;
   fetch(`/api/assignments/${id}`, { method: 'DELETE' })
     .then(res => {
       if (res.status === 401) {
