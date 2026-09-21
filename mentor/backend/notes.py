@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, session
 from backend.db import get_db_connection
+from mentor.backend.decorators import require_onboarding_complete
 
 notes_bp = Blueprint('notes', __name__, url_prefix='/api/notes')
 
@@ -16,6 +17,7 @@ def _class_belongs_to_mentor(class_id, mentor_id, conn):
 
 
 @notes_bp.route('', methods=['POST'])
+@require_onboarding_complete
 def create_note():
     """POST /api/notes -> post a note to students in one of the mentor's classes."""
     mentor_id = session.get(SESSION_KEY)
@@ -59,6 +61,7 @@ def create_note():
 
 
 @notes_bp.route('', methods=['GET'])
+@require_onboarding_complete
 def list_notes():
     """GET /api/notes[?class_id=..] -> notes posted by the logged-in mentor."""
     mentor_id = session.get(SESSION_KEY)
