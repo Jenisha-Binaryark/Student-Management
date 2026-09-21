@@ -15,7 +15,7 @@ function populateClassSelect(classes) {
   }
 
   select.innerHTML = classes
-    .map(c => `<option value="${c.id}">${c.class_name}</option>`)
+     .map(c => `<option value="${c.id}">${escapeHtml(c.class_name)}</option>`)
     .join('');
 }
 
@@ -37,9 +37,9 @@ function loadNotes() {
         card.className = 'note-card';
         const date = new Date(n.created_at).toLocaleString();
         card.innerHTML = `
-          <div class="note-class">${n.class_name}</div>
-          <div class="note-title">${n.title}</div>
-          <div class="note-content">${n.content}</div>
+          <div class="note-class">${escapeHtml(n.class_name)}</div>
+          <div class="note-title">${escapeHtml(n.title)}</div>
+          <div class="note-content">${escapeHtml(n.content)}</div>
           <div class="note-date">${date}</div>`;
         list.appendChild(card);
       });
