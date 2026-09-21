@@ -6,16 +6,28 @@ document.addEventListener('DOMContentLoaded', () => {
 const RING_CIRCUMFERENCE = 213.6;
 
 function loadDashboardSummary() {
+  const containers = [
+    document.getElementById('dashboard-class-list'),
+    document.getElementById('dashboard-today-schedule'),
+    document.getElementById('dashboard-recent-notes')
+  ];
+
+  containers.forEach(el => {
+    if (el) el.classList.add('dashboard-loading');
+  });
+
   fetch('/api/dashboard/summary')
     .then(res => {
       if (res.status === 401) {
         window.location.href = '/login.html?role=mentor';
         return null;
       }
+      if (!res.ok) throw new Error(`Dashboard request failed: ${res.status}`);
       return res.json();
     })
     .then(data => {
       if (!data) return;
+
       renderClassList(data.classes || []);
       renderRing('attendanceRing', 'attendancePct', data.attendance ? data.attendance.percent : null, '#d1567f');
       renderRing('marksRing', 'marksPct', data.marks ? data.marks.percent : null, '#e0aa4e');
@@ -27,6 +39,11 @@ function loadDashboardSummary() {
       console.error('Failed to load dashboard summary:', err);
       const classList = document.getElementById('dashboard-class-list');
       if (classList) classList.innerHTML = '<p class="empty-hint">Could not load dashboard data.</p>';
+    })
+    .finally(() => {
+      containers.forEach(el => {
+        if (el) el.classList.remove('dashboard-loading');
+      });
     });
 }
 
@@ -42,11 +59,11 @@ function renderClassList(classes) {
   el.innerHTML = '';
   classes.forEach(c => {
     const row = document.createElement('div');
-    row.className = 'person-row';
+    row.className = 'person-row dashboard-item-enter';
     row.innerHTML = `
       <div>
-        <div class="p-name">${c.class_name}</div>
-        <div class="p-sub">${c.course} · ${c.subject}</div>
+        <div class="p-name">${escapeHtml(c.class_name)}</div>
+        <div class="p-sub">${escapeHtml(c.course)} · ${escapeHtml(c.subject)}</div>
       </div>
       <span class="class-row-count">${c.student_count} student${c.student_count === 1 ? '' : 's'}</span>`;
     el.appendChild(row);
@@ -64,18 +81,56 @@ function renderRing(ringId, pctId, percent, color) {
     return;
   }
 
-  const clamped = Math.max(0, Math.min(100, percent));
-  const offset = RING_CIRCUMFERENCE * (1 - clamped / 100);
-  ring.setAttribute('stroke-dashoffset', offset.toFixed(1));
+  const clamped = Math.max(0, Math.min(100, Number(percent)));
+  const targetOffset = RING_CIRCUMFERENCE * (1 - clamped / 100);
+
   ring.setAttribute('stroke', color);
-  pctEl.textContent = `${Math.round(clamped)}%`;
+  animateRing(ring, pctEl, targetOffset, clamped);
+}
+
+function animateRing(ring, pctEl, targetOffset, targetPercent) {
+  const startOffset = RING_CIRCUMFERENCE;
+  const startTime = performance.now();
+  const duration = 850;
+
+  function frame(now) {
+    const progress = Math.min(1, (now - startTime) / duration);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const offset = startOffset + (targetOffset - startOffset) * eased;
+
+    ring.setAttribute('stroke-dashoffset', offset.toFixed(1));
+    pctEl.textContent = `${Math.round(targetPercent * eased)}%`;
+
+    if (progress < 1) {
+      requestAnimationFrame(frame);
+    }
+  }
+
+  requestAnimationFrame(frame);
 }
 
 function renderAssignmentCounts(assignments) {
   const upcomingEl = document.getElementById('assignUpcoming');
   const overdueEl = document.getElementById('assignOverdue');
-  if (upcomingEl) upcomingEl.textContent = assignments.upcoming ?? 0;
-  if (overdueEl) overdueEl.textContent = assignments.overdue ?? 0;
+  if (upcomingEl) animateNumber(upcomingEl, assignments.upcoming ?? 0);
+  if (overdueEl) animateNumber(overdueEl, assignments.overdue ?? 0);
+}
+
+function animateNumber(element, target) {
+  const end = Math.max(0, Number(target) || 0);
+  const start = 0;
+  const duration = 500;
+  const startTime = performance.now();
+
+  function frame(now) {
+    const progress = Math.min(1, (now - startTime) / duration);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    element.textContent = Math.round(start + (end - start) * eased);
+
+    if (progress < 1) requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
 }
 
 function renderTodaySchedule(slots) {
@@ -90,11 +145,11 @@ function renderTodaySchedule(slots) {
   el.innerHTML = '';
   slots.forEach(s => {
     const item = document.createElement('div');
-    item.className = 'lesson-item';
+    item.className = 'lesson-item dashboard-item-enter';
     item.innerHTML = `
       <div>
-        <div class="lesson-title">${s.subject} · ${s.class_name}</div>
-        <div class="lesson-time">${s.start_time} – ${s.end_time}${s.room ? ' · ' + s.room : ''}</div>
+        <div class="lesson-title">${escapeHtml(s.subject)} · ${escapeHtml(s.class_name)}</div>
+        <div class="lesson-time">${escapeHtml(s.start_time)} – ${escapeHtml(s.end_time)}${s.room ? ' · ' + escapeHtml(s.room) : ''}</div>
       </div>`;
     el.appendChild(item);
   });
@@ -112,13 +167,22 @@ function renderRecentNotes(notes) {
   el.innerHTML = '';
   notes.forEach(n => {
     const card = document.createElement('div');
-    card.className = 'note-card';
+    card.className = 'note-card dashboard-item-enter';
     const date = new Date(n.created_at).toLocaleDateString();
     card.innerHTML = `
-      <div class="note-class">${n.class_name}</div>
-      <div class="note-title">${n.title}</div>
-      <div class="note-content">${n.content}</div>
-      <div class="note-date">${date}</div>`;
+      <div class="note-class">${escapeHtml(n.class_name)}</div>
+      <div class="note-title">${escapeHtml(n.title)}</div>
+      <div class="note-content">${escapeHtml(n.content)}</div>
+      <div class="note-date">${escapeHtml(date)}</div>`;
     el.appendChild(card);
   });
+}
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
