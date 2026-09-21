@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from flask import Blueprint, jsonify, session
+from flask import Blueprint, jsonify, request, session
 
 from backend.db import get_db_connection
 from mentor.backend.decorators import require_onboarding_complete
@@ -25,6 +25,7 @@ def dashboard_summary():
     if not mentor_id:
         return jsonify({"error": "Unauthorized"}), 401
 
+    class_id = request.args.get("class_id", type=int)
     conn = get_db_connection()
 
     try:
@@ -48,16 +49,30 @@ def dashboard_summary():
                 for r in cur.fetchall()
             ]
 
+            # ----- selected class scope -----
+            if class_id is not None:
+                cur.execute(
+                    "SELECT id FROM classes WHERE id = %s AND created_by = %s",
+                    (class_id, mentor_id)
+                )
+                if not cur.fetchone():
+                    return jsonify({"error": "Class not found"}), 404
+
+            class_filter = " AND c.id = %s" if class_id is not None else ""
+            scope_params = (mentor_id, class_id) if class_id is not None else (mentor_id,)
+
             # ----- attendance: % present in the last 30 days -----
             cur.execute(
-                """SELECT
+                f"""SELECT
                        COUNT(*) FILTER (WHERE a.status = 'present') AS present_count,
                        COUNT(*) AS total_count
                    FROM attendance a
                    JOIN classes c ON c.id = a.class_id
                    WHERE c.created_by = %s
-                     AND a.date >= CURRENT_DATE - (%s * INTERVAL '1 day')""",
-                (mentor_id, ATTENDANCE_WINDOW_DAYS)
+                     AND a.date >= CURRENT_DATE - (%s * INTERVAL '1 day')
+                     {class_filter}""",
+                (mentor_id, ATTENDANCE_WINDOW_DAYS, class_id) if class_id is not None
+                else (mentor_id, ATTENDANCE_WINDOW_DAYS)
             )
             present_count, total_count = cur.fetchone()
             attendance = (
@@ -71,8 +86,9 @@ def dashboard_summary():
                    FROM marks m
                    JOIN exams e ON e.id = m.exam_id
                    JOIN classes c ON c.id = e.class_id
-                   WHERE c.created_by = %s""",
-                (mentor_id,)
+                   WHERE c.created_by = %s
+                     {class_filter}""",
+                (mentor_id, class_id) if class_id is not None else (mentor_id,)
             )
             avg_marks = cur.fetchone()[0]
             marks = {"percent": round(float(avg_marks))} if avg_marks is not None else None
@@ -84,8 +100,9 @@ def dashboard_summary():
                        COUNT(*) FILTER (WHERE a.due_date < CURRENT_DATE) AS overdue
                    FROM assignments a
                    JOIN classes c ON c.id = a.class_id
-                   WHERE c.created_by = %s""",
-                (mentor_id,)
+                   WHERE c.created_by = %s
+                     {class_filter}""",
+                (mentor_id, class_id) if class_id is not None else (mentor_id,)
             )
             upcoming, overdue = cur.fetchone()
             assignments = {"upcoming": upcoming, "overdue": overdue}
@@ -97,8 +114,10 @@ def dashboard_summary():
                    FROM class_timetable t
                    JOIN classes c ON c.id = t.class_id
                    WHERE c.created_by = %s AND t.day_of_week = %s
+                     {class_filter}
                    ORDER BY t.start_time""",
-                (mentor_id, today_abbr)
+                (mentor_id, today_abbr, class_id) if class_id is not None
+                else (mentor_id, today_abbr)
             )
             today_schedule = [
                 {
@@ -114,9 +133,10 @@ def dashboard_summary():
                    FROM mentor_notes n
                    JOIN classes c ON c.id = n.class_id
                    WHERE n.mentor_id = %s
+                     {class_filter}
                    ORDER BY n.created_at DESC
                    LIMIT 5""",
-                (mentor_id,)
+                (mentor_id, class_id) if class_id is not None else (mentor_id,)
             )
             recent_notes = [
                 {
@@ -135,4 +155,5 @@ def dashboard_summary():
         "assignments": assignments,
         "today_schedule": today_schedule,
         "recent_notes": recent_notes,
+        "selected_class_id": class_id,
     }), 200
