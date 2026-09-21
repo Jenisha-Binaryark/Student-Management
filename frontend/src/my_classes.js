@@ -23,6 +23,7 @@ function render(root, data) {
   const classes = data.classes || [];
   const timetable = data.timetable || [];
   const exams = data.exams || [];
+  const attendance = data.attendance || [];
 
   root.innerHTML = `
     <section class="classes-section">
@@ -47,6 +48,17 @@ function render(root, data) {
             ${slot.room ? `<small>${escapeHtml(slot.room)}</small>` : ''}
           </div>
         `).join('') : '<p>No timetable entries yet.</p>'}
+      </div>
+    </section>
+    <section class="classes-section">
+      <h2>Attendance history</h2>
+      <div class="schedule-list">
+        ${attendance.length ? attendance.map(item => `
+          <div class="schedule-item">
+            <strong>${escapeHtml(item.class_name)} · ${escapeHtml(item.date)}</strong>
+            <span class="attendance-status ${item.status === 'present' ? 'present' : 'absent'}">${escapeHtml(item.status.toUpperCase())}</span>
+          </div>
+        `).join('') : '<p>No attendance records yet.</p>'}
       </div>
     </section>
     <section class="classes-section">
