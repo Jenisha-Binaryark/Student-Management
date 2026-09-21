@@ -7,7 +7,7 @@ from mentor.backend.decorators import require_onboarding_complete
 
 dashboard_bp = Blueprint('dashboard', __name__, url_prefix='/api/dashboard')
 
-SESSION_KEY = 'mentor_id'  # must match the key used in profile.py / classes.py
+SESSION_KEY = 'mentor_id'
 
 ATTENDANCE_WINDOW_DAYS = 30
 DAY_ABBR = {0: 'Mon', 1: 'Tue', 2: 'Wed', 3: 'Thu', 4: 'Fri', 5: 'Sat', 6: 'Sun'}
