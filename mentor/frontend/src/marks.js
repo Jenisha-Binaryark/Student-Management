@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let activeClass = null;
 let activeExam = null;
-let currentMarks = [];   // [{student_id, fullname, email, score}]
+let currentMarks = [];
 
 function todayISO() {
   const d = new Date();
