@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, session
 from backend.db import get_db_connection
+from mentor.backend.decorators import require_onboarding_complete
 
 roster_bp = Blueprint('roster', __name__, url_prefix='/api/classes')
 
@@ -16,6 +17,7 @@ def _class_belongs_to_mentor(class_id, mentor_id, conn):
 
 
 @roster_bp.route('/<int:class_id>/students', methods=['GET'])
+@require_onboarding_complete
 def list_students(class_id):
     """GET /api/classes/<id>/students -> the roster for one of the mentor's classes."""
     mentor_id = session.get(SESSION_KEY)
@@ -45,6 +47,7 @@ def list_students(class_id):
 
 
 @roster_bp.route('/<int:class_id>/students', methods=['POST'])
+@require_onboarding_complete
 def add_student(class_id):
     """POST /api/classes/<id>/students {email} -> enroll an existing student by email."""
     mentor_id = session.get(SESSION_KEY)
@@ -100,6 +103,7 @@ def add_student(class_id):
 
 
 @roster_bp.route('/<int:class_id>/students/<int:student_id>', methods=['DELETE'])
+@require_onboarding_complete
 def remove_student(class_id, student_id):
     """DELETE /api/classes/<id>/students/<student_id> -> unenroll a student."""
     mentor_id = session.get(SESSION_KEY)
