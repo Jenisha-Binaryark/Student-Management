@@ -55,8 +55,8 @@ function loadRoster() {
 
   fetch(`/api/classes/${activeClass.id}/students`)
     .then(res => {
-      if (res.status === 401) {
-        window.location.href = '/login.html?role=mentor';
+      if (res.status === 401 || res.status === 403) {
+        window.location.href = res.status === 403 ? '/mentor/onboarding.html' : '/login.html?role=mentor';
         return null;
       }
       return res.json();
@@ -106,7 +106,7 @@ function removeStudent(studentId) {
   fetch(`/api/classes/${activeClass.id}/students/${studentId}`, { method: 'DELETE' })
     .then(res => {
       if (res.status === 401) {
-        window.location.href = '/login.html?role=mentor';
+        window.location.href = r.status === 403 ? '/mentor/onboarding.html' : '/login.html?role=mentor';
         return null;
       }
       return res.json();
