@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, session
 from backend.db import get_db_connection
+from mentor.backend.decorators import require_onboarding_complete
 
 assignments_bp = Blueprint('assignments', __name__, url_prefix='/api/assignments')
 
@@ -16,6 +17,7 @@ def _class_belongs_to_mentor(class_id, mentor_id, conn):
 
 
 @assignments_bp.route('', methods=['POST'])
+@require_onboarding_complete
 def create_assignment():
     """POST /api/assignments -> post an assignment to one of the mentor's classes."""
     mentor_id = session.get(SESSION_KEY)
@@ -65,6 +67,7 @@ def create_assignment():
 
 
 @assignments_bp.route('', methods=['GET'])
+@require_onboarding_complete
 def list_assignments():
     """GET /api/assignments?class_id=.. -> assignments posted to one of the mentor's classes."""
     mentor_id = session.get(SESSION_KEY)
@@ -106,6 +109,7 @@ def list_assignments():
 
 
 @assignments_bp.route('/<int:assignment_id>', methods=['DELETE'])
+@require_onboarding_complete
 def delete_assignment(assignment_id):
     """DELETE /api/assignments/<id> -> remove an assignment the mentor owns."""
     mentor_id = session.get(SESSION_KEY)
