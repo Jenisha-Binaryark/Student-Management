@@ -84,10 +84,10 @@ function renderAssignments(assignments) {
     card.className = 'assignment-card' + (isOverdue ? ' overdue' : '');
     card.innerHTML = `
       <div class="assignment-card-top">
-        <div class="assignment-card-title">${a.title}</div>
+        <div class="assignment-card-title">${escapeHtml(a.title)}</div>
         <button type="button" class="assignment-delete" title="Delete assignment" data-id="${a.id}">✕</button>
       </div>
-      ${a.description ? `<div class="assignment-card-desc">${a.description}</div>` : ''}
+      ${a.description ? `<div class="assignment-card-desc">${escapeHtml(a.description)}</div>` : ''}
       <div class="assignment-card-due${isOverdue ? ' overdue-text' : ''}">Due ${formatDate(a.due_date)}</div>
     `;
     card.querySelector('.assignment-delete').addEventListener('click', () => deleteAssignment(a.id));
