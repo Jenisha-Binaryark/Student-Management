@@ -114,6 +114,7 @@ function renderWeek(slots) {
 }
 
 function deleteSlot(id) {
+  if (!window.confirm('Remove this timetable slot?')) return;
   fetch(`/api/timetable/${id}`, { method: 'DELETE' })
     .then(res => {
       if (res.status === 401) {
