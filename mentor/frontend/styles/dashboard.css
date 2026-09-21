@@ -372,3 +372,74 @@ a.p-name{text-decoration:none;}
     scroll-behavior:auto!important;
   }
 }
+
+/* ===== Shared mentor-page UX ===== */
+.page-head{
+  margin-bottom:22px;
+}
+.page-head h1{
+  margin-bottom:6px;
+  letter-spacing:-.02em;
+}
+.page-head p{
+  color:var(--text-muted);
+  font-size:13px;
+}
+.dashboard-scope{
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  padding:5px 10px;
+  margin-top:6px;
+  border-radius:999px;
+  background:rgba(168,147,191,.12);
+  color:var(--text-muted);
+  font-weight:700;
+}
+.card{
+  border:1px solid rgba(74,63,87,.07);
+  box-shadow:0 10px 28px rgba(60,40,80,.07);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 34px rgba(60,40,80,.10);
+}
+.modal-message{
+  min-height:18px;
+  margin:4px 0 10px;
+  font-size:12px;
+  font-weight:700;
+}
+.empty-hint{
+  padding:18px;
+  border:1px dashed rgba(74,63,87,.14);
+  border-radius:12px;
+  background:rgba(255,255,255,.5);
+  text-align:center;
+}
+.panel-actions .btn-primary{
+  min-height:42px;
+  box-shadow:0 7px 16px rgba(124,106,144,.16);
+}
+.roster-row,.attendance-row,.assignment-card,.exam-item,.marks-row,.lesson-item,.note-card{
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;
+}
+.roster-row:hover,.attendance-row:hover,.assignment-card:hover,.exam-item:hover,.marks-row:hover,.lesson-item:hover,.note-card:hover{
+  transform:translateY(-1px);
+  box-shadow:0 10px 22px rgba(60,40,80,.09);
+}
+@media(max-width:700px){
+  .notes-layout{grid-template-columns:1fr!important;gap:14px}
+  .page-head{margin-bottom:16px}
+  .field-row{grid-template-columns:1fr!important}
+  .attendance-toolbar{flex-wrap:wrap}
+  .attendance-row,.marks-row{align-items:flex-start;flex-direction:column}
+  .attendance-toggle,.marks-score-wrap{width:100%}
+  .attendance-toggle .attendance-btn{flex:1}
+  .marks-score-wrap{justify-content:flex-end}
+  .assignments-list,.exams-list,.marks-list,.attendance-list{max-height:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .card,.roster-row,.attendance-row,.assignment-card,.exam-item,.marks-row,.lesson-item,.note-card{transition:none}
+}
