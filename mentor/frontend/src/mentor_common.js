@@ -174,3 +174,9 @@ function closeAddClassModal() {
   const overlay = document.getElementById('add-class-overlay');
   if (overlay) overlay.classList.remove('open');
 }
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[char]));
+}
