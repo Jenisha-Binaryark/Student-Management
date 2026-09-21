@@ -31,6 +31,8 @@ def student_content():
     try:
         _ensure_submission_table(conn)
         with conn.cursor() as cur:
+            cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS timetable_type VARCHAR(20) NOT NULL DEFAULT 'regular'")
+            conn.commit()
             cur.execute(
                 """
                 SELECT c.id, c.class_name, c.subject, m.fullname
@@ -105,7 +107,7 @@ def student_content():
             cur.execute(
                 """
                 SELECT t.id, t.class_id, c.class_name, t.day_of_week,
-                       t.subject, t.start_time, t.end_time, t.room
+                       t.subject, t.start_time, t.end_time, t.room, t.timetable_type
                 FROM class_timetable t
                 JOIN classes c ON c.id = t.class_id
                 JOIN student_classes sc ON sc.class_id = t.class_id
@@ -120,7 +122,7 @@ def student_content():
                     'day_of_week': r[3], 'subject': r[4],
                     'start_time': r[5].strftime('%H:%M'),
                     'end_time': r[6].strftime('%H:%M'),
-                    'room': r[7]
+                    'room': r[7], 'timetable_type': r[8]
                 }
                 for r in cur.fetchall()
             ]
