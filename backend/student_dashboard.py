@@ -28,23 +28,6 @@ def student_dashboard_summary():
     try:
         with conn.cursor() as cur:
             cur.execute(
-                """
-                CREATE TABLE IF NOT EXISTS assignment_submissions (
-                    id SERIAL PRIMARY KEY,
-                    assignment_id INTEGER NOT NULL REFERENCES assignments(id) ON DELETE CASCADE,
-                    student_id INTEGER NOT NULL REFERENCES student_signup(id) ON DELETE CASCADE,
-                    submission_text TEXT,
-                    submission_url TEXT,
-                    submitted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                    UNIQUE (assignment_id, student_id)
-                )
-                """
-            )
-            conn.commit()
-
-        with conn.cursor() as cur:
-            cur.execute(
                 """SELECT c.id, c.class_name, c.subject, m.fullname
                    FROM student_classes sc
                    JOIN classes c ON c.id = sc.class_id

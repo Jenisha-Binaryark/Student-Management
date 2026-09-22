@@ -3,24 +3,6 @@ from backend.db import get_db_connection
 
 student_content_bp = Blueprint('student_content', __name__, url_prefix='/api/student')
 
-def _ensure_submission_table(conn):
-    with conn.cursor() as cur:
-        cur.execute(
-            """
-            CREATE TABLE IF NOT EXISTS assignment_submissions (
-                id SERIAL PRIMARY KEY,
-                assignment_id INTEGER NOT NULL REFERENCES assignments(id) ON DELETE CASCADE,
-                student_id INTEGER NOT NULL REFERENCES student_signup(id) ON DELETE CASCADE,
-                submission_text TEXT,
-                submission_url TEXT,
-                submitted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                UNIQUE (assignment_id, student_id)
-            )
-            """
-        )
-        conn.commit()
-
 @student_content_bp.route('/content', methods=['GET'])
 def student_content():
     student_id = session.get('student_id')
@@ -29,11 +11,7 @@ def student_content():
 
     conn = get_db_connection()
     try:
-        _ensure_submission_table(conn)
         with conn.cursor() as cur:
-            cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS timetable_type VARCHAR(20) NOT NULL DEFAULT 'regular'")
-            cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS exam_date DATE")
-            conn.commit()
             cur.execute(
                 """
                 SELECT c.id, c.class_name, c.subject, m.fullname
@@ -193,7 +171,6 @@ def submit_assignment(assignment_id):
 
     conn = get_db_connection()
     try:
-        _ensure_submission_table(conn)
         with conn.cursor() as cur:
             cur.execute(
                 """

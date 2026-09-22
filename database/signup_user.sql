@@ -1,5 +1,3 @@
-SELECT table_name
-FROM information_schema.tables
-WHERE table_schema = 'public';
-
-SELECT * FROM classes;
+-- Compatibility entry point for existing local setup commands.
+-- Run: psql signup_user -f database/signup_user.sql
+\ir migrations/001_initial.sql

@@ -56,17 +56,11 @@ def create_slot():
 
     conn = get_db_connection()
 
-    with conn.cursor() as cur:
-        cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS timetable_type VARCHAR(20) NOT NULL DEFAULT 'regular'")
-        conn.commit()
-
     if not _class_belongs_to_mentor(class_id, mentor_id, conn):
         conn.close()
         return jsonify({"error": "Class not found"}), 404
 
     with conn.cursor() as cur:
-        cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS exam_date DATE")
-        conn.commit()
         cur.execute(
             """INSERT INTO class_timetable
                (class_id, mentor_id, day_of_week, subject, start_time, end_time, room, timetable_type, exam_date)
@@ -104,11 +98,6 @@ def list_slots():
         return jsonify({"error": "class_id is required"}), 400
 
     conn = get_db_connection()
-
-    with conn.cursor() as cur:
-        cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS timetable_type VARCHAR(20) NOT NULL DEFAULT 'regular'")
-        cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS exam_date DATE")
-        conn.commit()
 
     if not _class_belongs_to_mentor(class_id, mentor_id, conn):
         conn.close()

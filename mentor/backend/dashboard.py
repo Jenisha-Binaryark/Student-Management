@@ -30,10 +30,6 @@ def dashboard_summary():
 
     try:
         with conn.cursor() as cur:
-            cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS timetable_type VARCHAR(20) NOT NULL DEFAULT 'regular'")
-            cur.execute("ALTER TABLE class_timetable ADD COLUMN IF NOT EXISTS exam_date DATE")
-            conn.commit()
-
             cur.execute(
                 """SELECT c.id, c.class_name, c.course, c.subject,
                           COUNT(sc.student_id) AS student_count
