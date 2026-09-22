@@ -48,6 +48,13 @@ class FrontendTemplateTests(unittest.TestCase):
         self.assertIn("text-decoration:none", css)
         self.assertIn(".logout", css)
 
+    def test_mentor_dashboard_prevents_card_stretching(self):
+        css = (ROOT / "mentor" / "frontend" / "styles" / "dashboard.css").read_text()
+        self.assertIn("grid-auto-rows:max-content", css)
+        self.assertIn(".grid > .stats-col", css)
+        self.assertIn("grid-row:1 / span 2", css)
+        self.assertIn("min-height:104px", css)
+
 
 if __name__ == "__main__":
     unittest.main()
