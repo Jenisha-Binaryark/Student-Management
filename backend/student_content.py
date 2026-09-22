@@ -6,7 +6,7 @@ student_content_bp = Blueprint('student_content', __name__, url_prefix='/api/stu
 @student_content_bp.route('/content', methods=['GET'])
 def student_content():
     student_id = session.get('student_id')
-    if not student_id:
+    if session.get('role') != 'student' or not student_id:
         return jsonify({'error': 'Unauthorized'}), 401
 
     conn = get_db_connection()
@@ -159,7 +159,7 @@ def student_content():
 @student_content_bp.route('/assignments/<int:assignment_id>/submission', methods=['POST'])
 def submit_assignment(assignment_id):
     student_id = session.get('student_id')
-    if not student_id:
+    if session.get('role') != 'student' or not student_id:
         return jsonify({'error': 'Unauthorized'}), 401
 
     data = request.get_json(silent=True) or {}

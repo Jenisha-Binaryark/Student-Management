@@ -20,7 +20,7 @@ def _format_time(value):
 def student_dashboard_summary():
     """GET /api/student/dashboard/summary -> aggregate stats for the logged-in student."""
     student_id = session.get(SESSION_KEY)
-    if not student_id:
+    if session.get("role") != "student" or not student_id:
         return jsonify({"error": "Unauthorized"}), 401
 
     conn = get_db_connection()

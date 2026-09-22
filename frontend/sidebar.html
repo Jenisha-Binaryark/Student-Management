@@ -8,8 +8,9 @@
   </div>
   <nav>
     <ul>
-      <li><a href="{{ url_for('dashboard_page') }}" class="active"><span class="icon">▦</span> Dashboard</a></li>
-      <li><a href="{{ url_for('my_classes') }}"><span class="icon">🏠</span> My classes</a></li>
+      <li><a href="{{ url_for('dashboard_page') }}" data-page="dashboard" class="active"><span class="icon">▦</span> Dashboard</a></li>
+      <li><a href="{{ url_for('my_classes') }}" data-page="my-classes"><span class="icon">🏠</span> My classes</a></li>
+      <li><a href="{{ url_for('homework_page') }}" data-page="homework"><span class="icon">📝</span> Homework</a></li>
       <li><a href="#"><span class="icon">📊</span> My grades</a></li>
       <li><a href="#"><span class="icon">📅</span> Schedule</a></li>
       <li><a href="#"><span class="icon">✉</span> Messages</a></li>

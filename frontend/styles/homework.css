@@ -1,305 +1,39 @@
-:root{
-  --bg-outer:#c6b4d6;
-  --card-cream:#f4efe6;
-  --sidebar-purple:#7c6a90;
-  --sidebar-active:#a893bf;
-  --text-dark:#4a3f57;
-  --text-muted:#8b7f97;
-  --pink:#d1567f;
-  --teal:#5aada0;
-  --yellow:#e0aa4e;
-  --stat-card:#a08cb5;
-}
-*{box-sizing:border-box; margin:0; padding:0;}
-html, body{ height:100%; }
-body{
-  font-family:'Quicksand', sans-serif;
-  background:var(--bg-outer);
-  min-height:100vh;
-  display:flex;
-  align-items:stretch;
-  justify-content:stretch;
-  padding:0;
-}
-
-.homework{
-  width:100%;
-  max-width:100%;
-  height:100vh;
-  border-radius:0;
-  box-shadow:none;
-  display:block;
-  grid-template-columns:220px 1fr;
-  overflow:hidden;
-}
-
-.sidebar{
-  background:var(--card-cream);
-  padding:28px 20px;
-  display:flex;
-  flex-direction:column;
-  border-right:1px solid rgba(0,0,0,0.05);
-  height:100vh;
-  overflow-y:auto;
-}
-.logo{
-  font-size:20px;
-  font-weight:700;
-  color:var(--text-dark);
-  margin-bottom:28px;
-}
-.profile{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:28px;
-}
-.profile img{
-  width:44px; height:44px;
-  border-radius:50%;
-  object-fit:cover;
-}
-.profile .name{ font-weight:600; font-size:14px; color:var(--text-dark); }
-.profile .role{ font-size:12px; color:var(--text-muted); }
-
-nav ul{ list-style:none; display:flex; flex-direction:column; gap:4px; }
-nav a{
-  display:flex; align-items:center; gap:10px;
-  padding:10px 14px;
-  border-radius:12px;
-  color:var(--text-dark);
-  text-decoration:none;
-  font-size:14px;
-  font-weight:500;
-}
-nav a.active{ background:var(--sidebar-active); color:#fff; }
-nav a:hover:not(.active){ background:rgba(0,0,0,0.04); }
-.icon{ width:18px; text-align:center; }
-
-.logout{
-  margin-top:auto;
-  display:flex; align-items:center; gap:10px;
-  color:var(--text-muted);
-  font-size:14px;
-  font-weight:500;
-  padding:10px 14px;
-  cursor:pointer;
-  background:none;
-  border:none;
-  font-family:inherit;
-}
-
-.main{
-  padding:28px 32px;
-  height:100vh;
-  overflow-y:auto;
-}
-.topbar{
-  display:flex; align-items:center; justify-content:space-between;
-  margin-bottom:24px;
-}
-.greeting{ font-size:22px; font-weight:700; color:var(--text-dark); }
-.search{
-  flex:1; max-width:340px; margin:0 20px;
-  background:#fff;
-  border-radius:999px;
-  padding:10px 18px;
-  display:flex; align-items:center; gap:8px;
-  color:var(--text-muted);
-  font-size:13px;
-}
-.top-icons{ display:flex; gap:14px; align-items:center; color:var(--text-dark); }
-
-.page-head{ margin-bottom:20px; }
-.page-head h1{
-  font-size:20px;
-  font-weight:700;
-  color:var(--text-dark);
-  margin-bottom:4px;
-}
-.page-head p{
-  font-size:13px;
-  color:var(--text-muted);
-  font-weight:500;
-}
-
-.tabs{
-  display:flex;
-  justify-content: space-between;
-  gap:6px;
-  margin-bottom:20px;
-  width: 100%;
-}
-.tab{
-  flex: 1;
-  font-family:'Quicksand', sans-serif;
-  background:var(--card-cream);
-  border:none;
-  color:var(--text-dark);
-  font-size:13px;
-  font-weight:600;
-  padding:10px 18px;
-  border-radius:999px;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-}
-.tab .badge{
-  font-size:11px;
-  font-weight:700;
-  background:rgba(0,0,0,0.06);
-  color:var(--text-muted);
-  padding:1px 8px;
-  border-radius:999px;
-}
-.tab.active{ background:var(--sidebar-active); color:#fff; }
-.tab.active .badge{ background:rgba(255,255,255,0.25); color:#fff; }
-.tab[data-tab="missing"].active{ background:var(--pink); }
-.tab[data-tab="done"].active{ background:var(--teal); }
-
-.panel{
-  display:none;
-  flex-direction:column;
-  gap:14px;
-  width:100%;
-}
-.panel.active{ display:flex; }
-
-.empty-state{
-  background:#fff;
-  border-radius:18px;
-  padding:30px 20px;
-  text-align:center;
-  color:var(--text-muted);
-  font-size:13px;
-  box-shadow:0 6px 18px rgba(60,40,80,0.06);
-}
-
-.assignment-card{
-  display:flex;
-  align-items:flex-start;
-  gap:14px;
-  width:100%;
-  background:#fff;
-  border-radius:18px;
-  padding: 50px;
-  position: relative;
-  box-shadow:0 6px 18px rgba(60,40,80,0.08);
-  transition:transform 0.15s ease, box-shadow 0.15s ease;
-}
-.assignment-card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 24px rgba(60,40,80,0.12);
-}
-
-.icon-badge{
-  width:38px; height:38px;
-  border-radius:12px;
-  background:var(--sidebar-active);
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-shrink:0;
-  font-size:16px;
-  font-weight:700;
-}
-.assignment-card.overdue .icon-badge{ background:var(--pink); }
-.assignment-card.done .icon-badge{ background:var(--teal); }
-
-.assignment-body{ flex:1; min-width:0; }
-
-.assignment-top{
-  display:flex;
-  align-items:baseline;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.assignment-title{
-  font-size:15px;
-  font-weight:700;
-  color:var(--text-dark);
-}
-.assignment-title.done-title{
-  color:var(--text-muted);
-  text-decoration:line-through;
-}
-.assignment-due{
-  font-size:12px;
-  color:var(--text-muted);
-  font-weight:600;
-  white-space:nowrap;
-}
-.assignment-due.overdue-text{ color:var(--pink); }
-
-.assignment-meta{
-  margin-top:6px;
-  font-size:12px;
-  color:var(--text-muted);
-  font-weight:600;
-}
-
-.assignment-footer{
-  margin-top:12px;
-}
-.points-pill{
-  display:inline-block;
-  font-size:11px;
-  font-weight:700;
-  color:#fff;
-  background:var(--yellow);
-  padding:4px 14px;
-  border-radius:999px;
-  text-transform:capitalize;
-}
-.assignment-card.overdue .points-pill{ background:var(--pink); }
-.assignment-card.done .points-pill{ background:var(--teal); }
-
-.due-wrap{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  gap:6px;
-}
-.attach-btn{
-  position: absolute;
-  right: 50px;
-  bottom: 62px;
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  border:none;
-  background:var(--sidebar-active);
-  color:#fff;
-  font-size:13px;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-top:8px;
-  align-self:flex-end;
-  transition:transform 0.15s ease;
-}
-.attach-btn:hover{
-  transform:translateY(-1px);
-}
-.assignment-card.overdue .attach-btn{ background:var(--pink); }
-
-@media (max-width:700px){
-  .homework{ grid-template-columns:1fr; }
-  .sidebar{
-    height:auto;
-    flex-direction:row;
-    flex-wrap:wrap;
-    align-items:center;
-  }
-  .sidebar nav ul{
-    flex-direction:row;
-    flex-wrap:wrap;
-  }
-  .main{ height:auto; }
-  .assignment-card{ flex-direction:column; }
-}
+:root{--student-bg:#f6f7fb;--student-surface:#fff;--student-text:#202638;--student-muted:#7d8496;--student-accent:#6557d8;--student-accent-soft:#eeecff;--student-border:#e8eaf1;--student-success:#249a72;--student-danger:#d95368;--student-purple:#675bd7;--student-pink:#d95368;--student-teal:#258d77}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{margin:0;background:var(--student-bg);color:var(--student-text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.homework{min-height:100vh}
+.homework .main{margin-left:240px;min-height:100vh;padding:108px 32px 42px;background:var(--student-bg)}
+.homework .page-head{max-width:1100px;margin:0 auto 22px}
+.page-head h1{margin:0 0 6px;font-size:28px;letter-spacing:-.03em}
+.page-head p{margin:0;color:var(--student-muted);font-size:13px}
+.homework .tabs{max-width:1100px;margin:0 auto 20px;display:flex;gap:8px}
+.tab{flex:1;min-height:44px;border:1px solid var(--student-border);border-radius:12px;background:var(--student-surface);color:var(--student-muted);font:700 13px Inter,system-ui,sans-serif;cursor:pointer}
+.tab:hover{border-color:var(--student-accent);color:var(--student-accent)}
+.tab.active{background:var(--student-accent);border-color:var(--student-accent);color:#fff}
+.tab[data-tab="missing"].active{background:var(--student-danger);border-color:var(--student-danger)}
+.tab[data-tab="done"].active{background:var(--student-success);border-color:var(--student-success)}
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:22px;margin-left:5px;padding:2px 6px;border-radius:999px;background:rgba(0,0,0,.06);font-size:11px}
+.tab.active .badge{background:rgba(255,255,255,.22);color:#fff}
+.panel{max-width:1100px;margin:0 auto;display:none;flex-direction:column;gap:14px}
+.panel.active{display:flex}
+.empty-state{padding:34px 20px;border:1px dashed var(--student-border);border-radius:16px;background:var(--student-surface);color:var(--student-muted);text-align:center}
+.assignment-card{display:flex;align-items:flex-start;gap:14px;width:100%;padding:22px;background:var(--student-surface);border:1px solid var(--student-border);border-radius:18px;box-shadow:0 8px 22px rgba(35,40,65,.06)}
+.assignment-card:hover{box-shadow:0 12px 28px rgba(35,40,65,.1);transform:translateY(-1px)}
+.icon-badge{display:flex;align-items:center;justify-content:center;flex:0 0 38px;width:38px;height:38px;border-radius:12px;background:var(--student-purple);color:#fff;font-weight:800}
+.assignment-card.overdue .icon-badge{background:var(--student-pink)}
+.assignment-card.done .icon-badge{background:var(--student-teal)}
+.assignment-body{min-width:0;flex:1}
+.assignment-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.assignment-title{font-size:15px;font-weight:800}
+.assignment-title.done-title{color:var(--student-muted);text-decoration:line-through}
+.assignment-due{color:var(--student-muted);font-size:12px;font-weight:700;white-space:nowrap}
+.assignment-due.overdue-text{color:var(--student-pink)}
+.assignment-meta{margin-top:6px;color:var(--student-muted);font-size:12px;font-weight:700}
+.assignment-description{margin-top:9px;color:var(--student-muted);font-size:12px;line-height:1.5}
+.assignment-description a{color:var(--student-accent);font-weight:700}
+.assignment-footer{margin-top:14px}
+.submit-assignment-btn{border:0;border-radius:10px;padding:10px 14px;background:var(--student-accent);color:#fff;font:700 12px Inter,system-ui,sans-serif;cursor:pointer}
+.submit-assignment-btn:hover{background:#5145c3}
+.points-pill{display:inline-block;padding:5px 12px;border-radius:999px;background:var(--student-teal);color:#fff;font-size:11px;font-weight:800}
+@media(max-width:700px){.homework .main{margin-left:68px;padding:82px 16px 30px}.page-head h1{font-size:24px}.homework .tabs{gap:6px}.tab{font-size:12px;min-height:42px;padding:0 6px}.assignment-card{padding:18px}.assignment-top{display:block}.assignment-due{margin-top:7px}}

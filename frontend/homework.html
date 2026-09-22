@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/homework.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/homework.css') }}?v=student-2">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}?v=student-2">
     <title>Smartech Homework</title>
 </head>
 <body>
@@ -30,6 +30,6 @@
             <section class="panel" id="panel-done"></section>
         </div>
     </div>
-<script src="{{ url_for('static', filename='src/homework.js') }}"></script>
+<script src="{{ url_for('static', filename='src/homework.js') }}?v=student-2"></script>
 </body>
 </html>

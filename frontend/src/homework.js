@@ -22,8 +22,15 @@ function loadSidebar() {
         fetch('/api/current_user')
           .then(res => res.json())
           .then(user => {
-            if (user.status === 'success' && usernameEl) usernameEl.textContent = user.fullname;
+            if (user.status === 'success') {
+              if (usernameEl) usernameEl.textContent = user.fullname;
+              const firstName = document.getElementById('user-first-name');
+              if (firstName) firstName.textContent = user.fullname.split(' ')[0];
+            }
           });
+        document.querySelectorAll('.sidebar nav a').forEach(link => link.classList.remove('active'));
+        const homeworkLink = document.querySelector('.sidebar nav a[data-page="homework"]');
+        if (homeworkLink) homeworkLink.classList.add('active');
         const logoutBtn = document.getElementById('logout-Btn');
         if (logoutBtn) {
           logoutBtn.addEventListener('click', () => {

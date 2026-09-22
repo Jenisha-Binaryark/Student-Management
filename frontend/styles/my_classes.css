@@ -1,19 +1,23 @@
 :root{--student-bg:#f6f7fb;--student-surface:#fff;--student-text:#202638;--student-muted:#7d8496;--student-accent:#6557d8;--student-accent-soft:#eeecff;--student-border:#e8eaf1;--student-success:#249a72;--student-danger:#d95368}
-body{background:var(--student-bg)!important;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;color:var(--student-text)}
-.main{background:var(--student-bg)}
-.student-page{max-width:1380px;margin:0 auto}
-.page-hero{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:28px}
-.page-hero h1{font-size:32px;margin:0 0 6px;font-weight:800;letter-spacing:-.03em}
-.page-hero p{margin:0;color:var(--student-muted)}
-.content-card{background:#fff;border:1px solid var(--student-border);border-radius:22px;padding:22px;box-shadow:0 10px 30px rgba(35,40,65,.06);margin-bottom:20px}
-.content-card h2{font-size:17px;margin:0 0 16px}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{margin:0;background:var(--student-bg);color:var(--student-text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.student-layout{min-height:100vh}
+.student-layout .main{margin-left:240px;min-height:100vh;padding:108px 32px 42px;background:var(--student-bg)}
+#student-content{max-width:1400px;margin:0 0 0 240px}
+.classes-section{margin-bottom:22px;padding:22px;background:var(--student-surface);border:1px solid var(--student-border);border-radius:20px;box-shadow:0 10px 30px rgba(35,40,65,.06)}
+.classes-section h1,.classes-section h2{margin:0 0 16px;color:var(--student-text)}
+.classes-section h1{font-size:28px;letter-spacing:-.03em}
+.classes-section h2{font-size:16px}
 .class-grid,.schedule-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .class-card,.schedule-item{background:#fafaff;border:1px solid var(--student-border);border-radius:16px;padding:17px}
-.class-card h3,.schedule-item strong{display:block;margin:0 0 7px;font-size:15px}
-.class-card p,.schedule-item span,.schedule-item small{color:var(--student-muted);display:block;line-height:1.5}
-.pill{display:inline-flex;margin-top:10px;padding:5px 9px;border-radius:999px;background:var(--student-accent-soft);color:var(--student-accent);font-size:11px;font-weight:700}
-.attendance-status{display:inline-flex!important;width:max-content;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800}
+.class-card h2{margin:0 0 7px;font-size:15px}
+.class-card p,.class-card span,.schedule-item span,.schedule-item small{display:block;color:var(--student-muted);line-height:1.5;font-size:12px}
+.class-card span{margin-top:8px}
+.schedule-item strong{display:block;margin-bottom:7px;font-size:13px}
+.schedule-item small{margin-top:5px}
+.attendance-status{display:inline-flex!important;width:max-content!important;margin-top:8px;padding:5px 9px;border-radius:999px;font-size:11px!important;font-weight:800}
 .attendance-status.present{background:#e6f7f0;color:var(--student-success)}
 .attendance-status.absent{background:#ffeaee;color:var(--student-danger)}
-.empty-state{color:var(--student-muted);padding:18px 0}
-@media(max-width:700px){.main{margin-left:0!important;padding:20px!important}.page-hero h1{font-size:26px}.class-grid,.schedule-list{grid-template-columns:1fr}}
+.empty-state{padding:18px 0;color:var(--student-muted);font-size:13px}
+@media(max-width:700px){#student-content{margin-left:68px}.student-layout .main{padding:82px 16px 30px}.classes-section{padding:18px}.classes-section h1{font-size:24px}.class-grid,.schedule-list{grid-template-columns:1fr}}

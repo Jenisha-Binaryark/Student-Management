@@ -1,4 +1,42 @@
-document.addEventListener('DOMContentLoaded', loadClassesPage);
+document.addEventListener('DOMContentLoaded', () => {
+  loadSidebar();
+  loadClassesPage();
+});
+
+async function loadSidebar() {
+  try {
+    const response = await fetch('/sidebar.html');
+    if (response.status === 401 || response.redirected) {
+      window.location.href = '/login.html?role=student';
+      return;
+    }
+    if (!response.ok) throw new Error('Sidebar unavailable');
+    document.getElementById('sidebar-placeholder').innerHTML = await response.text();
+
+    const userResponse = await fetch('/api/current_user');
+    if (!userResponse.ok) throw new Error('User unavailable');
+    const user = await userResponse.json();
+    const name = user.fullname || 'Student';
+    const sidebarName = document.getElementById('sidebar-username');
+    if (sidebarName) sidebarName.textContent = name;
+    const firstName = document.getElementById('user-first-name');
+    if (firstName) firstName.textContent = name.split(' ')[0];
+    document.querySelectorAll('.sidebar nav a').forEach(link => link.classList.remove('active'));
+    const classesLink = document.querySelector('.sidebar nav a[data-page="my-classes"]');
+    if (classesLink) classesLink.classList.add('active');
+
+    const logoutButton = document.getElementById('logout-Btn');
+    if (logoutButton) {
+      logoutButton.addEventListener('click', async () => {
+        await fetch('/logout', { method: 'POST' });
+        window.location.href = '/login.html?role=student';
+      });
+    }
+  } catch {
+    const placeholder = document.getElementById('sidebar-placeholder');
+    if (placeholder) placeholder.innerHTML = '<div class="sidebar-error">Unable to load navigation.</div>';
+  }
+}
 
 async function loadClassesPage() {
   const root = document.getElementById('student-content');
@@ -15,7 +53,7 @@ async function loadClassesPage() {
     const data = await res.json();
     render(root, data);
   } catch {
-    root.innerHTML = '<p>Could not load your classes.</p>';
+    root.innerHTML = '<p class="empty-state">Could not load your classes. Please refresh and try again.</p>';
   }
 }
 
@@ -35,7 +73,7 @@ function render(root, data) {
             <p>${escapeHtml(c.subject)}</p>
             <span>Mentor: ${escapeHtml(c.mentor_name)}</span>
           </article>
-        `).join('') : '<p>No classes assigned yet.</p>'}
+        `).join('') : '<p class="empty-state">No classes assigned yet.</p>'}
       </div>
     </section>
     <section class="classes-section">

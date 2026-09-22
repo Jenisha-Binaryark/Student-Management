@@ -6,8 +6,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}?v=student-2">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}?v=student-2">
 </head>
 <body>
 
@@ -102,6 +102,6 @@
     </div>
   </div>
 </div>
-<script src="{{ url_for('static', filename='src/dashboard.js') }}"></script>
+<script src="{{ url_for('static', filename='src/dashboard.js') }}?v=student-2"></script>
 </body>
 </html>

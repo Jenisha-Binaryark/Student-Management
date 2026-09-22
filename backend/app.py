@@ -349,7 +349,7 @@ def homework_page():
 
 @app.route("/api/homework")
 def get_homework():
-    if "student_id" not in session:
+    if session.get("role") != "student" or "student_id" not in session:
         return jsonify({
             "status": "not_logged_in"
         }), 401

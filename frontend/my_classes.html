@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Classes</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/my_classes.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}?v=student-2">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/my_classes.css') }}?v=student-4">
 </head>
 <body>
 <div class="student-layout">
   <div id="sidebar-placeholder"></div>
   <main class="main" id="student-content"><p class="empty-state">Loading your classes…</p></main>
 </div>
-<script src="{{ url_for('static', filename='src/my_classes.js') }}"></script>
+<script src="{{ url_for('static', filename='src/my_classes.js') }}?v=student-2"></script>
 </body>
 </html>

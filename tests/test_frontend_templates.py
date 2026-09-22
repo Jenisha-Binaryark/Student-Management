@@ -55,6 +55,27 @@ class FrontendTemplateTests(unittest.TestCase):
         self.assertIn("grid-row:1 / span 2", css)
         self.assertIn("min-height:104px", css)
 
+    def test_student_dashboard_has_complete_layout_rules(self):
+        css = (ROOT / "frontend" / "styles" / "dashboard.css").read_text()
+        self.assertIn("grid-auto-rows:max-content", css)
+        self.assertIn(".stats-col{grid-column:2;grid-row:1 / span 3", css)
+        self.assertIn(".schedule-row{grid-column:1 / -1", css)
+        self.assertIn("@media(max-width:700px)", css)
+
+    def test_student_classes_loads_shared_navigation(self):
+        html = (ROOT / "frontend" / "my_classes.html").read_text()
+        script = (ROOT / "frontend" / "src" / "my_classes.js").read_text()
+        css = (ROOT / "frontend" / "styles" / "my_classes.css").read_text()
+        self.assertIn("styles/sidebar.css", html)
+        self.assertIn("loadSidebar", script)
+        self.assertIn(".classes-section", css)
+
+    def test_homework_does_not_clip_page_content(self):
+        css = (ROOT / "frontend" / "styles" / "homework.css").read_text()
+        self.assertIn("min-height:100vh", css)
+        self.assertNotIn(".homework{height:100vh", css)
+        self.assertNotIn("overflow:hidden", css)
+
 
 if __name__ == "__main__":
     unittest.main()
