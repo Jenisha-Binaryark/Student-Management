@@ -37,3 +37,69 @@
   min-height:100vh;
   overflow-y:auto;
 }
+
+.sidebar .logo{
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:.04em;
+  margin:2px 10px 26px;
+}
+.sidebar .profile{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px;
+  margin-bottom:18px;
+  border-radius:16px;
+  background:rgba(255,255,255,.58);
+}
+.sidebar .profile img{
+  width:40px;
+  height:40px;
+  border-radius:13px;
+  object-fit:cover;
+}
+.sidebar .name{
+  font-size:13px;
+  font-weight:700;
+  color:var(--student-text, var(--text-dark, #202638));
+}
+.sidebar nav{flex:1}
+.sidebar nav ul{list-style:none;margin:0;padding:0}
+.sidebar nav li{margin:4px 0}
+.sidebar nav a{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 10px;
+  border-radius:12px;
+  color:var(--student-muted, var(--text-muted, #7d8496));
+  text-decoration:none;
+  font-size:13px;
+  font-weight:600;
+  transition:background .18s ease,color .18s ease,transform .18s ease;
+}
+.sidebar nav a:hover,
+.sidebar nav a.active{
+  background:var(--student-accent-soft, rgba(168,147,191,.12));
+  color:var(--student-accent, var(--text-dark, #202638));
+  transform:translateX(2px);
+}
+.sidebar nav a .icon{width:22px;text-align:center;font-size:16px}
+.logout{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  width:100%;
+  padding:12px 10px;
+  border:0;
+  border-radius:12px;
+  background:transparent;
+  color:var(--student-muted, var(--text-muted, #7d8496));
+  font:600 13px 'Quicksand',sans-serif;
+  cursor:pointer;
+  text-align:left;
+}
+.logout:hover{background:rgba(209,86,127,.1);color:var(--student-danger, #d1567f)}
+.topbar .greeting{font-size:12px;font-weight:800;letter-spacing:.05em}
+.topbar .search,.topbar .top-icons{font-size:13px;color:var(--student-muted, var(--text-muted, #7d8496))}
