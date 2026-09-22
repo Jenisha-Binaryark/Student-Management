@@ -76,6 +76,19 @@ class FrontendTemplateTests(unittest.TestCase):
         self.assertNotIn(".homework{height:100vh", css)
         self.assertNotIn("overflow:hidden", css)
 
+    def test_student_motion_polish_has_reduced_motion_fallback(self):
+        sidebar = (ROOT / "frontend" / "styles" / "sidebar.css").read_text()
+        dashboard = (ROOT / "frontend" / "styles" / "dashboard.css").read_text()
+        self.assertIn("@keyframes studentSidebarIn", sidebar)
+        self.assertIn("prefers-reduced-motion:reduce", sidebar)
+        self.assertIn("@keyframes studentContentIn", dashboard)
+
+    def test_mentor_motion_polish_has_reduced_motion_fallback(self):
+        sidebar = (ROOT / "mentor" / "frontend" / "styles" / "mentor_sidebar.css").read_text()
+        self.assertIn("@keyframes mentorSidebarIn", sidebar)
+        self.assertIn("@keyframes mentorModalIn", sidebar)
+        self.assertIn("prefers-reduced-motion:reduce", sidebar)
+
 
 if __name__ == "__main__":
     unittest.main()

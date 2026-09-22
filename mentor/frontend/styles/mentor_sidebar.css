@@ -597,3 +597,21 @@ input[type="text"]:focus,select:focus,textarea:focus{
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+
+/* Shared mentor motion polish */
+.sidebar{animation:mentorSidebarIn .45s ease both}
+.sidebar .logo,.sidebar .profile,.sidebar nav li,.sidebar .logout{animation:mentorFadeUp .38s ease both}
+.sidebar nav li:nth-child(1){animation-delay:.04s}.sidebar nav li:nth-child(2){animation-delay:.07s}.sidebar nav li:nth-child(3){animation-delay:.10s}.sidebar nav li:nth-child(4){animation-delay:.13s}.sidebar nav li:nth-child(5){animation-delay:.16s}.sidebar nav li:nth-child(6){animation-delay:.19s}.sidebar nav li:nth-child(7){animation-delay:.22s}
+.sidebar nav a{position:relative;transition:transform .18s ease,background-color .18s ease,color .18s ease,box-shadow .18s ease}
+.sidebar nav a::after{content:"";position:absolute;right:8px;width:4px;height:4px;border-radius:50%;background:currentColor;opacity:0;transform:scale(.5);transition:opacity .18s ease,transform .18s ease}
+.sidebar nav a:hover{transform:translateX(3px);box-shadow:0 7px 16px rgba(124,106,144,.12)}
+.sidebar nav a.active::after{opacity:.8;transform:scale(1)}
+.sidebar .logout{transition:transform .18s ease,background-color .18s ease,color .18s ease}
+.sidebar .logout:hover{transform:translateX(3px)}
+.topbar{animation:mentorFadeDown .45s .06s ease both}
+.modal-card{animation:mentorModalIn .28s ease both}
+@keyframes mentorSidebarIn{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
+@keyframes mentorFadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes mentorFadeDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes mentorModalIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.sidebar,.sidebar .logo,.sidebar .profile,.sidebar nav li,.sidebar .logout,.topbar,.modal-card{animation:none}.sidebar nav a,.sidebar .logout{transition:none}}

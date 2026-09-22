@@ -73,3 +73,17 @@ body{margin:0;background:var(--student-bg);color:var(--student-text);font-family
   .stat-card{min-height:130px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Student dashboard motion polish */
+.grid>.card,.grid>.stats-col,.grid>.schedule-row{animation:studentContentIn .5s ease both}
+.grid>.card:nth-child(1){animation-delay:.06s}.grid>.card:nth-child(2){animation-delay:.11s}.grid>.card:nth-child(4){animation-delay:.16s}.grid>.schedule-row{animation-delay:.21s}
+.grid>.card{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.grid>.card:hover{transform:translateY(-3px);border-color:#dcd9ff;box-shadow:0 16px 34px rgba(35,40,65,.1)}
+.stat-card{transition:transform .22s ease,box-shadow .22s ease}
+.stat-card:hover{transform:translateY(-4px);box-shadow:0 16px 30px rgba(35,40,65,.16)}
+.stat-card:hover .ring-wrap{transform:scale(1.05)}
+.ring-wrap{transition:transform .22s ease}
+#cal-prev,#cal-next{transition:transform .18s ease,color .18s ease}
+#cal-prev:hover,#cal-next:hover{transform:scale(1.2);color:var(--student-text)}
+@keyframes studentContentIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.grid>.card,.grid>.stats-col,.grid>.schedule-row{animation:none}.grid>.card,.stat-card,.ring-wrap,#cal-prev,#cal-next{transition:none}}

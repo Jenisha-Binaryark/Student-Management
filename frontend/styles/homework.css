@@ -37,3 +37,16 @@ body{margin:0;background:var(--student-bg);color:var(--student-text);font-family
 .submit-assignment-btn:hover{background:#5145c3}
 .points-pill{display:inline-block;padding:5px 12px;border-radius:999px;background:var(--student-teal);color:#fff;font-size:11px;font-weight:800}
 @media(max-width:700px){.homework .main{margin-left:68px;padding:82px 16px 30px}.page-head h1{font-size:24px}.homework .tabs{gap:6px}.tab{font-size:12px;min-height:42px;padding:0 6px}.assignment-card{padding:18px}.assignment-top{display:block}.assignment-due{margin-top:7px}}
+
+/* Student homework motion polish */
+.page-head,.homework .tabs,.panel.active{animation:studentHomeworkIn .45s ease both}
+.homework .tabs{animation-delay:.06s}.panel.active{animation-delay:.12s}
+.assignment-card{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.assignment-card:hover{transform:translateY(-3px);border-color:#dcd9ff;box-shadow:0 14px 30px rgba(35,40,65,.11)}
+.tab{transition:transform .18s ease,background-color .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease}
+.tab:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(101,87,216,.1)}
+.tab:active,.submit-assignment-btn:active{transform:scale(.97)}
+.submit-assignment-btn{transition:transform .18s ease,background-color .18s ease,box-shadow .18s ease}
+.submit-assignment-btn:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(101,87,216,.22)}
+@keyframes studentHomeworkIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.page-head,.homework .tabs,.panel.active{animation:none}.assignment-card,.tab,.submit-assignment-btn{transition:none}}
