@@ -8,7 +8,7 @@ def require_onboarding_complete(f):
     @wraps(f)
     def wrapper(*args, **kwargs):
         mentor_id = session.get(SESSION_KEY)
-        if not mentor_id:
+        if session.get("role") != "mentor" or not mentor_id:
             return jsonify({"error": "Unauthorized"}), 401
 
         conn = get_db_connection()

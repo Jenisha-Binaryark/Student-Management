@@ -14,12 +14,12 @@ SESSION_KEY = "mentor_id"
 
 
 def _require_mentor():
-    return SESSION_KEY in session
+    return session.get("role") == "mentor" and SESSION_KEY in session
 
 
 def _require_onboarding_page():
     if not _require_mentor():
-        return redirect(url_for("login_page"))
+        return redirect(url_for("login_page", role="mentor"))
 
     conn = get_db_connection()
     try:
@@ -39,7 +39,7 @@ def _require_onboarding_page():
 @mentor_pages_bp.route("/mentor/onboarding.html")
 def mentor_onboarding_page():
     if not _require_mentor():
-        return redirect(url_for("login_page"))
+        return redirect(url_for("login_page", role="mentor"))
     return render_template("onboarding.html")
 
 

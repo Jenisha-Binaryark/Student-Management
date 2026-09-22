@@ -325,26 +325,24 @@ def current_user():
 
 @app.route("/sidebar.html")
 def sidebar():
-    if "fullname" not in session:
-        return jsonify({
-            "status": "not_logged_in"
-        }), 401
+    if session.get("role") != "student" or "student_id" not in session:
+        return redirect(url_for("login_page", role="student"))
 
     return render_template("sidebar.html")
 
 
 @app.route("/dashboard.html")
 def dashboard_page():
-    if "fullname" not in session:
-        return redirect(url_for("login_page"))
+    if session.get("role") != "student" or "student_id" not in session:
+        return redirect(url_for("login_page", role="student"))
 
     return render_template("dashboard.html")
 
 
 @app.route("/homework.html")
 def homework_page():
-    if "fullname" not in session:
-        return redirect(url_for("login_page"))
+    if session.get("role") != "student" or "student_id" not in session:
+        return redirect(url_for("login_page", role="student"))
 
     return render_template("homework.html")
 
@@ -408,8 +406,8 @@ def get_homework():
 
 @app.route("/my_classes.html")
 def my_classes():
-    if "fullname" not in session:
-        return redirect(url_for("login_page"))
+    if session.get("role") != "student" or "student_id" not in session:
+        return redirect(url_for("login_page", role="student"))
 
     return render_template("my_classes.html")
 
