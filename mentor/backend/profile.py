@@ -77,3 +77,54 @@ def complete_profile():
         conn.close()
 
     return jsonify({"message": "Profile updated"}), 200
+
+
+@profile_bp.route('/details', methods=['GET', 'PATCH'])
+def profile_details():
+    mentor_id = session.get(SESSION_KEY)
+    if session.get('role') != 'mentor' or not mentor_id:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cur:
+            if request.method == 'PATCH':
+                data = request.get_json(silent=True) or {}
+                fullname = (data.get('fullname') or '').strip()
+                phone = (data.get('phone') or '').strip()
+                department = (data.get('department') or '').strip()
+                designation = (data.get('designation') or '').strip()
+                if not all((fullname, phone, department, designation)):
+                    return jsonify({"error": "All profile fields are required"}), 400
+                cur.execute(
+                    """
+                    UPDATE mentor_signup
+                    SET fullname = %s, phone = %s, department = %s, designation = %s
+                    WHERE id = %s
+                    RETURNING id, fullname, email, phone, department, designation, mentor_id
+                    """,
+                    (fullname, phone, department, designation, mentor_id),
+                )
+                row = cur.fetchone()
+                if not row:
+                    return jsonify({"error": "Mentor not found"}), 404
+                conn.commit()
+                session['fullname'] = row[1]
+            else:
+                cur.execute(
+                    """
+                    SELECT id, fullname, email, phone, department, designation, mentor_id
+                    FROM mentor_signup WHERE id = %s
+                    """,
+                    (mentor_id,),
+                )
+                row = cur.fetchone()
+                if not row:
+                    return jsonify({"error": "Mentor not found"}), 404
+    finally:
+        conn.close()
+
+    return jsonify({
+        'id': row[0], 'fullname': row[1], 'email': row[2], 'phone': row[3],
+        'department': row[4], 'designation': row[5], 'mentor_id': row[6]
+    }), 200

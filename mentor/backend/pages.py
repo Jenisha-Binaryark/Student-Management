@@ -96,3 +96,35 @@ def mentor_notes_page():
     if blocked:
         return blocked
     return render_template("notes.html")
+
+
+@mentor_pages_bp.route("/mentor/grades.html")
+def mentor_grades_page():
+    blocked = _require_onboarding_page()
+    if blocked:
+        return blocked
+    return render_template("marks.html")
+
+
+@mentor_pages_bp.route("/mentor/schedule.html")
+def mentor_schedule_page():
+    blocked = _require_onboarding_page()
+    if blocked:
+        return blocked
+    return render_template("timetable.html")
+
+
+@mentor_pages_bp.route("/mentor/messages.html")
+def mentor_messages_page():
+    blocked = _require_onboarding_page()
+    if blocked:
+        return blocked
+    return render_template("notes.html")
+
+
+@mentor_pages_bp.route("/mentor/settings.html")
+def mentor_settings_page():
+    blocked = _require_onboarding_page()
+    if blocked:
+        return blocked
+    return render_template("mentor_settings.html")

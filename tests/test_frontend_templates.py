@@ -103,6 +103,32 @@ class FrontendTemplateTests(unittest.TestCase):
         self.assertIn("prefers-reduced-motion:reduce", sidebar)
         self.assertIn("@keyframes studentContentIn", dashboard)
 
+    def test_new_student_pages_meet_accessibility_baseline(self):
+        templates = ("grades.html", "schedule.html", "messages.html", "settings.html")
+        with app.test_request_context():
+            for template in templates:
+                html = render_template(template)
+                self.assertIn('<html lang="en">', html, template)
+                self.assertIn('class="skip-link"', html, template)
+                self.assertIn('id="main-content"', html, template)
+                self.assertIn('aria-live="polite"', html, template)
+        script = (ROOT / "frontend" / "src" / "student_pages.js").read_text()
+        css = (ROOT / "frontend" / "styles" / "student_pages.css").read_text()
+        self.assertIn('aria-busy', script)
+        self.assertIn('for="student-fullname"', script)
+        self.assertIn(':focus-visible', css)
+        self.assertIn('.skip-link:focus', css)
+        self.assertIn('prefers-reduced-motion:reduce', css)
+
+    def test_mentor_missing_page_aliases_and_settings_template_exist(self):
+        with app.test_request_context():
+            sidebar = render_template("mentor_sidebar.html")
+            settings = render_template("mentor_settings.html")
+        for path in ("/mentor/grades.html", "/mentor/schedule.html", "/mentor/messages.html", "/mentor/settings.html"):
+            self.assertIn(path, sidebar)
+        self.assertIn("mentorSettingsForm", settings)
+        self.assertIn("src/settings.js", settings)
+
     def test_mentor_motion_polish_has_reduced_motion_fallback(self):
         sidebar = (ROOT / "mentor" / "frontend" / "styles" / "mentor_sidebar.css").read_text()
         self.assertIn("@keyframes mentorSidebarIn", sidebar)

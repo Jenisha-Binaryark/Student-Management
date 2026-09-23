@@ -42,8 +42,10 @@ async function loadContentPage() {
     if (pageName === 'grades') renderGrades(root, data.exams || []);
     if (pageName === 'schedule') renderSchedule(root, data.timetable || []);
     if (pageName === 'messages') renderMessages(root, data.notes || []);
+    root.setAttribute('aria-busy', 'false');
   } catch {
     root.innerHTML = '<section class="page-card empty-state"><h1>Unable to load this page</h1><p>Please refresh and try again.</p></section>';
+    root.setAttribute('aria-busy', 'false');
   }
 }
 
@@ -62,7 +64,7 @@ function renderSchedule(root, timetable) {
   const regular = timetable.filter(slot => slot.timetable_type !== 'exam');
   const exams = timetable.filter(slot => slot.timetable_type === 'exam');
   root.innerHTML = `
-    <header class="page-heading"><div><span class="eyebrow">Plan your week</span><h1>My Schedule</h1><p>See your regular classes and upcoming exam timetable in one place.</p></div><div class="heading-icon">📅</div></header>
+    <header class="page-heading"><div><span class="eyebrow">Plan your week</span><h1>My Schedule</h1><p>See your regular classes and upcoming exam timetable in one place.</p></div><div class="heading-icon" aria-hidden="true">📅</div></header>
     <section class="schedule-columns"><section class="page-card"><div class="section-title"><div><span class="eyebrow">Weekly plan</span><h2>Regular classes</h2></div><span class="count-badge">${regular.length}</span></div>${regular.length ? `<div class="timeline">${regular.map(slot => scheduleRow(slot, false)).join('')}</div>` : emptyMessage('No regular classes yet', 'Your mentor will publish the weekly timetable here.')}</section><section class="page-card"><div class="section-title"><div><span class="eyebrow">Important dates</span><h2>Exam timetable</h2></div><span class="count-badge">${exams.length}</span></div>${exams.length ? `<div class="timeline">${exams.map(slot => scheduleRow(slot, true)).join('')}</div>` : emptyMessage('No exams scheduled', 'Exam timetable entries will appear here when they are published.')}</section></section>`;
 }
 
@@ -72,7 +74,7 @@ function scheduleRow(slot, isExam) {
 
 function renderMessages(root, notes) {
   root.innerHTML = `
-    <header class="page-heading"><div><span class="eyebrow">Stay connected</span><h1>Messages</h1><p>Updates and notes shared by your mentors.</p></div><div class="heading-icon">✉</div></header>
+    <header class="page-heading"><div><span class="eyebrow">Stay connected</span><h1>Messages</h1><p>Updates and notes shared by your mentors.</p></div><div class="heading-icon" aria-hidden="true">✉</div></header>
     <section class="page-card"><div class="section-title"><div><span class="eyebrow">Inbox</span><h2>Mentor updates</h2></div><span class="count-badge">${notes.length}</span></div>${notes.length ? `<div class="message-list">${notes.map(note => `<article class="message-card"><div class="message-icon">✦</div><div><div class="message-meta">${escapeHtml(note.mentor_name)} · ${formatDate(note.created_at)}</div><h3>${escapeHtml(note.title)}</h3><p>${escapeHtml(note.content)}</p><span class="message-class">${escapeHtml(note.class_name)}</span></div></article>`).join('')}</div>` : emptyMessage('No messages yet', 'Mentor announcements and notes will appear here.')}</section>`;
 }
 
@@ -82,10 +84,12 @@ async function loadSettings() {
     const response = await fetch('/api/student/profile');
     if (!response.ok) throw new Error('Profile unavailable');
     const profile = await response.json();
-    root.innerHTML = `<header class="page-heading"><div><span class="eyebrow">Your account</span><h1>Settings</h1><p>Keep your student profile up to date.</p></div><div class="heading-icon">⚙</div></header><section class="page-card settings-card"><div class="section-title"><div><span class="eyebrow">Profile details</span><h2>Personal information</h2></div></div><form id="settings-form" class="settings-form"><label>Full name<input name="fullname" value="${escapeAttribute(profile.fullname)}" required></label><label>Email address<input value="${escapeAttribute(profile.email)}" disabled></label><label>Phone number<input name="phone" value="${escapeAttribute(profile.phone)}" required></label><div class="form-actions"><span id="settings-status" role="status"></span><button class="primary-button" type="submit">Save changes</button></div></form></section>`;
+    root.innerHTML = `<header class="page-heading"><div><span class="eyebrow">Your account</span><h1>Settings</h1><p>Keep your student profile up to date.</p></div><div class="heading-icon" aria-hidden="true">⚙</div></header><section class="page-card settings-card"><div class="section-title"><div><span class="eyebrow">Profile details</span><h2>Personal information</h2></div></div><form id="settings-form" class="settings-form"><label for="student-fullname">Full name<input id="student-fullname" name="fullname" value="${escapeAttribute(profile.fullname)}" required></label><label for="student-email">Email address<input id="student-email" value="${escapeAttribute(profile.email)}" disabled></label><label for="student-phone">Phone number<input id="student-phone" name="phone" value="${escapeAttribute(profile.phone)}" required></label><div class="form-actions"><span id="settings-status" role="status" aria-live="polite"></span><button class="primary-button" type="submit">Save changes</button></div></form></section>`;
+    root.setAttribute('aria-busy', 'false');
     document.getElementById('settings-form').addEventListener('submit', saveSettings);
   } catch {
     root.innerHTML = '<section class="page-card empty-state"><h1>Unable to load settings</h1><p>Please refresh and try again.</p></section>';
+    root.setAttribute('aria-busy', 'false');
   }
 }
 

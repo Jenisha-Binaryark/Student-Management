@@ -80,7 +80,10 @@ class RoleAuthorizationTests(unittest.TestCase):
             password="StrongRole1!",
         )
 
-        for path in ("/mentor/dashboard.html", "/mentor/onboarding.html"):
+        for path in (
+            "/mentor/dashboard.html", "/mentor/onboarding.html", "/mentor/grades.html",
+            "/mentor/schedule.html", "/mentor/messages.html", "/mentor/settings.html",
+        ):
             with self.subTest(path=path):
                 response = student.get(path)
                 self.assertEqual(response.status_code, 302)
@@ -134,7 +137,15 @@ class RoleAuthorizationTests(unittest.TestCase):
                 self.assertEqual(response.get_json()["error"], "Unauthorized")
 
         self.assertEqual(mentor.get("/mentor/onboarding.html").status_code, 200)
+        for path in (
+            "/mentor/dashboard.html", "/mentor/grades.html", "/mentor/schedule.html",
+            "/mentor/messages.html", "/mentor/settings.html",
+        ):
+            response = mentor.get(path)
+            self.assertEqual(response.status_code, 302)
+            self.assertIn("/mentor/onboarding.html", response.headers["Location"])
         self.assertEqual(mentor.get("/api/profile/status").status_code, 200)
+        self.assertEqual(mentor.get("/api/profile/details").status_code, 200)
 
     def test_unauthenticated_requests_are_redirected_to_the_correct_login_role(self):
         client = app.test_client()
@@ -148,6 +159,10 @@ class RoleAuthorizationTests(unittest.TestCase):
             ("/settings.html", "student"),
             ("/mentor/dashboard.html", "mentor"),
             ("/mentor/onboarding.html", "mentor"),
+            ("/mentor/grades.html", "mentor"),
+            ("/mentor/schedule.html", "mentor"),
+            ("/mentor/messages.html", "mentor"),
+            ("/mentor/settings.html", "mentor"),
         ):
             with self.subTest(path=path):
                 response = client.get(path)

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Settings · Smartech Mentor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('mentor_pages.static', filename='styles/dashboard.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('mentor_pages.static', filename='styles/mentor_sidebar.css') }}">
+</head>
+<body data-page="settings">
+  <div id="sidebar-placeholder"></div>
+  <main class="main">
+    <div class="page-head"><h1>Settings</h1><p>Keep your mentor profile and teaching details up to date.</p></div>
+    <section class="card mentor-settings-card">
+      <h2>Profile details</h2>
+      <p id="settingsMessage" class="modal-message" role="status"></p>
+      <form id="mentorSettingsForm">
+        <label for="mentorFullname">Full name</label><input id="mentorFullname" name="fullname" required>
+        <label for="mentorEmail">Email address</label><input id="mentorEmail" name="email" disabled>
+        <div class="field-row"><div><label for="mentorPhone">Phone number</label><input id="mentorPhone" name="phone" required></div><div><label for="mentorCode">Mentor ID</label><input id="mentorCode" name="mentor_id" disabled></div></div>
+        <div class="field-row"><div><label for="mentorDepartment">Department</label><input id="mentorDepartment" name="department" required></div><div><label for="mentorDesignation">Designation</label><input id="mentorDesignation" name="designation" required></div></div>
+        <div class="panel-actions"><button class="btn-primary" type="submit">Save changes</button></div>
+      </form>
+    </section>
+  </main>
+  <script src="{{ url_for('mentor_pages.static', filename='src/mentor_common.js') }}"></script>
+  <script src="{{ url_for('mentor_pages.static', filename='src/settings.js') }}"></script>
+  <script>loadMentorSidebar('settings');</script>
+</body>
+</html>
