@@ -96,8 +96,14 @@ class RoleAuthorizationTests(unittest.TestCase):
                 self.assertEqual(response.status_code, 401)
                 self.assertEqual(response.get_json()["error"], "Unauthorized")
 
-        self.assertEqual(student.get("/dashboard.html").status_code, 200)
+        for path in (
+            "/dashboard.html", "/homework.html", "/my_classes.html",
+            "/grades.html", "/schedule.html", "/messages.html", "/settings.html",
+        ):
+            with self.subTest(path=path):
+                self.assertEqual(student.get(path).status_code, 200)
         self.assertEqual(student.get("/api/student/content").status_code, 200)
+        self.assertEqual(student.get("/api/student/profile").status_code, 200)
 
     def test_mentor_session_cannot_access_student_pages_or_apis(self):
         mentor = app.test_client()
@@ -111,13 +117,17 @@ class RoleAuthorizationTests(unittest.TestCase):
             mentor_id="ROLE-M-001",
         )
 
-        for path in ("/dashboard.html", "/homework.html", "/my_classes.html", "/sidebar.html"):
+        for path in (
+            "/dashboard.html", "/homework.html", "/my_classes.html",
+            "/grades.html", "/schedule.html", "/messages.html", "/settings.html",
+            "/sidebar.html",
+        ):
             with self.subTest(path=path):
                 response = mentor.get(path)
                 self.assertEqual(response.status_code, 302)
                 self.assertIn("/login.html?role=student", response.headers["Location"])
 
-        for path in ("/api/student/content", "/api/student/dashboard/summary"):
+        for path in ("/api/student/content", "/api/student/dashboard/summary", "/api/student/profile"):
             with self.subTest(path=path):
                 response = mentor.get(path)
                 self.assertEqual(response.status_code, 401)
@@ -132,6 +142,10 @@ class RoleAuthorizationTests(unittest.TestCase):
         for path, expected_role in (
             ("/dashboard.html", "student"),
             ("/homework.html", "student"),
+            ("/grades.html", "student"),
+            ("/schedule.html", "student"),
+            ("/messages.html", "student"),
+            ("/settings.html", "student"),
             ("/mentor/dashboard.html", "mentor"),
             ("/mentor/onboarding.html", "mentor"),
         ):

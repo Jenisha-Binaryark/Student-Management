@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Messages · Smartech</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/sidebar.css') }}?v=student-pages-1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/student_pages.css') }}?v=student-pages-1">
+</head>
+<body data-page="messages">
+  <div id="sidebar-placeholder"></div>
+  <main class="main student-page-main"><div id="student-content" class="student-content"><div class="page-loading">Loading your messages…</div></div></main>
+  <script src="{{ url_for('static', filename='src/student_pages.js') }}?v=student-pages-1"></script>
+</body>
+</html>

@@ -11,10 +11,10 @@
       <li><a href="{{ url_for('dashboard_page') }}" data-page="dashboard" class="active"><span class="icon">▦</span> Dashboard</a></li>
       <li><a href="{{ url_for('my_classes') }}" data-page="my-classes"><span class="icon">🏠</span> My classes</a></li>
       <li><a href="{{ url_for('homework_page') }}" data-page="homework"><span class="icon">📝</span> Homework</a></li>
-      <li><a href="#"><span class="icon">📊</span> My grades</a></li>
-      <li><a href="#"><span class="icon">📅</span> Schedule</a></li>
-      <li><a href="#"><span class="icon">✉</span> Messages</a></li>
-      <li><a href="#"><span class="icon">⚙</span> Setting</a></li>
+      <li><a href="{{ url_for('student_pages.grades_page') }}" data-page="grades"><span class="icon">📊</span> My grades</a></li>
+      <li><a href="{{ url_for('student_pages.schedule_page') }}" data-page="schedule"><span class="icon">📅</span> Schedule</a></li>
+      <li><a href="{{ url_for('student_pages.messages_page') }}" data-page="messages"><span class="icon">✉</span> Messages</a></li>
+      <li><a href="{{ url_for('student_pages.settings_page') }}" data-page="settings"><span class="icon">⚙</span> Setting</a></li>
     </ul>
   </nav>
   <button class="logout" id="logout-Btn"><span class="fa-solid fa-right-from-bracket"></span> Log out</button>

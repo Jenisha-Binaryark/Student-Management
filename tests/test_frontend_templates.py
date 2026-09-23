@@ -21,10 +21,30 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 class FrontendTemplateTests(unittest.TestCase):
     def test_student_templates_use_normalized_static_urls(self):
         with app.test_request_context():
-            for template in ("signup.html", "login.html", "dashboard.html"):
+            for template in (
+                "signup.html", "login.html", "dashboard.html", "grades.html",
+                "schedule.html", "messages.html", "settings.html",
+            ):
                 html = render_template(template)
                 self.assertNotIn("/frontend//", html, template)
                 self.assertNotIn("filename='/'", html, template)
+
+    def test_student_missing_pages_have_working_navigation_and_controller(self):
+        with app.test_request_context():
+            sidebar = render_template("sidebar.html")
+        for endpoint in (
+            "student_pages.grades_page", "student_pages.schedule_page",
+            "student_pages.messages_page", "student_pages.settings_page",
+        ):
+            self.assertIn(endpoint.split(".")[-1].replace("_page", ""), sidebar)
+        script = (ROOT / "frontend" / "src" / "student_pages.js").read_text()
+        css = (ROOT / "frontend" / "styles" / "student_pages.css").read_text()
+        self.assertIn("renderGrades", script)
+        self.assertIn("renderSchedule", script)
+        self.assertIn("renderMessages", script)
+        self.assertIn("saveSettings", script)
+        self.assertIn(".schedule-columns", css)
+        self.assertIn(".settings-form", css)
 
     def test_mentor_templates_use_mentor_dashboard_styles(self):
         with app.test_request_context():

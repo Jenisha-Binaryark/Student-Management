@@ -18,6 +18,7 @@ from mentor.backend.dashboard import dashboard_bp
 from mentor.backend.pages import mentor_pages_bp
 from backend.student_dashboard import student_dashboard_bp
 from backend.student_content import student_content_bp
+from backend.student_pages import student_pages_bp
 
 
 app = Flask(
@@ -33,6 +34,8 @@ app.config.update(
     SESSION_COOKIE_SAMESITE=SESSION_COOKIE_SAMESITE,
     PERMANENT_SESSION_LIFETIME=SESSION_LIFETIME,
 )
+
+app.register_blueprint(student_pages_bp)
 
 
 @app.route("/")
