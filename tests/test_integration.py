@@ -104,6 +104,15 @@ class ApplicationIntegrationTests(unittest.TestCase):
         response = client.get("/api/profile/status")
         self.assertTrue(response.get_json()["all_complete"])
 
+        for path in (
+            "/mentor/dashboard.html", "/mentor/attendance.html", "/mentor/timetable.html",
+            "/mentor/assignments.html", "/mentor/marks.html", "/mentor/notes.html",
+            "/mentor/grades.html", "/mentor/schedule.html", "/mentor/messages.html",
+            "/mentor/settings.html",
+        ):
+            with self.subTest(path=path):
+                self.assertEqual(client.get(path).status_code, 200)
+
         response = client.get("/api/classes")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.get_json()["classes"][0]["id"], class_id)
@@ -167,6 +176,12 @@ class ApplicationIntegrationTests(unittest.TestCase):
                 "role": "student",
             },
         )
+        for path in (
+            "/dashboard.html", "/homework.html", "/my_classes.html", "/grades.html",
+            "/schedule.html", "/messages.html", "/settings.html",
+        ):
+            with self.subTest(path=path):
+                self.assertEqual(student.get(path).status_code, 200)
         self.assertEqual(student.get("/api/student/content").status_code, 200)
 
         response = mentor.post(
@@ -187,15 +202,39 @@ class ApplicationIntegrationTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
         assignment_id = response.get_json()["assignment"]["id"]
 
-        response = student.post(
-            f"/api/student/assignments/{assignment_id}/submission",
-            json={"text": "Completed report"},
+        response = mentor.post(
+            "/api/notes",
+            json={
+                "class_id": class_id,
+                "title": "Welcome note",
+                "content": "Bring your lab notebook next week.",
+            },
         )
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
 
-        response = mentor.get(f"/api/assignments/{assignment_id}/submissions")
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.get_json()["submissions"]), 1)
+        for timetable_payload in (
+            {
+                "class_id": class_id,
+                "day_of_week": "Mon",
+                "subject": "Biology lab",
+                "start_time": "09:00",
+                "end_time": "10:00",
+                "room": "B-12",
+                "timetable_type": "regular",
+            },
+            {
+                "class_id": class_id,
+                "day_of_week": "Fri",
+                "subject": "Biology midterm",
+                "start_time": "11:00",
+                "end_time": "13:00",
+                "room": "Hall 2",
+                "timetable_type": "exam",
+                "exam_date": "2026-10-05",
+            },
+        ):
+            response = mentor.post("/api/timetable", json=timetable_payload)
+            self.assertEqual(response.status_code, 201)
 
         response = mentor.post(
             "/api/attendance",
@@ -224,6 +263,27 @@ class ApplicationIntegrationTests(unittest.TestCase):
             json={"exam_id": exam_id, "records": [{"student_id": 1, "score": 88}]},
         )
         self.assertEqual(response.status_code, 200)
+
+        response = student.get("/api/student/content")
+        self.assertEqual(response.status_code, 200)
+        content = response.get_json()
+        self.assertEqual(len(content["assignments"]), 1)
+        self.assertEqual(content["assignments"][0]["title"], "Lab report")
+        self.assertEqual(content["notes"][0]["title"], "Welcome note")
+        self.assertEqual(len(content["timetable"]), 2)
+        self.assertEqual({slot["timetable_type"] for slot in content["timetable"]}, {"regular", "exam"})
+        self.assertEqual(content["exams"][0]["score"], 88)
+        self.assertEqual(content["attendance"][0]["status"], "present")
+
+        response = student.post(
+            f"/api/student/assignments/{assignment_id}/submission",
+            json={"text": "Completed report"},
+        )
+        self.assertEqual(response.status_code, 200)
+
+        response = mentor.get(f"/api/assignments/{assignment_id}/submissions")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.get_json()["submissions"]), 1)
 
         response = student.get("/api/student/dashboard/summary")
         self.assertEqual(response.status_code, 200)
