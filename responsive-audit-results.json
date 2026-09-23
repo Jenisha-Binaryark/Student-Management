@@ -1,0 +1,3007 @@
+[
+  {
+    "browser": "chromium",
+    "role": "student",
+    "results": [
+      {
+        "viewport": "mobile",
+        "page": "/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/dashboard.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/homework.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/homework.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/my_classes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/my_classes.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/grades.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/schedule.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/messages.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/settings.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/dashboard.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/homework.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/homework.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/my_classes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/my_classes.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/grades.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/schedule.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/messages.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/settings.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/dashboard.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/homework.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/homework.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/my_classes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/my_classes.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/grades.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/schedule.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/messages.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/settings.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      }
+    ]
+  },
+  {
+    "browser": "chromium",
+    "role": "mentor",
+    "results": [
+      {
+        "viewport": "mobile",
+        "page": "/mentor/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/attendance.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/timetable.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/assignments.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/marks.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/notes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/attendance.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/timetable.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/assignments.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/marks.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/notes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/attendance.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/timetable.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/assignments.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/marks.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/notes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      }
+    ]
+  },
+  {
+    "browser": "firefox",
+    "role": "student",
+    "results": [
+      {
+        "viewport": "mobile",
+        "page": "/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/dashboard.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/homework.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/homework.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/my_classes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/my_classes.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/grades.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/schedule.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/messages.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/settings.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/dashboard.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/homework.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/homework.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/my_classes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/my_classes.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/grades.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/schedule.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/messages.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/settings.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/dashboard.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/homework.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/homework.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/my_classes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/my_classes.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/grades.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/schedule.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/messages.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/settings.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      }
+    ]
+  },
+  {
+    "browser": "firefox",
+    "role": "mentor",
+    "results": [
+      {
+        "viewport": "mobile",
+        "page": "/mentor/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/attendance.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/timetable.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/assignments.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/marks.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/notes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/attendance.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/timetable.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/assignments.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/marks.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/notes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/attendance.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/timetable.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/assignments.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/marks.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/notes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      }
+    ]
+  },
+  {
+    "browser": "webkit",
+    "role": "student",
+    "results": [
+      {
+        "viewport": "mobile",
+        "page": "/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/dashboard.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            },
+            {
+              "tag": "a",
+              "id": "",
+              "cls": "text-decoration-none",
+              "right": 471,
+              "left": 90,
+              "width": 381
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/homework.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/homework.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/my_classes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/my_classes.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/grades.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/schedule.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/messages.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/settings.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "div",
+              "id": "",
+              "cls": "top-icons",
+              "right": 407,
+              "left": 391,
+              "width": 16
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/dashboard.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "a",
+              "id": "",
+              "cls": "text-decoration-none",
+              "right": 796,
+              "left": 504,
+              "width": 292
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/homework.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/homework.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/my_classes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/my_classes.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/grades.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/schedule.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/messages.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/settings.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/dashboard.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [
+            {
+              "tag": "a",
+              "id": "",
+              "cls": "text-decoration-none",
+              "right": 1494,
+              "left": 1088,
+              "width": 406
+            }
+          ],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/homework.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/homework.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/my_classes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/my_classes.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/grades.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/schedule.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/messages.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/settings.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      }
+    ]
+  },
+  {
+    "browser": "webkit",
+    "role": "mentor",
+    "results": [
+      {
+        "viewport": "mobile",
+        "page": "/mentor/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/attendance.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/timetable.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/assignments.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/marks.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/notes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "mobile",
+        "page": "/mentor/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "scrollWidth": 390,
+          "clientWidth": 390,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/attendance.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/timetable.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/assignments.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/marks.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/notes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "tablet",
+        "page": "/mentor/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 768,
+          "innerHeight": 1024,
+          "scrollWidth": 768,
+          "clientWidth": 768,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/dashboard.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/attendance.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/timetable.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/assignments.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/marks.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/notes.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/grades.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/schedule.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/messages.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      },
+      {
+        "viewport": "desktop",
+        "page": "/mentor/settings.html",
+        "status": 200,
+        "final_url": "http://127.0.0.1:5000/mentor/onboarding.html",
+        "redirected_to_login": false,
+        "metrics": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "viewportOverflow": false,
+          "overflowing": [],
+          "title": ""
+        },
+        "console_errors": [],
+        "failed_requests": []
+      }
+    ]
+  }
+]
