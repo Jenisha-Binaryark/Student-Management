@@ -326,8 +326,15 @@ def current_user():
     conn = get_db_connection()
     try:
         with conn.cursor() as cur:
-            cur.execute(f"SELECT profile_photo FROM {table} WHERE id = %s", (user_id,))
-            row = cur.fetchone()
+            try:
+                cur.execute(f"SELECT profile_photo FROM {table} WHERE id = %s", (user_id,))
+                row = cur.fetchone()
+            except Exception as exc:
+                # Keep existing installations usable until migration 002 is applied.
+                if exc.__class__.__name__ != "UndefinedColumn":
+                    raise
+                conn.rollback()
+                row = (None,)
     finally:
         conn.close()
 
@@ -447,6 +454,17 @@ def add_no_cache_headers(response):
     if APP_ENV == "production":
         response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
     return response
+
+
+@app.errorhandler(500)
+def handle_internal_server_error(error):
+    if request.path.startswith('/api/'):
+        app.logger.exception('API request failed: %s', error)
+        return jsonify({
+            'error': 'Internal server error',
+            'message': 'The server could not load this data. Apply the latest database migrations and try again.',
+        }), 500
+    return error
 
 
 app.register_blueprint(profile_bp)

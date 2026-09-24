@@ -33,7 +33,7 @@ Install dependencies and apply the schema before starting Flask:
 
 ```bash
 python3 -m pip install -r requirements.txt
-psql "$DB_NAME" -f database/migrations/001_initial.sql
+psql "$DB_NAME" -f database/signup_user.sql
 python3 -m backend.app
 ```
 
