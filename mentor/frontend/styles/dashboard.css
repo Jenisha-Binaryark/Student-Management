@@ -513,3 +513,24 @@ a.p-name{text-decoration:none;}
 .assignment-submission a{color:var(--sidebar-purple);font-weight:700}
 @media(max-width:1100px){.dashboard-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.dashboard-kpis{grid-template-columns:1fr}}
+
+
+/* Settings and profile photo */
+.mentor-settings-card{max-width:900px;margin:0 auto 18px}
+.mentor-settings-card h2{margin-bottom:8px}
+.mentor-settings-card form{display:grid;gap:10px}
+.mentor-settings-card label{display:grid;gap:6px;color:var(--text-muted);font-size:12px;font-weight:700}
+.mentor-settings-card input{width:100%;min-height:42px;border:1px solid rgba(74,63,87,.14);border-radius:10px;background:#fff;color:var(--text-dark);padding:10px 12px;font:inherit;font-size:13px;outline:none}
+.mentor-settings-card input:focus{border-color:var(--sidebar-purple);box-shadow:0 0 0 3px rgba(124,106,144,.14)}
+.mentor-settings-card input:disabled{background:rgba(74,63,87,.06);color:var(--text-muted)}
+.mentor-settings-card .field-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mentor-settings-card .panel-actions{display:flex;justify-content:flex-end;margin-top:4px}
+.settings-help{color:var(--text-muted);font-size:12px;margin-bottom:12px}
+.profile-photo-layout{display:flex;align-items:center;gap:22px}
+.profile-photo-preview{width:92px;height:92px;flex:0 0 92px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,var(--sidebar-purple),var(--sidebar-active));color:#fff;font-size:32px;font-weight:700;box-shadow:0 8px 18px rgba(60,40,80,.15)}
+.profile-photo-preview img{width:100%;height:100%;object-fit:cover}
+.profile-photo-copy{display:grid;gap:10px;min-width:0}
+.photo-upload-form{display:flex!important;align-items:center;flex-wrap:wrap;gap:10px!important}
+.file-picker{display:inline-flex!important;align-items:center;min-height:42px;padding:0 13px;border:1px dashed rgba(74,63,87,.22);border-radius:10px;background:#fff;color:var(--text-dark)!important;cursor:pointer}
+.file-picker input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+@media(max-width:700px){.mentor-settings-card .field-row{grid-template-columns:1fr}.profile-photo-layout{align-items:flex-start;flex-direction:column}.photo-upload-form{align-items:stretch}.photo-upload-form .file-picker,.photo-upload-form .btn-primary{width:100%;justify-content:center}}

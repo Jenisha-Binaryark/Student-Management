@@ -23,6 +23,18 @@
         <div class="panel-actions"><button class="btn-primary" type="submit">Save changes</button></div>
       </form>
     </section>
+    <section class="card mentor-settings-card profile-photo-card">
+      <h2>Profile photo</h2>
+      <p class="settings-help">Upload a JPG, PNG, WebP, or GIF image up to 2 MB.</p>
+      <div class="profile-photo-layout">
+        <div class="profile-photo-preview"><img id="mentorPhotoPreview" alt="Current profile photo" hidden><span id="mentorPhotoPlaceholder">M</span></div>
+        <form id="mentorPhotoForm" class="photo-upload-form">
+          <label class="file-picker" for="mentorPhoto">Choose profile photo<input id="mentorPhoto" type="file" accept="image/jpeg,image/png,image/webp,image/gif" required></label>
+          <button class="btn-primary" type="submit">Upload photo</button>
+          <span id="mentorPhotoStatus" class="modal-message" role="status" aria-live="polite"></span>
+        </form>
+      </div>
+    </section>
   </main>
   <script src="{{ url_for('mentor_pages.static', filename='src/mentor_common.js') }}"></script>
   <script src="{{ url_for('mentor_pages.static', filename='src/settings.js') }}"></script>

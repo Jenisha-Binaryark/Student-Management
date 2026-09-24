@@ -4,6 +4,9 @@ from backend.db import get_db_connection
 
 student_pages_bp = Blueprint("student_pages", __name__)
 
+MAX_PROFILE_PHOTO_BYTES = 2 * 1024 * 1024
+ALLOWED_PROFILE_PHOTO_TYPES = {"image/jpeg", "image/png", "image/webp", "image/gif"}
+
 
 def _student_page(template):
     if session.get("role") != "student" or not session.get("student_id"):
@@ -51,7 +54,7 @@ def student_profile():
                     UPDATE student_signup
                     SET fullname = %s, phone = %s
                     WHERE id = %s
-                    RETURNING id, fullname, email, phone
+                    RETURNING id, fullname, email, phone, profile_photo
                     """,
                     (fullname, phone, student_id),
                 )
@@ -63,7 +66,7 @@ def student_profile():
             else:
                 cur.execute(
                     """
-                    SELECT id, fullname, email, phone
+                        SELECT id, fullname, email, phone, profile_photo
                     FROM student_signup
                     WHERE id = %s
                     """,
@@ -80,4 +83,41 @@ def student_profile():
         "fullname": row[1],
         "email": row[2],
         "phone": row[3],
+        "profile_photo": row[4],
     })
+
+
+@student_pages_bp.post("/api/student/profile/photo")
+def upload_student_profile_photo():
+    student_id = session.get("student_id")
+    if session.get("role") != "student" or not student_id:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    photo = request.files.get("photo")
+    if not photo or not photo.filename:
+        return jsonify({"error": "Choose an image to upload"}), 400
+    if photo.mimetype not in ALLOWED_PROFILE_PHOTO_TYPES:
+        return jsonify({"error": "Use a JPG, PNG, WebP, or GIF image"}), 400
+    payload = photo.read(MAX_PROFILE_PHOTO_BYTES + 1)
+    if len(payload) > MAX_PROFILE_PHOTO_BYTES:
+        return jsonify({"error": "Profile photos must be 2 MB or smaller"}), 400
+
+    import base64
+    profile_photo = f"data:{photo.mimetype};base64,{base64.b64encode(payload).decode('ascii')}"
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                "UPDATE student_signup SET profile_photo = %s WHERE id = %s RETURNING profile_photo",
+                (profile_photo, student_id),
+            )
+            row = cur.fetchone()
+            if not row:
+                return jsonify({"error": "Student not found"}), 404
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        conn.close()
+    return jsonify({"message": "Profile photo updated", "profile_photo": row[0]}), 200

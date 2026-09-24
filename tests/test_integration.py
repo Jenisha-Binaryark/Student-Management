@@ -1,3 +1,4 @@
+import io
 import os
 import pathlib
 import unittest
@@ -18,7 +19,7 @@ from backend.security import _attempts
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-MIGRATION = ROOT / "database" / "migrations" / "001_initial.sql"
+MIGRATIONS = sorted((ROOT / "database" / "migrations").glob("*.sql"))
 
 
 class ApplicationIntegrationTests(unittest.TestCase):
@@ -30,7 +31,8 @@ class ApplicationIntegrationTests(unittest.TestCase):
             raise unittest.SkipTest(f"PostgreSQL is unavailable: {exc}") from exc
 
         with cls.connection.cursor() as cur:
-            cur.execute(MIGRATION.read_text())
+            for migration in MIGRATIONS:
+                cur.execute(migration.read_text())
         cls.connection.commit()
         cls.connection.close()
 
@@ -104,6 +106,14 @@ class ApplicationIntegrationTests(unittest.TestCase):
         response = client.get("/api/profile/status")
         self.assertTrue(response.get_json()["all_complete"])
 
+        response = client.post(
+            "/api/profile/photo",
+            data={"photo": (io.BytesIO(b"mentor-image"), "mentor.png")},
+            content_type="multipart/form-data",
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.get_json()["profile_photo"].startswith("data:image/png;base64,"))
+
         for path in (
             "/mentor/dashboard.html", "/mentor/attendance.html", "/mentor/timetable.html",
             "/mentor/assignments.html", "/mentor/marks.html", "/mentor/notes.html",
@@ -176,6 +186,13 @@ class ApplicationIntegrationTests(unittest.TestCase):
                 "role": "student",
             },
         )
+        response = student.post(
+            "/api/student/profile/photo",
+            data={"photo": (io.BytesIO(b"student-image"), "student.jpg")},
+            content_type="multipart/form-data",
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.get_json()["profile_photo"].startswith("data:image/jpeg;base64,"))
         for path in (
             "/dashboard.html", "/homework.html", "/my_classes.html", "/grades.html",
             "/schedule.html", "/messages.html", "/settings.html",
