@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS student_signup (
     phone VARCHAR(30) NOT NULL UNIQUE,
     password TEXT NOT NULL,
     referral VARCHAR(120),
+    profile_photo TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -20,6 +21,7 @@ CREATE TABLE IF NOT EXISTS mentor_signup (
     referral VARCHAR(120),
     department VARCHAR(120),
     designation VARCHAR(120),
+    profile_photo TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 

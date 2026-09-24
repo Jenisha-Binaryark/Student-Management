@@ -25,6 +25,8 @@ async function initSidebar() {
     const firstName = document.getElementById('user-first-name');
     if (sidebarName) sidebarName.textContent = name;
     if (firstName) firstName.textContent = name.split(' ')[0];
+    const profilePhoto = document.getElementById('sidebar-profile-photo');
+    if (profilePhoto && user.profile_photo) profilePhoto.src = user.profile_photo;
 
     const logoutBtn = document.getElementById('logout-Btn');
     if (logoutBtn) {
@@ -59,6 +61,7 @@ async function loadDashboardSummary() {
     document.querySelectorAll('.empty-hint').forEach(el => {
       if (el.textContent.includes('Loading')) el.textContent = 'Unable to load data right now.';
     });
+    console.error('Dashboard summary failed:', error);
   }
 }
 

@@ -320,9 +320,21 @@ def current_user():
             "status": "not_logged_in"
         }), 401
 
+    role = session.get("role")
+    user_id = session.get("student_id") if role == "student" else session.get("mentor_id")
+    table = "student_signup" if role == "student" else "mentor_signup"
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(f"SELECT profile_photo FROM {table} WHERE id = %s", (user_id,))
+            row = cur.fetchone()
+    finally:
+        conn.close()
+
     return jsonify({
         "status": "success",
-        "fullname": fullname
+        "fullname": fullname,
+        "profile_photo": row[0] if row else None,
     })
 
 

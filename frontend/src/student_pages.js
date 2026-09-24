@@ -20,6 +20,8 @@ async function loadSidebar() {
     const firstName = document.getElementById('user-first-name');
     if (sidebarName) sidebarName.textContent = name;
     if (firstName) firstName.textContent = name.split(' ')[0];
+    const profilePhoto = document.getElementById('sidebar-profile-photo');
+    if (profilePhoto && user.profile_photo) profilePhoto.src = user.profile_photo;
     document.querySelectorAll('.sidebar nav a').forEach(link => link.classList.remove('active'));
     document.querySelector(`.sidebar nav a[data-page="${pageName}"]`)?.classList.add('active');
     document.getElementById('logout-Btn')?.addEventListener('click', async () => {

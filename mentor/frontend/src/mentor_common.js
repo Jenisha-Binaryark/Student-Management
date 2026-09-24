@@ -26,11 +26,13 @@ function initMentorSidebar(activePage) {
 
   fetch('/api/current_user')
     .then(r => r.json())
-    .then(u => {
+      .then(u => {
       if (u.status === 'success') {
         document.getElementById('sidebar-username').textContent = u.fullname;
         document.getElementById('user-first-name').textContent =
           u.fullname.split(' ')[0].toUpperCase();
+        const profilePhoto = document.getElementById('mentor-sidebar-profile-photo');
+        if (profilePhoto && u.profile_photo) profilePhoto.src = u.profile_photo;
       }
     })
     .catch(err => console.error('Failed to load user info:', err));
